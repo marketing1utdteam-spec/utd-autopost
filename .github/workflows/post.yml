@@ -9,6 +9,10 @@ on:
         description: "dry-run (не публиковать, только проверить)"
         type: boolean
         default: true
+      force_date:
+        description: "форс-дата YYYY-MM-DD (для теста, иначе сегодня)"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -27,10 +31,12 @@ jobs:
           META_CONFIG: ${{ secrets.META_CONFIG }}
           GH_TOKEN: ${{ secrets.MEDIA_GH_TOKEN }}
         run: |
+          ARGS=""
+          [ -n "${{ inputs.force_date }}" ] && ARGS="--date ${{ inputs.force_date }}"
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
-            python run_due.py --dry-run
+            python run_due.py --dry-run $ARGS
           else
-            python run_due.py
+            python run_due.py $ARGS
           fi
       - name: Commit posted state
         if: github.event_name == 'schedule' || inputs.dry_run == false
