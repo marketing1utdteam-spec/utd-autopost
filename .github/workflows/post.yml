@@ -1,0 +1,42 @@
+name: UTD autopost (IG + reels)
+
+on:
+  schedule:
+    - cron: "0 10 * * *"      # ежедневно 10:00 UTC (~12:00 Brussels) — публикует то, что due на сегодня
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "dry-run (не публиковать, только проверить)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Run scheduled poster
+        env:
+          META_CONFIG: ${{ secrets.META_CONFIG }}
+          GH_TOKEN: ${{ secrets.MEDIA_GH_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+            python run_due.py --dry-run
+          else
+            python run_due.py
+          fi
+      - name: Commit posted state
+        if: github.event_name == 'schedule' || inputs.dry_run == false
+        run: |
+          git config user.name "utd-autopost"
+          git config user.email "marketing@utdweb.team"
+          git add posted.json
+          git commit -m "posted state $(date -u +%F)" || echo "nothing to commit"
+          git push || echo "nothing to push"

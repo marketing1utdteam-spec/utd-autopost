@@ -1,0 +1,4 @@
+[
+  { "id": "2026-07-15_ig_post01", "date": "2026-07-15", "kind": "ig_post", "folder": "media/ig/post01" },
+  { "id": "2026-07-15_ig_reel01", "date": "2026-07-15", "kind": "ig_reel", "video": "media/reels/reel01.mp4", "caption_file": "media/reels/reel01_caption.txt" }
+]
