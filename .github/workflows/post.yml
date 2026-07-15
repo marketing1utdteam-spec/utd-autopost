@@ -2,7 +2,7 @@ name: UTD autopost (IG + reels)
 
 on:
   schedule:
-    - cron: "0 10 * * *"      # ежедневно 10:00 UTC (~12:00 Brussels) — публикует то, что due на сегодня
+    - cron: "0 8,11,14,17 * * *"   # резерв: несколько раз/день UTC (идемпотентно; launchd — основной триггер)
   workflow_dispatch:
     inputs:
       dry_run:
