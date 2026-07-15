@@ -73,9 +73,12 @@ def wait_ready(cid, tries=30, delay=5):
         time.sleep(delay)
     die("container not ready (timeout)", {"cid": cid})
 
-def to_jpg(png):
-    out = os.path.join(TMP, os.path.basename(png).replace('.png','.jpg'))
-    Image.open(png).convert('RGB').save(out, 'JPEG', quality=90); return out
+def to_jpg(png, maxw=1440):
+    im = Image.open(png).convert('RGB')
+    if im.width > maxw:                       # ровно под макс. размер ленты IG — минимум перекодирования на их стороне
+        im = im.resize((maxw, round(im.height * maxw / im.width)), Image.LANCZOS)
+    out = os.path.join(TMP, os.path.splitext(os.path.basename(png))[0] + '.jpg')
+    im.save(out, 'JPEG', quality=95, subsampling=0); return out
 
 def strip_caption(md_path):
     txt = open(md_path).read().strip()
@@ -117,10 +120,25 @@ def ig_single(png, caption, dry):
     finally:
         gh_delete(rp, sha); print("  🧹 медиа удалено")
 
+def reencode_hi(mp4):
+    """Перекодируем в высокий битрейт (IG меньше дожимает движение). Если ffmpeg нет — вернём как есть."""
+    out = os.path.join(TMP, "hb_" + os.path.basename(mp4))
+    try:
+        r = subprocess.run(["ffmpeg","-y","-i",mp4,"-c:v","libx264","-preset","slow",
+                            "-b:v","14M","-maxrate","16M","-bufsize","24M","-pix_fmt","yuv420p",
+                            "-c:a","aac","-b:a","192k","-movflags","+faststart",out],
+                           capture_output=True, text=True)
+        if r.returncode == 0 and os.path.exists(out):
+            print("  видео перекодировано в высокий битрейт (14 Mbps)"); return out
+    except FileNotFoundError:
+        pass
+    print("  ! ffmpeg недоступен — гружу оригинал"); return mp4
+
 def ig_reel(mp4, caption, dry):
+    mp4 = reencode_hi(mp4)
     stamp = int(time.time()); rp = f"q/{stamp}_reel.mp4"; url, sha = gh_upload(mp4, rp)
     try:
-        cont = graph(f"{IG}/media", {"media_type":"REELS","video_url":url,"caption":caption,"share_to_feed":"true"})
+        cont = graph(f"{IG}/media", {"media_type":"REELS","video_url":url,"caption":caption,"share_to_feed":"false"})
         if "id" not in cont: die("reel container fail", cont)
         cid = cont["id"]; print("  reel container:", cid, "— жду обработку видео Meta...")
         for _ in range(40):
