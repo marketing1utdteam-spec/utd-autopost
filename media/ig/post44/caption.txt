@@ -1,0 +1,7 @@
+Before you hit publish, run this 8-point pre-launch audit &mdash; the same filter we use for client stores.
+
+Loads under 3s on a phone; works one-handed; checkout is short with guest + express pay; trust is visible (reviews, returns, secure cues); the product page answers every buying reason; every link and form works; mobile images are sharp; analytics is installed before traffic.
+
+Most of these are properties of the theme, not add-ons &mdash; a reviewed theme passes them by default. Save this and run it before launch. Link in bio.
+
+#shopify #shopifytheme #shopifythemes #ecommerce #shopifystore #onlinestore #ecommercetips #dtc

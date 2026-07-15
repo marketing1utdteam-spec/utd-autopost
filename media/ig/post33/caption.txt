@@ -1,0 +1,7 @@
+Two stores, same products, same prices. One converts twice as well. Can you guess which &mdash; and why?
+
+Store A: big photos, buy button in reach, reviews on the page, ~1s load. Store B: small images, buy button below the fold, no reviews, ~4s load. Winner: A, by a lot. 87% of shoppers decide on the product page (Salsify) and 53% leave a slow one (Google) &mdash; layout and speed alone can double conversion.
+
+You don't need more traffic; you need a store built to convert it. Link in bio.
+
+#shopify #shopifytheme #shopifythemes #ecommerce #shopifystore #onlinestore #ecommercetips #dtc

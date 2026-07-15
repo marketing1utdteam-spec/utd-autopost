@@ -1,0 +1,11 @@
+"Just start with a free theme" is the most common advice new store owners get — and it's half right. The half nobody explains is when free stops being free, and how quietly that moment arrives. This carousel is the honest table we wish someone had shown us.
+
+Swipe through four comparisons: what's actually in the box (features), who stays fast as you grow (speed), what year one really costs (the 12-month bill), and who answers when something breaks (support and updates). No strawmen — free themes are genuinely good at the basics, and we say so on the slides.
+
+The math that changes the verdict: the standard app stack that replaces missing theme features — filtering (~$19/mo), upsells (~$15/mo), quick view (~$10/mo), mega menu (~$12/mo) — runs about $56 a month, or $672 in year one, recurring forever. Meanwhile every added app injects scripts into your storefront, and Akamai's retail data prices that at up to 7% of conversions per 100ms of added latency. Google's threshold research adds the cliff: 53% of mobile visitors abandon after 3 seconds. The "free" path costs money twice — in subscriptions and in speed.
+
+The pattern shows up in public case studies over and over. COOK, the UK frozen-meals retailer, rebuilt for performance and clarity instead of stacking plugins — conversions rose 7% and bounce dropped 7 points, documented in their published case study. AliExpress attacked load time directly, cut it ~36%, and logged 10.5% more orders. Both companies spent on the container once instead of renting patches monthly — exactly the trade the honest table describes.
+
+My take: if you need only a grid, a cart and a checkout — take the free theme with our blessing. The moment you need selling features, the $100 theme is the cheaper option by month three, and it stays faster forever. Every UTD theme installs free on your store from the official Shopify Theme Store — run your own comparison before paying anything. Link in bio.
+
+#shopify #shopifytheme #shopifythemes #ecommerce #onlinestore #ecommercetips #shopifystore #dtc #smallbusiness #webdesign

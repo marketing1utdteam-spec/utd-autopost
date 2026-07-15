@@ -1,0 +1,13 @@
+"The theme is free" is the most convincing lie in eCommerce, mostly because nobody is technically lying: the download really does cost zero. The bill just arrives later, itemized differently.
+
+Here's how it works. Free themes ship deliberately bare — no reviews block, no upsell logic, no mega menu, no bundles. Each missing feature returns as an app subscription: reviews ~$15/mo, upsells ~$20/mo, mega menu ~$9/mo, bundles ~$12/mo. That's $56 a month, $672+ in year one, forever — for features a good paid theme includes in a single $100 payment. And every bolted-on app injects its own scripts into your storefront, which is precisely how fast stores become slow.
+
+Slow costs more than the subscriptions. Google's mobile research found 53% of visitors abandon a page that takes longer than 3 seconds; Akamai measured a 7% conversion drop from just 100 milliseconds of extra delay; Deloitte's "Milliseconds Make Millions" study showed a 0.1-second improvement lifts retail conversions by 8.4%. App bloat isn't a cosmetic problem — it's a revenue leak.
+
+The reverse experiment has been run publicly many times. Swappie, the refurbished-iPhone retailer, rebuilt its mobile store for speed and documented a 42% increase in mobile revenue in web.dev's case study; Vodafone's speed optimization delivered +8% in sales in a controlled A/B test. None of that came from new marketing — just from removing the weight the "cheap" setup had accumulated.
+
+Our position is unsentimental: free themes are a fine way to practice, and an expensive way to do business. If a store is meant to make money, the $100 theme with everything built in is the cheapest thing you'll buy for it. Run the receipt on your own numbers, then take the free trial and compare.
+
+Do the maths — link in bio.
+
+#shopify #shopifytheme #ecommerce #shopifystore #onlinestore #ecommercetips #shopifyexpert #freetheme #dtc #conversionrate

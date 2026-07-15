@@ -1,0 +1,11 @@
+Choosing a theme looks like a design decision, but it's really an operations decision: you're picking your store's speed, its mobile experience, its feature bill and its support contract for years ahead. This checklist is the filter we apply before any theme earns a place under a client's brand.
+
+The seven boxes, in order of expense when missed. Load in under 3 seconds — speed is a theme property, not an app you add later. Look premium on a phone first — most buyers never see your desktop version. Sell without extra apps — quick view, size charts, mega menu and bundles built in, or you'll rent them monthly. Keep "Buy" one tap away — sticky add-to-cart, slide-out cart. Show proof everywhere — reviews, ratings, stock counters, payment icons. Let you edit everything yourself in the visual editor. And come with updates and support — which in practice means the official Shopify Theme Store, where every theme is reviewed and maintained.
+
+Each box has a number behind it. Google: 53% of mobile visits abandon past 3 seconds. Baymard Institute: average cart abandonment sits around 70%, with complicated checkout among the top reasons — and their checkout-usability research estimates large stores can lift conversions by roughly a third through better checkout design alone. Stanford's Web Credibility studies: about 75% of users judge a company's credibility by its website design.
+
+Our personal rule after years of theme work: never pay for a theme you haven't tested against this list on your own phone, in the free trial, with your own products loaded. Every UTD theme was built to pass all seven — that's the standard the official store's review process holds us to, and the unlimited trial exists so you can verify it yourself before spending anything.
+
+Run the checklist — link in bio.
+
+#shopify #shopifytheme #ecommerce #launchchecklist #onlinestore #shopifystore #ecommercetips #shopifyexpert #conversionrate #dtc
