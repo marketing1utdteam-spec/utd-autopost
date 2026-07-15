@@ -125,11 +125,11 @@ def reencode_hi(mp4):
     out = os.path.join(TMP, "hb_" + os.path.basename(mp4))
     try:
         r = subprocess.run(["ffmpeg","-y","-i",mp4,"-c:v","libx264","-preset","slow",
-                            "-b:v","14M","-maxrate","16M","-bufsize","24M","-pix_fmt","yuv420p",
+                            "-b:v","8M","-maxrate","10M","-bufsize","16M","-pix_fmt","yuv420p",
                             "-c:a","aac","-b:a","192k","-movflags","+faststart",out],
                            capture_output=True, text=True)
         if r.returncode == 0 and os.path.exists(out):
-            print("  видео перекодировано в высокий битрейт (14 Mbps)"); return out
+            print("  видео перекодировано в высокий битрейт (8 Mbps)"); return out
     except FileNotFoundError:
         pass
     print("  ! ffmpeg недоступен — гружу оригинал"); return mp4
