@@ -61,7 +61,17 @@ def graph(path, params, method='POST'):
         return {"error": json.load(e)}
 
 def die(msg, r):
-    print("❌", msg, json.dumps(r, ensure_ascii=False)[:400]); sys.exit(1)
+    raise RuntimeError(f"{msg}: {json.dumps(r, ensure_ascii=False)[:400]}")
+
+def wait_ready(cid, tries=30, delay=5):
+    """Ждём, пока медиа-контейнер обработается (status_code=FINISHED) перед публикацией."""
+    for _ in range(tries):
+        st = graph(cid, {"fields": "status_code"}, method='GET')
+        code = st.get("status_code")
+        if code == "FINISHED": return
+        if code == "ERROR": die("container processing error", st)
+        time.sleep(delay)
+    die("container not ready (timeout)", {"cid": cid})
 
 def to_jpg(png):
     out = os.path.join(TMP, os.path.basename(png).replace('.png','.jpg'))
@@ -82,9 +92,10 @@ def ig_carousel(slides, caption, dry):
             children.append(r["id"]); print(f"  child {i}: {r['id']}")
         cont = graph(f"{IG}/media", {"media_type":"CAROUSEL","children":",".join(children),"caption":caption})
         if "id" not in cont: die("carousel container fail", cont)
-        print("  carousel container:", cont["id"])
+        print("  carousel container:", cont["id"], "— жду готовности...")
         if dry:
             print("  [dry-run] публикацию не вызываю"); return None
+        wait_ready(cont["id"])
         pub = graph(f"{IG}/media_publish", {"creation_id": cont["id"]})
         if "id" not in pub: die("publish fail", pub)
         print("  ✅ IG published:", pub["id"]); return pub["id"]
@@ -97,8 +108,9 @@ def ig_single(png, caption, dry):
     try:
         cont = graph(f"{IG}/media", {"image_url": url, "caption": caption})
         if "id" not in cont: die("container fail", cont)
-        print("  container:", cont["id"])
+        print("  container:", cont["id"], "— жду готовности...")
         if dry: print("  [dry-run] публикацию не вызываю"); return None
+        wait_ready(cont["id"])
         pub = graph(f"{IG}/media_publish", {"creation_id": cont["id"]})
         if "id" not in pub: die("publish fail", pub)
         print("  ✅ IG published:", pub["id"]); return pub["id"]

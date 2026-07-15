@@ -34,22 +34,26 @@ def main():
             continue
         print(f"\n--- ДЕЛАЮ {e['id']} ({e['kind']}, дата {e['date']}) ---")
         kind = e["kind"]
-        if kind == "ig_post":
-            folder = os.path.join(HERE, e["folder"])
-            slides = sorted(glob.glob(f"{folder}/slide_*.jpg")) or sorted(glob.glob(f"{folder}/slide_*.png"))
-            cap = open(f"{folder}/caption.txt").read().strip()
-            if len(slides) > 1: M.ig_carousel(slides, cap, a.dry_run)
-            else: M.ig_single(slides[0], cap, a.dry_run)
-        elif kind == "ig_reel":
-            cap = open(os.path.join(HERE, e["caption_file"])).read().strip()
-            M.ig_reel(os.path.join(HERE, e["video"]), cap, a.dry_run)
-        elif kind == "fb_post":
-            folder = os.path.join(HERE, e["folder"])
-            cover = (sorted(glob.glob(f"{folder}/slide_*.jpg")) or sorted(glob.glob(f"{folder}/slide_*.png")))[0]
-            cap = open(f"{folder}/caption_fb.txt").read().strip()
-            M.fb_photo(cover, cap, None, a.dry_run)
-        else:
-            print("  ! неизвестный kind:", kind); continue
+        try:
+            if kind == "ig_post":
+                folder = os.path.join(HERE, e["folder"])
+                slides = sorted(glob.glob(f"{folder}/slide_*.jpg")) or sorted(glob.glob(f"{folder}/slide_*.png"))
+                cap = open(f"{folder}/caption.txt").read().strip()
+                if len(slides) > 1: M.ig_carousel(slides, cap, a.dry_run)
+                else: M.ig_single(slides[0], cap, a.dry_run)
+            elif kind == "ig_reel":
+                cap = open(os.path.join(HERE, e["caption_file"])).read().strip()
+                M.ig_reel(os.path.join(HERE, e["video"]), cap, a.dry_run)
+            elif kind == "fb_post":
+                folder = os.path.join(HERE, e["folder"])
+                cover = (sorted(glob.glob(f"{folder}/slide_*.jpg")) or sorted(glob.glob(f"{folder}/slide_*.png")))[0]
+                cap = open(f"{folder}/caption_fb.txt").read().strip()
+                M.fb_photo(cover, cap, None, a.dry_run)
+            else:
+                print("  ! неизвестный kind:", kind); continue
+        except Exception as ex:
+            print(f"  ❌ ОШИБКА на {e['id']}: {ex}  — пропускаю, попробую в следующий запуск")
+            continue
         if not a.dry_run:
             did.append(e["id"])
 
