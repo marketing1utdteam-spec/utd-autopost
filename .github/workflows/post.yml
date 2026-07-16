@@ -31,6 +31,7 @@ jobs:
         env:
           META_CONFIG: ${{ secrets.META_CONFIG }}
           GH_TOKEN: ${{ secrets.MEDIA_GH_TOKEN }}
+          YT_CONFIG: ${{ secrets.YT_CONFIG }}
         run: |
           ARGS=""
           [ -n "${{ inputs.force_date }}" ] && ARGS="--date ${{ inputs.force_date }}"

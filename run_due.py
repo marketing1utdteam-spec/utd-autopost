@@ -44,6 +44,9 @@ def main():
             elif kind == "ig_reel":
                 cap = open(os.path.join(HERE, e["caption_file"])).read().strip()
                 M.ig_reel(os.path.join(HERE, e["video"]), cap, a.dry_run)
+            elif kind == "yt_short":
+                m = json.load(open(os.path.join(HERE, e["meta_file"])))
+                M.yt_short(os.path.join(HERE, e["video"]), m["title"], m["description"], a.dry_run)
             elif kind == "fb_post":
                 folder = os.path.join(HERE, e["folder"])
                 cover = (sorted(glob.glob(f"{folder}/slide_*.jpg")) or sorted(glob.glob(f"{folder}/slide_*.png")))[0]
