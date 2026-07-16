@@ -134,11 +134,32 @@ def reencode_hi(mp4):
         pass
     print("  ! ffmpeg недоступен — гружу оригинал"); return mp4
 
-def ig_reel(mp4, caption, dry):
-    mp4 = reencode_hi(mp4)
-    stamp = int(time.time()); rp = f"q/{stamp}_reel.mp4"; url, sha = gh_upload(mp4, rp)
+def extract_cover(mp4, sec=None):
+    """Обложка рилса = кадр, где заголовок и экран магазина полностью видны (правило Дениса: обложка показывает содержание).
+    По умолчанию берём кадр на 45% длительности (скролл в разгаре, экран магазина виден)."""
     try:
-        cont = graph(f"{IG}/media", {"media_type":"REELS","video_url":url,"caption":caption,"share_to_feed":"false"})
+        probe = subprocess.run(["ffprobe","-v","quiet","-print_format","json","-show_format",mp4],capture_output=True,text=True)
+        dur = float(json.loads(probe.stdout)["format"]["duration"])
+    except Exception:
+        dur = 20.0
+    ts = sec if sec is not None else round(dur*0.45, 1)
+    out = os.path.join(TMP, "cover_"+os.path.splitext(os.path.basename(mp4))[0]+".jpg")
+    r = subprocess.run(["ffmpeg","-y","-v","error","-ss",str(ts),"-i",mp4,"-frames:v","1","-q:v","2",out],capture_output=True,text=True)
+    if r.returncode == 0 and os.path.exists(out):
+        print(f"  обложка: кадр {ts}s"); return out
+    print("  ! не смог извлечь обложку — рилс уйдёт без cover_url"); return None
+
+def ig_reel(mp4, caption, dry, cover=None, cover_sec=None):
+    mp4 = reencode_hi(mp4)
+    cover = cover or extract_cover(mp4, cover_sec)
+    stamp = int(time.time()); rp = f"q/{stamp}_reel.mp4"; url, sha = gh_upload(mp4, rp)
+    cov_rp, cov_sha, cov_url = None, None, None
+    if cover:
+        cov_rp = f"q/{stamp}_cover.jpg"; cov_url, cov_sha = gh_upload(cover, cov_rp)
+    try:
+        params = {"media_type":"REELS","video_url":url,"caption":caption,"share_to_feed":"false"}
+        if cov_url: params["cover_url"] = cov_url
+        cont = graph(f"{IG}/media", params)
         if "id" not in cont: die("reel container fail", cont)
         cid = cont["id"]; print("  reel container:", cid, "— жду обработку видео Meta...")
         for _ in range(40):
@@ -154,7 +175,9 @@ def ig_reel(mp4, caption, dry):
         if "id" not in pub: die("reel publish fail", pub)
         print("  ✅ IG Reel published:", pub["id"]); return pub["id"]
     finally:
-        gh_delete(rp, sha); print("  🧹 видео удалено с хостинга")
+        gh_delete(rp, sha)
+        if cov_rp: gh_delete(cov_rp, cov_sha)
+        print("  🧹 видео и обложка удалены с хостинга")
 
 # ---------- FB ----------
 def fb_photo(png, caption, schedule_iso=None, dry=False):
