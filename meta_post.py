@@ -188,7 +188,7 @@ def yt_short(mp4, title, description, dry=False):
         'refresh_token':ycfg['refresh_token'],'grant_type':'refresh_token'}).encode()
     at = json.load(urllib.request.urlopen('https://oauth2.googleapis.com/token', data=body))['access_token']
     meta = {"snippet":{"title":title[:100],"description":description[:4900],"categoryId":"28"},
-            "status":{"privacyStatus":"private","selfDeclaredMadeForKids":False}}
+            "status":{"privacyStatus":"public","selfDeclaredMadeForKids":False}}
     if dry: print("  [dry-run] YT не загружаю:", title[:60]); return None
     init = urllib.request.Request(
         "https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
