@@ -119,9 +119,26 @@ def _persist_state_in_ci():
         print("[state] нечего коммитить")
         return
     git("commit", "-m", "autopost state (failures)")
-    r = git("push")
-    print("[state] состояние сохранено" if r.returncode == 0
-          else f"[state] push не прошёл: {r.stderr.strip()[:160]}")
+    # Пуш без перебазирования отвергается каждый раз, когда main ушёл вперёд
+    # (соседний прогон, коммит стейта прошлого запуска, ручная правка), а тогда
+    # счётчик попыток в failed.json не сохраняется и карантин не срабатывает
+    # никогда: именно так пять записей yt_short четверо суток печатали
+    # «попытка 5/5 — уходит в карантин» и оставались в очереди.
+    for attempt in range(1, 4):
+        r = git("push")
+        if r.returncode == 0:
+            print("[state] состояние сохранено")
+            return
+        if attempt == 3:
+            break
+        git("fetch", "origin", "main")
+        rb = git("rebase", "origin/main")
+        if rb.returncode != 0:
+            git("rebase", "--abort")
+            print(f"[state] rebase не прошёл: {rb.stderr.strip()[:160]}")
+            break
+        print(f"[state] push отвергнут, перебазировался на origin/main, попытка {attempt + 1} из 3")
+    print(f"[state] push не прошёл: {r.stderr.strip()[:160]}")
 
 if __name__ == "__main__":
     main()
