@@ -22,6 +22,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Полная история нужна, чтобы стейт можно было перебазировать на
+          # ушедший вперёд main: в shallow-копии rebase упирается в границу.
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -47,4 +51,10 @@ jobs:
           git config user.email "marketing@utdweb.team"
           git add posted.json
           git commit -m "posted state $(date -u +%F)" || echo "nothing to commit"
-          git push || echo "nothing to push"
+          # Тот же рецепт, что и в run_due.py: без перебазирования пуш стейта
+          # отвергается, как только main ушёл вперёд, и публикации теряют память.
+          for attempt in 1 2 3; do
+            git push && break
+            git fetch origin main && git rebase origin/main || { git rebase --abort; break; }
+            echo "push отвергнут, перебазировался, попытка $attempt из 3"
+          done
