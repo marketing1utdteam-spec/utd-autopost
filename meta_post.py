@@ -186,18 +186,26 @@ def yt_short(mp4, title, description, dry=False):
             else json.load(open(os.path.expanduser('~/.config/utd/youtube.json'))))
     body = urllib.parse.urlencode({'client_id':ycfg['client_id'],'client_secret':ycfg['client_secret'],
         'refresh_token':ycfg['refresh_token'],'grant_type':'refresh_token'}).encode()
-    at = json.load(urllib.request.urlopen('https://oauth2.googleapis.com/token', data=body))['access_token']
+    try:
+        at = json.load(urllib.request.urlopen('https://oauth2.googleapis.com/token', data=body))['access_token']
+    except urllib.error.HTTPError as e:
+        # без этого except run_due.py логировал только "HTTP Error 400: Bad Request"
+        # без тела ответа — реальная причина (invalid_grant и т.п.) была не видна в логах.
+        raise RuntimeError(f"YT token refresh {e.code}: {e.read().decode()[:300]}")
     meta = {"snippet":{"title":title[:100],"description":description[:4900],"categoryId":"28"},
             "status":{"privacyStatus":"public","selfDeclaredMadeForKids":False}}
     if dry: print("  [dry-run] YT не загружаю:", title[:60]); return None
-    init = urllib.request.Request(
-        "https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
-        data=json.dumps(meta).encode(),
-        headers={"Authorization":f"Bearer {at}","Content-Type":"application/json","X-Upload-Content-Type":"video/mp4"})
-    loc = urllib.request.urlopen(init).headers["Location"]
-    up = urllib.request.Request(loc, data=open(mp4,'rb').read(),
-        headers={"Authorization":f"Bearer {at}","Content-Type":"video/mp4"}, method='PUT')
-    resp = json.load(urllib.request.urlopen(up))
+    try:
+        init = urllib.request.Request(
+            "https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
+            data=json.dumps(meta).encode(),
+            headers={"Authorization":f"Bearer {at}","Content-Type":"application/json","X-Upload-Content-Type":"video/mp4"})
+        loc = urllib.request.urlopen(init).headers["Location"]
+        up = urllib.request.Request(loc, data=open(mp4,'rb').read(),
+            headers={"Authorization":f"Bearer {at}","Content-Type":"video/mp4"}, method='PUT')
+        resp = json.load(urllib.request.urlopen(up))
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(f"YT upload {e.code}: {e.read().decode()[:300]}")
     print("  ✅ YT Short:", resp['id'], "(private до аудита) https://youtu.be/"+resp['id']); return resp['id']
 
 # ---------- FB ----------
