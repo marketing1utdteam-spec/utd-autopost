@@ -67,7 +67,7 @@ def main():
         except Exception as ex:
             n = fails.get(e["id"], 0) + 1
             fails[e["id"]] = n
-            failed_now.append((e["id"], kind, str(ex)[:120]))
+            failed_now.append((e["id"], kind, str(ex)[:300]))
             left = MAX_ATTEMPTS - n
             tail = (f"попытка {n}/{MAX_ATTEMPTS}, осталось {left}" if left > 0
                     else f"попытка {n}/{MAX_ATTEMPTS} — УХОДИТ В КАРАНТИН, чинить руками")
