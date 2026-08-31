@@ -13,6 +13,10 @@ on:
         description: "форс-дата YYYY-MM-DD (для теста, иначе сегодня)"
         type: string
         default: ""
+      max_per_run:
+        description: "сколько публикаций за прогон (0 = пауза)"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -20,6 +24,11 @@ permissions:
 jobs:
   post:
     runs-on: ubuntu-latest
+    # 🔴 31.08.2026 прогон висел 18 минут и был снят вручную. Токены Meta и YouTube при
+    # проверке оказались живыми (0.5-1.3 с и 0.3 с), то есть дело не в них, а в отсутствии
+    # предела: у задачи без timeout-minutes лимит GitHub — 6 часов. Флоу, который должен
+    # работать без присмотра, не имеет права держать раннер столько.
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,6 +45,7 @@ jobs:
           META_CONFIG: ${{ secrets.META_CONFIG }}
           GH_TOKEN: ${{ secrets.MEDIA_GH_TOKEN }}
           YT_CONFIG: ${{ secrets.YT_CONFIG }}
+          MAX_PER_RUN: ${{ inputs.max_per_run }}
         run: |
           ARGS=""
           [ -n "${{ inputs.force_date }}" ] && ARGS="--date ${{ inputs.force_date }}"
