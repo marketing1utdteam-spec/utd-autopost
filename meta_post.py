@@ -192,8 +192,16 @@ def yt_short(mp4, title, description, dry=False):
         # без этого except run_due.py логировал только "HTTP Error 400: Bad Request"
         # без тела ответа — реальная причина (invalid_grant и т.п.) была не видна в логах.
         raise RuntimeError(f"YT token refresh {e.code}: {e.read().decode()[:300]}")
+    # 🔴 containsSyntheticMedia — ОБОВʼЯЗКОВА декларація, а не ввічливість.
+    # YouTube вимагає позначати реалістичний згенерований або змінений контент; поле додане в
+    # Data API 30.10.2024 і ставиться саме тут, у videos.insert. Без нього відео виходить без
+    # позначки «Made with AI» у розділі «How this content was made», і це порушення правил
+    # платформи. Наші рілси зроблені генерацією, тому значення завжди True.
+    # Друга частина того самого обовʼязку — видимий напис «AI Generated» на самому кадрі
+    # (правило власника від 13.08.2026); він додається на етапі збірки відео, не тут.
     meta = {"snippet":{"title":title[:100],"description":description[:4900],"categoryId":"28"},
-            "status":{"privacyStatus":"public","selfDeclaredMadeForKids":False}}
+            "status":{"privacyStatus":"public","selfDeclaredMadeForKids":False,
+                      "containsSyntheticMedia":True}}
     if dry: print("  [dry-run] YT не загружаю:", title[:60]); return None
     try:
         init = urllib.request.Request(
