@@ -33,6 +33,36 @@ def main():
     fails = load("failed.json", {})
     MAX_ATTEMPTS = int(os.environ.get("MAX_ATTEMPTS", "5"))
 
+    # ── Суточные нормы ПО ПЛАТФОРМАМ ──────────────────────────────────────
+    # Одного общего числа мало: у площадок разные пределы и разная терпимость.
+    # Instagram у нас 105 постов за всё время и 1116 подписчиков — четыре-восемь
+    # публикаций в сутки на таком аккаунте читаются как спам, хотя API их примет
+    # (лимит Graph API — 25 за 24 часа). YouTube Shorts переносит больше: квота
+    # 10000 единиц, videos.insert ~1600, то есть около 6 загрузок в сутки.
+    # Facebook посередине.
+    #
+    # Считаем по ФАКТИЧЕСКОЙ дате публикации, а не по дате из плана: id записи
+    # содержит дату расписания, и при сливе долга за 12 дней все они «июльские».
+    # Поэтому ведём отдельный журнал posted_at.json.
+    DAILY = {"instagram": int(os.environ.get("DAILY_IG", "2")),
+             "youtube":   int(os.environ.get("DAILY_YT", "4")),
+             "facebook":  int(os.environ.get("DAILY_FB", "3"))}
+    PLATFORM = {"ig_post": "instagram", "ig_reel": "instagram",
+                "yt_short": "youtube", "fb_post": "facebook"}
+
+    at_path = os.path.join(HERE, "posted_at.json")
+    posted_at = load("posted_at.json", {})
+    used = {k: 0 for k in DAILY}
+    for pid, day in posted_at.items():
+        if day != today:
+            continue
+        kind = next((e["kind"] for e in sched if e["id"] == pid), None)
+        plat = PLATFORM.get(kind)
+        if plat:
+            used[plat] += 1
+    print(f"   сегодня уже опубликовано: " +
+          ", ".join(f"{k} {used[k]}/{DAILY[k]}" for k in DAILY))
+
     # Норма на один прогон. Без неё накопившаяся очередь выкладывается целиком:
     # на 2026-08-31 просрочено 98 записей с 25 июля, и включение флоу без лимита
     # означало бы 98 публикаций подряд — верный способ получить блокировку.
@@ -49,18 +79,28 @@ def main():
                    key=lambda e: (e["date"], e["id"]))
 
     did, failed_now, quarantined = [], [], []
-    done_run, done_yt = 0, 0
-    skipped_by_cap = 0
+    done_run, done_yt, tried = 0, 0, 0
+    skipped_by_cap = skipped_by_day = 0
     for e in queue:
         if fails.get(e["id"], 0) >= MAX_ATTEMPTS:
             quarantined.append(e["id"])
             continue
-        if done_run >= MAX_PER_RUN:
+        # 🔴 Норма считает ПОПЫТКИ, а не успехи. Иначе прогон, в котором всё падает
+        # (сломанные креды, пропавший файл), проходит всю очередь целиком и жжёт
+        # счётчики попыток на всех записях сразу — пять таких прогонов, и вся
+        # очередь уходит в карантин. Найдено тестом 31.08.2026, где из-за
+        # отсутствия media/ упали все 98 записей за один прогон.
+        if tried >= MAX_PER_RUN:
             skipped_by_cap += 1
             continue
         if e["kind"] == "yt_short" and done_yt >= MAX_YT_PER_RUN:
             skipped_by_cap += 1
             continue
+        plat = PLATFORM.get(e["kind"])
+        if plat and used[plat] >= DAILY[plat]:
+            skipped_by_day += 1
+            continue
+        tried += 1
         print(f"\n--- ДЕЛАЮ {e['id']} ({e['kind']}, дата {e['date']}) ---")
         kind = e["kind"]
         try:
@@ -97,11 +137,16 @@ def main():
             done_run += 1
             if e["kind"] == "yt_short":
                 done_yt += 1
+            plat = PLATFORM.get(e["kind"])
+            if plat:
+                used[plat] += 1
+            posted_at[e["id"]] = today
+            json.dump(posted_at, open(at_path, "w"), ensure_ascii=False, indent=1)
             fails.pop(e["id"], None)      # успех обнуляет счётчик
 
     if did and not a.dry_run:
         p = load("posted.json", {"posted": []}); p["posted"] += did
-        json.dump(p, open(os.path.join(HERE, "posted.json"), "w"), indent=2)
+        json.dump(p, open(os.path.join(HERE, "posted.json", "posted_at.json"), "w"), indent=2)
         print(f"\n== отмечено опубликованным: {did}")
     if not a.dry_run:
         json.dump(fails, open(os.path.join(HERE, "failed.json"), "w"), indent=2)
@@ -113,6 +158,9 @@ def main():
         for pid, kind, err in failed_now:
             print(f"   · {pid} [{kind}] — {err}")
 
+    if skipped_by_day:
+        print(f"\n📅 отложено СУТОЧНОЙ нормой площадки: {skipped_by_day} " +
+              "(" + ", ".join(f"{k} {used[k]}/{DAILY[k]}" for k in DAILY) + ")")
     if skipped_by_cap:
         print(f"\n⏸ отложено нормой на этот прогон: {skipped_by_cap} "
               f"(MAX_PER_RUN={MAX_PER_RUN}, MAX_YT_PER_RUN={MAX_YT_PER_RUN})")
@@ -140,7 +188,7 @@ def _persist_state_in_ci():
         return subprocess.run(["git", *args], cwd=HERE, capture_output=True, text=True)
     git("config", "user.name", "utd-autopost")
     git("config", "user.email", "actions@users.noreply.github.com")
-    git("add", "posted.json", "failed.json")
+    git("add", "posted.json", "posted_at.json", "failed.json")
     if not git("diff", "--cached", "--quiet").returncode:
         print("[state] нечего коммитить")
         return

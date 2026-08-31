@@ -59,7 +59,7 @@ jobs:
         run: |
           git config user.name "utd-autopost"
           git config user.email "marketing@utdweb.team"
-          git add posted.json
+          git add posted.json posted_at.json failed.json
           git commit -m "posted state $(date -u +%F)" || echo "nothing to commit"
           # Тот же рецепт, что и в run_due.py: без перебазирования пуш стейта
           # отвергается, как только main ушёл вперёд, и публикации теряют память.
