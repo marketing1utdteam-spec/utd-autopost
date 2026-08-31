@@ -33,14 +33,33 @@ def main():
     fails = load("failed.json", {})
     MAX_ATTEMPTS = int(os.environ.get("MAX_ATTEMPTS", "5"))
 
+    # Норма на один прогон. Без неё накопившаяся очередь выкладывается целиком:
+    # на 2026-08-31 просрочено 98 записей с 25 июля, и включение флоу без лимита
+    # означало бы 98 публикаций подряд — верный способ получить блокировку.
+    # Прогонов 4 в сутки, поэтому 2 за прогон = до 8 в сутки.
+    MAX_PER_RUN = int(os.environ.get("MAX_PER_RUN", "2"))
+    # YouTube: квота 10000 единиц в сутки, videos.insert стоит ~1600, то есть
+    # около 6 загрузок. Держим 1 за прогон = максимум 4 в сутки, с запасом.
+    MAX_YT_PER_RUN = int(os.environ.get("MAX_YT_PER_RUN", "1"))
+
+    # Очередь сливаем ПО ДАТЕ, от самых старых. Порядок в schedule.json не
+    # гарантирован, а долг должен уходить хронологически, иначе июльские записи
+    # будут вечно ждать за августовскими.
+    queue = sorted((e for e in sched if e["date"] <= today and e["id"] not in posted),
+                   key=lambda e: (e["date"], e["id"]))
+
     did, failed_now, quarantined = [], [], []
-    for e in sched:
-        if e["date"] > today:            # ещё не время
-            continue
-        if e["id"] in posted:            # уже сделано
-            continue
+    done_run, done_yt = 0, 0
+    skipped_by_cap = 0
+    for e in queue:
         if fails.get(e["id"], 0) >= MAX_ATTEMPTS:
             quarantined.append(e["id"])
+            continue
+        if done_run >= MAX_PER_RUN:
+            skipped_by_cap += 1
+            continue
+        if e["kind"] == "yt_short" and done_yt >= MAX_YT_PER_RUN:
+            skipped_by_cap += 1
             continue
         print(f"\n--- ДЕЛАЮ {e['id']} ({e['kind']}, дата {e['date']}) ---")
         kind = e["kind"]
@@ -75,6 +94,9 @@ def main():
             continue
         if not a.dry_run:
             did.append(e["id"])
+            done_run += 1
+            if e["kind"] == "yt_short":
+                done_yt += 1
             fails.pop(e["id"], None)      # успех обнуляет счётчик
 
     if did and not a.dry_run:
@@ -91,7 +113,11 @@ def main():
         for pid, kind, err in failed_now:
             print(f"   · {pid} [{kind}] — {err}")
 
-    print(f"== done · опубликовано {len(did)} · упало {len(failed_now)} · в карантине {len(quarantined)}")
+    if skipped_by_cap:
+        print(f"\n⏸ отложено нормой на этот прогон: {skipped_by_cap} "
+              f"(MAX_PER_RUN={MAX_PER_RUN}, MAX_YT_PER_RUN={MAX_YT_PER_RUN})")
+    print(f"== done · опубликовано {len(did)} · упало {len(failed_now)} · "
+          f"в карантине {len(quarantined)} · отложено {skipped_by_cap}")
 
     # Зелёный прогон при нулевых публикациях и непустой очереди — это ложь,
     # из-за которой простой YouTube-постинга не замечали четверо суток.
