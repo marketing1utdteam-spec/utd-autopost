@@ -164,7 +164,7 @@ def main():
 
     if did and not a.dry_run:
         p = load("posted.json", {"posted": []}); p["posted"] += did
-        json.dump(p, open(os.path.join(HERE, "posted.json", "posted_at.json"), "w"), indent=2)
+        json.dump(p, open(os.path.join(HERE, "posted.json"), "w"), indent=2)
         print(f"\n== отмечено опубликованным: {did}")
     if not a.dry_run:
         json.dump(fails, open(os.path.join(HERE, "failed.json"), "w"), indent=2)
