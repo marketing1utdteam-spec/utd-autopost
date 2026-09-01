@@ -38,7 +38,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      # 🔴 ffmpeg уже є на образі ubuntu-latest. Встановлення через apt було зайвим і
+      # 01.09.2026 вперлось у таймаут задачі: `apt-get update` тягнув понад 20 хвилин, прогін
+      # скасувався на цьому кроці, і пости не вийшли. Тепер ставимо ЛИШЕ якщо його справді немає.
+      - name: ffmpeg (ставимо тільки якщо немає)
+        run: |
+          if command -v ffmpeg >/dev/null 2>&1; then
+            echo "ffmpeg уже є: $(ffmpeg -version | head -1)"
+          else
+            echo "ffmpeg відсутній — ставлю"
+            sudo apt-get update && sudo apt-get install -y ffmpeg
+          fi
       - run: pip install -r requirements.txt
       - name: Run scheduled poster
         env:
