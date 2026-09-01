@@ -144,7 +144,15 @@ def extract_cover(mp4, sec=None):
         dur = 20.0
     ts = sec if sec is not None else round(dur*0.45, 1)
     out = os.path.join(TMP, "cover_"+os.path.splitext(os.path.basename(mp4))[0]+".jpg")
-    r = subprocess.run(["ffmpeg","-y","-v","error","-ss",str(ts),"-i",mp4,"-frames:v","1","-q:v","2",out],capture_output=True,text=True)
+    # 🔴 FileNotFoundError тут НЕ ловився, хоча в reencode_hi поруч ловиться. Заміряно 01.09.2026:
+    # ffmpeg на образі ubuntu-latest відсутній, і встановлення через apt — лотерея (41 с на одному
+    # прогоні, 24 хв і смерть по таймауту на наступному). Тобто варіант «ffmpeg немає» реальний, а
+    # не теоретичний. Без цього try прогін не пропускав обкладинку, а падав цілком — і пости не
+    # виходили взагалі. Краще рілс без обкладинки, ніж жодного посту.
+    try:
+        r = subprocess.run(["ffmpeg","-y","-v","error","-ss",str(ts),"-i",mp4,"-frames:v","1","-q:v","2",out],capture_output=True,text=True)
+    except FileNotFoundError:
+        print("  ! ffmpeg недоступен — рилс уйдёт без cover_url"); return None
     if r.returncode == 0 and os.path.exists(out):
         print(f"  обложка: кадр {ts}s"); return out
     print("  ! не смог извлечь обложку — рилс уйдёт без cover_url"); return None
