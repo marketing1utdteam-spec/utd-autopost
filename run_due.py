@@ -13,6 +13,24 @@ def today_brussels():
     # смещение Europe/Brussels: летом +2 (CEST). Для наших целей достаточно фикс.
     return (datetime.datetime.utcnow() + datetime.timedelta(hours=2)).date().isoformat()
 
+def env_int(name, default):
+    """Ціле з оточення, де ПОРОЖНІЙ рядок теж означає «не задано».
+
+    🔴 Заміряно 01.09.2026: воркфлоу передає MAX_PER_RUN: ${{ inputs.max_per_run }}, і на
+    прогоні ЗА РОЗКЛАДОМ inputs порожні. Тобто змінна існує й дорівнює ''. А
+    os.environ.get(name, default) віддає саме '' — типове значення застосовується лише коли
+    ключа НЕМА взагалі. Через це int('') валив кожен розкладний прогін, і пости не виходили,
+    хоча ручні запуски працювали.
+    """
+    raw = (os.environ.get(name) or "").strip()
+    if not raw:
+        return default
+    try:
+        return int(raw)
+    except ValueError:
+        print(f"   🟡 {name}={raw!r} не число, беру {default}")
+        return default
+
 def load(p, default):
     fp = os.path.join(HERE, p)
     return json.load(open(fp)) if os.path.exists(fp) else default
@@ -31,7 +49,7 @@ def main():
     # больше не перебирается каждый прогон. Живой случай 2026-07-28: четыре
     # yt_short копились с 25 июля, падали на 400 и молча тянулись в каждый запуск.
     fails = load("failed.json", {})
-    MAX_ATTEMPTS = int(os.environ.get("MAX_ATTEMPTS", "5"))
+    MAX_ATTEMPTS = env_int("MAX_ATTEMPTS", 5)
 
     # ── Суточные нормы ПО ПЛАТФОРМАМ ──────────────────────────────────────
     # Одного общего числа мало: у площадок разные пределы и разная терпимость.
@@ -44,9 +62,9 @@ def main():
     # Считаем по ФАКТИЧЕСКОЙ дате публикации, а не по дате из плана: id записи
     # содержит дату расписания, и при сливе долга за 12 дней все они «июльские».
     # Поэтому ведём отдельный журнал posted_at.json.
-    DAILY = {"instagram": int(os.environ.get("DAILY_IG", "2")),
-             "youtube":   int(os.environ.get("DAILY_YT", "4")),
-             "facebook":  int(os.environ.get("DAILY_FB", "3"))}
+    DAILY = {"instagram": env_int("DAILY_IG", 2),
+             "youtube":   env_int("DAILY_YT", 4),
+             "facebook":  env_int("DAILY_FB", 3)}
     PLATFORM = {"ig_post": "instagram", "ig_reel": "instagram",
                 "yt_short": "youtube", "fb_post": "facebook"}
 
@@ -67,10 +85,10 @@ def main():
     # на 2026-08-31 просрочено 98 записей с 25 июля, и включение флоу без лимита
     # означало бы 98 публикаций подряд — верный способ получить блокировку.
     # Прогонов 4 в сутки, поэтому 2 за прогон = до 8 в сутки.
-    MAX_PER_RUN = int(os.environ.get("MAX_PER_RUN", "2"))
+    MAX_PER_RUN = env_int("MAX_PER_RUN", 2)
     # YouTube: квота 10000 единиц в сутки, videos.insert стоит ~1600, то есть
     # около 6 загрузок. Держим 1 за прогон = максимум 4 в сутки, с запасом.
-    MAX_YT_PER_RUN = int(os.environ.get("MAX_YT_PER_RUN", "1"))
+    MAX_YT_PER_RUN = env_int("MAX_YT_PER_RUN", 1)
 
     # Очередь сливаем ПО ДАТЕ, от самых старых. Порядок в schedule.json не
     # гарантирован, а долг должен уходить хронологически, иначе июльские записи
