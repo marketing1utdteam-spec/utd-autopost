@@ -41,14 +41,32 @@ jobs:
       # 🔴 ffmpeg уже є на образі ubuntu-latest. Встановлення через apt було зайвим і
       # 01.09.2026 вперлось у таймаут задачі: `apt-get update` тягнув понад 20 хвилин, прогін
       # скасувався на цьому кроці, і пости не вийшли. Тепер ставимо ЛИШЕ якщо його справді немає.
-      - name: ffmpeg (ставимо тільки якщо немає)
+      # 🔴 ffmpeg на образі ubuntu-latest ВІДСУТНІЙ — попередній коментар тут стверджував інше і
+      # був неправдою. Заміряно 01.09.2026 на двох прогонах поспіль: о 16:29 крок зайняв 41 с, а
+      # о 17:46 `apt-get update` висів 24 хв 39 с і зʼїв увесь timeout-minutes задачі. Розкладний
+      # прогін помер на цьому кроці, пости не вийшли.
+      #
+      # Тому ffmpeg тепер НЕ МОЖЕ вбити прогін:
+      #   timeout-minutes: 6   — повільний apt ріже сам себе, а не всю задачу
+      #   continue-on-error    — без ffmpeg постинг іде далі (обидва виклики в meta_post.py
+      #                          ловлять FileNotFoundError: відео піде без перекодування і без
+      #                          обкладинки). Гірша якість краща за відсутній пост.
+      #   install без update   — якщо списки пакетів на образі свіжі, ставиться за секунди;
+      #                          update лише як запасний варіант.
+      - name: ffmpeg (не критичний, прогін не валить)
+        timeout-minutes: 6
+        continue-on-error: true
         run: |
           if command -v ffmpeg >/dev/null 2>&1; then
             echo "ffmpeg уже є: $(ffmpeg -version | head -1)"
-          else
-            echo "ffmpeg відсутній — ставлю"
-            sudo apt-get update && sudo apt-get install -y ffmpeg
+            exit 0
           fi
+          echo "ffmpeg відсутній — пробую поставити без apt-get update"
+          sudo apt-get install -y ffmpeg \
+            || { echo "не вийшло, оновлюю списки"; sudo apt-get update && sudo apt-get install -y ffmpeg; }
+          command -v ffmpeg >/dev/null 2>&1 \
+            && echo "поставлено: $(ffmpeg -version | head -1)" \
+            || echo "ffmpeg поставити не вдалось — постинг піде без перекодування"
       - run: pip install -r requirements.txt
       - name: Run scheduled poster
         env:
