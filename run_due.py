@@ -35,6 +35,18 @@ def load(p, default):
     fp = os.path.join(HERE, p)
     return json.load(open(fp)) if os.path.exists(fp) else default
 
+
+def _post_url(kind, plat_id):
+    """Готове посилання на публікацію. Потрібне, щоб людина могла глянути очима, не
+    складаючи URL руками, і щоб у реєстрі одразу було видно, куди саме пішов пост."""
+    if not plat_id:
+        return None
+    if kind == "yt_short":
+        return f"https://youtu.be/{plat_id}"
+    if kind == "fb_post":
+        return f"https://www.facebook.com/{plat_id}"
+    return f"https://www.instagram.com/p/{plat_id}"   # IG вертає media id, не shortcode
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date"); ap.add_argument("--dry-run", action="store_true")
@@ -70,6 +82,8 @@ def main():
 
     at_path = os.path.join(HERE, "posted_at.json")
     posted_at = load("posted_at.json", {})
+    pub_path = os.path.join(HERE, "published_ids.json")
+    published = load("published_ids.json", {})
     used = {k: 0 for k in DAILY}
     for pid, day in posted_at.items():
         if day != today:
@@ -122,23 +136,32 @@ def main():
         print(f"\n--- ДЕЛАЮ {e['id']} ({e['kind']}, дата {e['date']}) ---")
         kind = e["kind"]
         try:
+            # 🔴 `plat_id` існує тому, що айді, який вертає платформа, раніше ЛИШЕ
+            # друкувався в лог і викидався. Наслідок заміряно 03.09.2026: коли знадобилось
+            # дописати розкриття про ШІ до опублікованих постів, айді довелось відновлювати
+            # з липневих логів Actions — а вони живуть 90 днів. Тобто через три місяці
+            # опублікований пост стає недосяжним для API назавжди: ні caption поправити,
+            # ні метрики зняти, ні зняти з публікації.
+            # `posted.json` зберігав наш ВНУТРІШНІЙ айді (`2026-07-15_ig_post01`), яким
+            # платформа не адресується. Це різні речі, і одне не заміняє інше.
+            plat_id = None
             if kind == "ig_post":
                 folder = os.path.join(HERE, e["folder"])
                 slides = sorted(glob.glob(f"{folder}/slide_*.jpg")) or sorted(glob.glob(f"{folder}/slide_*.png"))
                 cap = open(f"{folder}/caption.txt").read().strip()
-                if len(slides) > 1: M.ig_carousel(slides, cap, a.dry_run)
-                else: M.ig_single(slides[0], cap, a.dry_run)
+                if len(slides) > 1: plat_id = M.ig_carousel(slides, cap, a.dry_run)
+                else: plat_id = M.ig_single(slides[0], cap, a.dry_run)
             elif kind == "ig_reel":
                 cap = open(os.path.join(HERE, e["caption_file"])).read().strip()
-                M.ig_reel(os.path.join(HERE, e["video"]), cap, a.dry_run)
+                plat_id = M.ig_reel(os.path.join(HERE, e["video"]), cap, a.dry_run)
             elif kind == "yt_short":
                 m = json.load(open(os.path.join(HERE, e["meta_file"])))
-                M.yt_short(os.path.join(HERE, e["video"]), m["title"], m["description"], a.dry_run)
+                plat_id = M.yt_short(os.path.join(HERE, e["video"]), m["title"], m["description"], a.dry_run)
             elif kind == "fb_post":
                 folder = os.path.join(HERE, e["folder"])
                 cover = (sorted(glob.glob(f"{folder}/slide_*.jpg")) or sorted(glob.glob(f"{folder}/slide_*.png")))[0]
                 cap = open(f"{folder}/caption_fb.txt").read().strip()
-                M.fb_photo(cover, cap, None, a.dry_run)
+                plat_id = M.fb_photo(cover, cap, None, a.dry_run)
             else:
                 print("  ! неизвестный kind:", kind); continue
         except Exception as ex:
@@ -160,6 +183,20 @@ def main():
                 used[plat] += 1
             posted_at[e["id"]] = today
             json.dump(posted_at, open(at_path, "w"), ensure_ascii=False, indent=1)
+            # 🔴 Реєстр айді платформи. Пишеться ОДРАЗУ після кожної публікації, а не в
+            # кінці прогону: якщо крок упаде на наступному пості, айді вже опублікованого
+            # мусить бути на диску. Записуємо навіть коли `plat_id` порожній — тоді видно,
+            # що публікація була, а айді не повернувся, і це окремий сигнал.
+            published[e["id"]] = {
+                "platform": PLATFORM.get(e["kind"]) or e["kind"],
+                "kind": e["kind"],
+                "platform_id": plat_id,
+                "date": today,
+                "url": _post_url(e["kind"], plat_id),
+            }
+            json.dump(published, open(pub_path, "w"), ensure_ascii=False, indent=1)
+            if not plat_id:
+                print(f"  🟡 {e['id']}: опубліковано, але айді платформи не повернувся")
             fails.pop(e["id"], None)      # успех обнуляет счётчик
 
     if did and not a.dry_run:
@@ -206,7 +243,9 @@ def _persist_state_in_ci():
         return subprocess.run(["git", *args], cwd=HERE, capture_output=True, text=True)
     git("config", "user.name", "utd-autopost")
     git("config", "user.email", "actions@users.noreply.github.com")
-    git("add", "posted.json", "posted_at.json", "failed.json")
+    # 🔴 published_ids.json тут обов'язково: без коміту реєстр житиме лише у файловій
+    # системі раннера Actions, яка зникає разом із прогоном — тобто айді знову губились би.
+    git("add", "posted.json", "posted_at.json", "failed.json", "published_ids.json")
     if not git("diff", "--cached", "--quiet").returncode:
         print("[state] нечего коммитить")
         return
