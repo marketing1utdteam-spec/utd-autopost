@@ -102,6 +102,14 @@ jobs:
       # не публікуються, і питати їх звідси нічим.
       - name: Самоперевірка постингу (не блокує)
         continue-on-error: true
+        # 🔴 META_CONFIG тут ОБОВʼЯЗКОВИЙ, хоч самоперевірка нічого не публікує:
+        # `meta_post.py` читає конфіг на ІМПОРТІ, а самоперевірка імпортує `run_due`.
+        # Перший прогін 04.09.2026 упав саме на цьому — FileNotFoundError на
+        # `~/.config/utd/meta-app.json`. І через `continue-on-error` прогін лишився
+        # ЗЕЛЕНИМ: крок, який завжди падає й завжди ігнорується, гірший за відсутній,
+        # бо створює видимість перевірки.
+        env:
+          META_CONFIG: ${{ secrets.META_CONFIG }}
         run: python post_selftest.py --no-net
       - name: Run scheduled poster
         env:
