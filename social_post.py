@@ -256,6 +256,19 @@ def tt_publish(video_url, caption, dry=False):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
+def _classify(e):
+    """«Токен відмовили» і «не додзвонився» — РІЗНІ відповіді.
+
+    🔴 Заміряно на собі 04.09.2026: два прогони самоперевірки підряд дали різний
+    результат — спершу 🔴, за хвилину 🟢, при незмінному коді. Причина була в мережі, а
+    не в токені. Червоний колір за таймаут навчає не вірити червоному, тому мережева
+    невдача це 🟡 «не доперевірив», а не «мертвий».
+    """
+    txt = str(e)
+    has_http_code = any(f"→ {c}" in txt for c in (400, 401, 403, 404, 426, 429, 500))
+    return ("🔴" if has_http_code else "🟡"), txt[:110]
+
+
 def token_health():
     """Читання без побічних дій: чи живий токен кожної мережі. Для post_selftest."""
     out = {}
@@ -266,7 +279,8 @@ def token_health():
                          method="GET", timeout=30)
         out["threads"] = f"🟢 @{d.get('username')}"
     except Exception as e:
-        out["threads"] = f"🔴 {str(e)[:110]}"
+        mark, txt = _classify(e)
+        out["threads"] = f"{mark} {txt}"
     try:
         cfg = _cfg("linkedin", "LINKEDIN_CONFIG")
         org = (cfg.get("organizations") or [""])[0].split(":")[-1]
@@ -274,7 +288,8 @@ def token_health():
                          headers=_li_headers(cfg), method="GET", timeout=30)
         out["linkedin"] = f"🟢 {d.get('localizedName')}"
     except Exception as e:
-        out["linkedin"] = f"🔴 {str(e)[:110]}"
+        mark, txt = _classify(e)
+        out["linkedin"] = f"{mark} {txt}"
     try:
         cfg = _cfg("tiktok", "TIKTOK_CONFIG")
         out["tiktok"] = ("🟢 токен є" if cfg.get("access_token")
