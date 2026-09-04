@@ -157,7 +157,16 @@ def extract_cover(mp4, sec=None):
         print(f"  обложка: кадр {ts}s"); return out
     print("  ! не смог извлечь обложку — рилс уйдёт без cover_url"); return None
 
-def ig_reel(mp4, caption, dry, cover=None, cover_sec=None):
+def ig_reel(mp4, caption, dry, cover=None, cover_sec=None, share_to_feed=False):
+    """Рілс, а за share_to_feed=True — той самий рілс, що ЙДЕ І В СТРІЧКУ.
+
+    🔴 Чому відео у стрічку робиться через REELS, а не через media_type=VIDEO.
+    Документація Meta перелічує обидва типи, але чи приймає VIDEO саме наша версія
+    застосунку, не перевірено живим викликом (це знахідка чату Вікторії 04.09.2026, і
+    вона свідомо не поставила VIDEO в пропозицію). REELS + share_to_feed=true дає той
+    самий результат для глядача: пост зʼявляється і в рілсах, і в сітці профілю.
+    Коли зробимо один тестовий запит із VIDEO і побачимо відповідь, тоді й вирішимо.
+    """
     mp4 = reencode_hi(mp4)
     cover = cover or extract_cover(mp4, cover_sec)
     stamp = int(time.time()); rp = f"q/{stamp}_reel.mp4"; url, sha = gh_upload(mp4, rp)
@@ -165,7 +174,8 @@ def ig_reel(mp4, caption, dry, cover=None, cover_sec=None):
     if cover:
         cov_rp = f"q/{stamp}_cover.jpg"; cov_url, cov_sha = gh_upload(cover, cov_rp)
     try:
-        params = {"media_type":"REELS","video_url":url,"caption":caption,"share_to_feed":"false"}
+        params = {"media_type":"REELS","video_url":url,"caption":caption,
+                  "share_to_feed": "true" if share_to_feed else "false"}
         if cov_url: params["cover_url"] = cov_url
         cont = graph(f"{IG}/media", params)
         if "id" not in cont: die("reel container fail", cont)
@@ -240,6 +250,29 @@ def fb_photo(png, caption, schedule_iso=None, dry=False):
     finally:
         # для scheduled Meta забирает фото при создании — можно удалить сразу
         gh_delete(rp, sha); print("  🧹 медиа удалено")
+
+def fb_video(mp4, description, dry=False):
+    """Відео на сторінку Facebook. Ендпоінт ІНШИЙ, ніж у фото: /videos, не /photos.
+
+    Дозвіл власника 04.09.2026 на відео в стрічку. Facebook приймає будь-яке
+    співвідношення, тому 4:5 і 1:1 тут проходять без застережень — на відміну від
+    Instagram, де вертикаль обовʼязкова.
+
+    Поле опису теж інше: у фото це `caption`, у відео `description`. Помилка в назві
+    поля не дасть помилки API — вона просто опублікує відео БЕЗ тексту.
+    """
+    stamp = int(time.time()); rp = f"q/{stamp}_fbvid.mp4"
+    url, sha = gh_upload(mp4, rp)
+    try:
+        if dry:
+            print("  [dry-run] FB відео не створюю:", os.path.basename(mp4)); return None
+        r = graph(f"{PAGE}/videos", {"file_url": url, "description": description})
+        vid = r.get("id")
+        if not vid: die("fb video fail", r)
+        print("  ✅ FB video:", vid); return vid
+    finally:
+        gh_delete(rp, sha); print("  🧹 відео видалено з хостингу")
+
 
 # ---------- CLI ----------
 if __name__ == "__main__":
