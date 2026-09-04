@@ -6,6 +6,8 @@ FB идёт через нативное отложенное планирова�
 """
 import json, os, glob, argparse, datetime
 import meta_post as M
+import social_post as S
+import post_validate as V
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -36,6 +38,30 @@ def load(p, default):
     return json.load(open(fp)) if os.path.exists(fp) else default
 
 
+def _caption(here, entry, per_network, shared):
+    """Підпис саме під цю мережу, інакше спільний.
+
+    🔴 Порядок джерел: поле `caption_file` у записі → файл мережі в теці → спільний
+    `caption.txt`. Причина такого порядку: чат Вікторії віддає підписи окремими файлами
+    під кожну мережу (текст під LinkedIn і під TikTok не той самий), але поки для якоїсь
+    мережі окремого файла немає, пост мусить піти зі спільним, а не впасти.
+
+    Порожній підпис — це ПАДІННЯ, не попередження: пост без тексту марний, а карантин
+    після пʼяти спроб дешевший за опублікований порожній пост.
+    """
+    if entry.get("caption_file"):
+        return open(os.path.join(here, entry["caption_file"])).read().strip()
+    base = os.path.join(here, entry.get("folder") or os.path.dirname(entry.get("video") or ""))
+    for name in (per_network, shared):
+        p = os.path.join(base, name)
+        if os.path.exists(p):
+            txt = open(p).read().strip()
+            if txt:
+                print(f"  підпис: {name}")
+                return txt
+    raise RuntimeError(f"немає підпису: ні {per_network}, ні {shared} у {base}")
+
+
 def _post_url(kind, plat_id):
     """Готове посилання на публікацію. Потрібне, щоб людина могла глянути очима, не
     складаючи URL руками, і щоб у реєстрі одразу було видно, куди саме пішов пост."""
@@ -45,6 +71,12 @@ def _post_url(kind, plat_id):
         return f"https://youtu.be/{plat_id}"
     if kind == "fb_post":
         return f"https://www.facebook.com/{plat_id}"
+    if kind == "th_post":
+        return f"https://www.threads.net/@utd_web_team/post/{plat_id}"
+    if kind == "li_post":
+        return f"https://www.linkedin.com/feed/update/{plat_id}"
+    if kind == "tt_post":
+        return None      # TikTok вертає publish_id, а не адресу поста
     return f"https://www.instagram.com/p/{plat_id}"   # IG вертає media id, не shortcode
 
 def main():
@@ -74,11 +106,19 @@ def main():
     # Считаем по ФАКТИЧЕСКОЙ дате публикации, а не по дате из плана: id записи
     # содержит дату расписания, и при сливе долга за 12 дней все они «июльские».
     # Поэтому ведём отдельный журнал posted_at.json.
+    # 🔴 Норми — зона чату Юрія: це прогрів акаунтів і ризик блокування, а не формат.
+    # Нові мережі свідомо стоять НИЖЧЕ за старі: акаунт, який раніше нічого не публікував,
+    # а зʼявився з чотирма постами на добу, читається як бот. Threads і LinkedIn стартують
+    # з 1 на добу, і межа піднімається руками після тижня спостереження.
     DAILY = {"instagram": env_int("DAILY_IG", 2),
              "youtube":   env_int("DAILY_YT", 4),
-             "facebook":  env_int("DAILY_FB", 3)}
+             "facebook":  env_int("DAILY_FB", 3),
+             "threads":   env_int("DAILY_TH", 1),
+             "linkedin":  env_int("DAILY_LI", 1),
+             "tiktok":    env_int("DAILY_TT", 1)}
     PLATFORM = {"ig_post": "instagram", "ig_reel": "instagram",
-                "yt_short": "youtube", "fb_post": "facebook"}
+                "yt_short": "youtube", "fb_post": "facebook",
+                "th_post": "threads", "li_post": "linkedin", "tt_post": "tiktok"}
 
     at_path = os.path.join(HERE, "posted_at.json")
     posted_at = load("posted_at.json", {})
@@ -145,7 +185,18 @@ def main():
             # `posted.json` зберігав наш ВНУТРІШНІЙ айді (`2026-07-15_ig_post01`), яким
             # платформа не адресується. Це різні речі, і одне не заміняє інше.
             plat_id = None
-            if kind == "ig_post":
+            # 🔴 РОЗГАЛУЖЕННЯ ЗА НАЯВНІСТЮ ПОЛЯ, а не новий тип. Дозвіл власника
+            # 04.09.2026 на відео в стрічку, пропозиція чату Вікторії. Запис із `video`
+            # публікується як відео, запис із `folder` — як раніше, каруселлю. Черга
+            # лишається сумісною: жоден наявний запис не змінює поведінку.
+            vid = os.path.join(HERE, e["video"]) if e.get("video") else None
+            if kind == "ig_post" and vid:
+                cap = _caption(HERE, e, "caption_ig.txt", "caption.txt")
+                if not V.say(vid, "instagram", cap):
+                    raise RuntimeError("відео не пройшло перевірку для Instagram")
+                # share_to_feed=True — щоб пост був і в рілсах, і в сітці профілю
+                plat_id = M.ig_reel(vid, cap, a.dry_run, share_to_feed=True)
+            elif kind == "ig_post":
                 folder = os.path.join(HERE, e["folder"])
                 slides = sorted(glob.glob(f"{folder}/slide_*.jpg")) or sorted(glob.glob(f"{folder}/slide_*.png"))
                 cap = open(f"{folder}/caption.txt").read().strip()
@@ -153,15 +204,71 @@ def main():
                 else: plat_id = M.ig_single(slides[0], cap, a.dry_run)
             elif kind == "ig_reel":
                 cap = open(os.path.join(HERE, e["caption_file"])).read().strip()
-                plat_id = M.ig_reel(os.path.join(HERE, e["video"]), cap, a.dry_run)
+                plat_id = M.ig_reel(os.path.join(HERE, e["video"]), cap, a.dry_run,
+                                    share_to_feed=bool(e.get("share_to_feed")))
             elif kind == "yt_short":
                 m = json.load(open(os.path.join(HERE, e["meta_file"])))
                 plat_id = M.yt_short(os.path.join(HERE, e["video"]), m["title"], m["description"], a.dry_run)
+            elif kind == "fb_post" and vid:
+                cap = _caption(HERE, e, "caption_fb.txt", "caption.txt")
+                if not V.say(vid, "facebook", cap):
+                    raise RuntimeError("відео не пройшло перевірку для Facebook")
+                plat_id = M.fb_video(vid, cap, a.dry_run)
             elif kind == "fb_post":
                 folder = os.path.join(HERE, e["folder"])
                 cover = (sorted(glob.glob(f"{folder}/slide_*.jpg")) or sorted(glob.glob(f"{folder}/slide_*.png")))[0]
                 cap = open(f"{folder}/caption_fb.txt").read().strip()
                 plat_id = M.fb_photo(cover, cap, None, a.dry_run)
+            # ── Три нові мережі (дозвіл власника 04.09.2026) ──────────────────
+            # 🔴 ЛИШЕ ЛОКАЛЬНО, і це не технічне обмеження, а правило власника:
+            # «НІКОЛИ НЕ ВИКОРИСТОВУЄМО ПУБЛІЧНІ РЕПОЗИТОРІЇ ДЛЯ СЕКРЕТНИХ І ЧУТЛИВИХ
+            # І ПРИВАТНИХ ДАНИХ». Заміряно 04.09.2026: `utd-autopost` має
+            # `private=false`, тобто ПУБЛІЧНИЙ. Токени Threads, LinkedIn і TikTok у
+            # секрети такого репозиторію я не кладу.
+            #
+            # Локальний прогін бере їх із `~/.config/utd/*.json`, і основний тригер
+            # постингу вже локальний (launchd `team.utdweb.autopost`), а хмара — резерв.
+            # Тому в хмарі ці типи ПРОПУСКАЮТЬСЯ ЯВНО, з причиною в лозі: тихий пропуск
+            # виглядав би як «нічого не було в черзі».
+            elif kind in ("th_post", "li_post", "tt_post") and os.environ.get("GITHUB_ACTIONS"):
+                print(f"  ⏸ {kind} у хмарі не публікується: токен мережі не їде в секрети "
+                      f"ПУБЛІЧНОГО репозиторію. Цей запис вийде локальним прогоном.")
+                skipped_by_cap += 1
+                tried -= 1        # це не спроба, тому не палимо лічильник карантину
+                continue
+            elif kind == "th_post":
+                cap = _caption(HERE, e, "caption_th.txt", "caption.txt")
+                if vid and not V.say(vid, "threads", cap):
+                    raise RuntimeError("відео не пройшло перевірку для Threads")
+                # Threads тягне медіа за URL, тому файл спершу на ефемерний хостинг
+                url = sha = None
+                if vid:
+                    url, sha = M.gh_upload(vid, f"q/{int(datetime.datetime.now().timestamp())}_th.mp4")
+                try:
+                    plat_id = S.th_publish(cap, a.dry_run, video_url=url)
+                finally:
+                    if sha: M.gh_delete(url.split("/main/")[-1], sha)
+            elif kind == "li_post":
+                cap = _caption(HERE, e, "caption_li.txt", "caption.txt")
+                if vid and not V.say(vid, "linkedin", cap):
+                    raise RuntimeError("відео не пройшло перевірку для LinkedIn")
+                img = None
+                if not vid and e.get("folder"):
+                    folder = os.path.join(HERE, e["folder"])
+                    img = (sorted(glob.glob(f"{folder}/slide_*.jpg"))
+                           or sorted(glob.glob(f"{folder}/slide_*.png")))[0]
+                plat_id = S.li_publish(cap, a.dry_run, video_path=vid, image_path=img)
+            elif kind == "tt_post":
+                cap = _caption(HERE, e, "caption_tt.txt", "caption.txt")
+                if not vid:
+                    raise RuntimeError("tt_post без поля video: TikTok приймає лише відео")
+                if not V.say(vid, "tiktok", cap):
+                    raise RuntimeError("відео не пройшло перевірку для TikTok")
+                url, sha = M.gh_upload(vid, f"q/{int(datetime.datetime.now().timestamp())}_tt.mp4")
+                try:
+                    plat_id = S.tt_publish(url, cap, a.dry_run)
+                finally:
+                    M.gh_delete(url.split("/main/")[-1], sha)
             else:
                 print("  ! неизвестный kind:", kind); continue
         except Exception as ex:
