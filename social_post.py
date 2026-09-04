@@ -217,42 +217,83 @@ def li_publish(text, dry=False, video_path=None, image_path=None, title=None):
 TT_API = "https://open.tiktokapis.com/v2"
 
 
-def tt_publish(video_url, caption, dry=False):
-    """Відео в TikTok через Content Posting API, спосіб PULL_FROM_URL.
+def tt_publish(video_path, caption, dry=False):
+    """Відео в TikTok. Шлях FILE_UPLOAD: init → PUT байтів → опитування статусу.
 
-    🔴 Зараз це НЕ ПРАЦЮЄ, і причина не в коді. Заміряно 04.09.2026:
-    `~/.config/utd/tiktok.json` має `client_key` і `client_secret`, але `access_token`
-    порожній, а сам застосунок у стані **Draft**: не подані іконка, категорія, опис,
-    Terms of Service URL, Privacy Policy URL, платформи, опис для рев'ю з демо-відео,
-    продукт Content Posting API і дозволи.
+    🔴 ЧОМУ НЕ PULL_FROM_URL, хоч у документації він є. Перша версія цієї функції тягла
+    відео за URL з ефемерного хостингу — і це був МІЙ винахід, тоді як у
+    `~/utd-runner/scripts/tiktok_publisher.py` уже лежав інший шлях, **доведений живим
+    прогоном 02.09.2026**: init → PUT байтів (HTTP 201) → `PUBLISH_COMPLETE` за 10 секунд,
+    справжній `publish_id`, файл reel85.mp4.
 
-    Функція навмисно не «тихо пропускає», а падає з поясненням: інакше запис пішов би в
-    карантин із порожньою причиною, і через тиждень ніхто б не згадав, чому TikTok мовчить.
-    Домен для PULL_FROM_URL мусить бути підтверджений у застосунку — у конфігу є
-    `domain_verified`, і його теж треба буде звірити перед першим постом.
+    Тобто я написав другу реалізацію того самого, неперевірену, замість того щоб узяти
+    заміряну. `PULL_FROM_URL` ще й вимагає підтвердженого домену в застосунку — зайва
+    залежність там, де байти можна віддати напряму.
+
+    🔴 ДВА ФІНАЛЬНІ СТАТУСИ, і це не деталь. Пряма публікація завершується
+    `PUBLISH_COMPLETE`, чернетка — `SEND_TO_USER_INBOX`. 02.09.2026 чекання
+    `PUBLISH_COMPLETE` для чернетки дало 60 секунд `PROCESSING_UPLOAD` і хибний висновок
+    «не завершилось», хоч усе було доставлено.
+
+    🔴 ПРО ТОКЕН. Заявку подано на розгляд 04.09.2026. Поки продакшн-токена немає,
+    працює лише `sandbox_token`, а в Sandbox приватність **тільки SELF_ONLY** — відео
+    видно лише нам. Це НЕ публікація, і функція каже це вголос: інакше «успішно
+    опубліковано» означало б «ніхто не побачив».
     """
     cfg = _cfg("tiktok", "TIKTOK_CONFIG")
-    tok = cfg.get("access_token")
+    prod = cfg.get("access_token")
+    sand = cfg.get("sandbox_token") if isinstance(cfg.get("sandbox_token"), dict) else {}
+    tok = prod or (sand or {}).get("access_token")
     if not tok:
         raise RuntimeError(
-            "TikTok не налаштований: у застосунку немає access_token, стан «"
-            f"{cfg.get('status', 'Draft')}». Бракує: "
-            f"{', '.join(cfg.get('missing') or ['опис заявки'])}. "
-            "Це дія власника в порталі TikTok, кодом не обходиться.")
-    body = {"post_info": {"title": caption[:2200], "privacy_level": "PUBLIC_TO_EVERYONE",
-                          "disable_duet": False, "disable_comment": False,
+            "TikTok: немає ні продакшн-токена, ні sandbox. Стан застосунку: "
+            f"«{cfg.get('status', '?')}». Це дія власника в порталі TikTok.")
+    sandbox_only = not prod
+    privacy = "SELF_ONLY" if sandbox_only else "PUBLIC_TO_EVERYONE"
+    if sandbox_only:
+        print("  🟡 TikTok: продакшн-токена ще немає, іду через Sandbox — приватність "
+              "SELF_ONLY, тобто відео побачимо лише ми. Це не публікація.")
+
+    size = os.path.getsize(video_path)
+    body = {"post_info": {"title": caption[:2200], "privacy_level": privacy,
+                          "disable_comment": False, "disable_duet": False,
                           "disable_stitch": False},
-            "source_info": {"source": "PULL_FROM_URL", "video_url": video_url}}
+            "source_info": {"source": "FILE_UPLOAD", "video_size": size,
+                            "chunk_size": size, "total_chunk_count": 1}}
     if dry:
-        print(f"  [dry-run] TikTok: {caption[:60]!r}")
+        print(f"  [dry-run] TikTok {privacy}: {os.path.basename(video_path)} "
+              f"{size/1e6:.2f} МБ, {caption[:50]!r}")
         return None
+
     _s, d, _h = _req(f"{TT_API}/post/publish/video/init/", data=body,
                      headers={"Authorization": f"Bearer {tok}"})
-    pid = ((d or {}).get("data") or {}).get("publish_id")
-    if not pid:
-        raise RuntimeError(f"TikTok: немає publish_id: {str(d)[:250]}")
-    print(f"  ✅ TikTok publish_id: {pid}")
-    return pid
+    data = (d or {}).get("data") or {}
+    pid, up = data.get("publish_id"), data.get("upload_url")
+    if not (pid and up):
+        raise RuntimeError(f"TikTok init без publish_id/upload_url: {str(d)[:250]}")
+    print(f"  TikTok publish_id: {pid}")
+
+    blob = open(video_path, "rb").read()
+    _req(up, data=blob, method="PUT",
+         headers={"Content-Type": "video/mp4", "Content-Length": str(size),
+                  "Content-Range": f"bytes 0-{size - 1}/{size}"}, timeout=600)
+    print(f"  байти прийняті: {size/1e6:.2f} МБ")
+
+    GOOD = ("PUBLISH_COMPLETE", "SEND_TO_USER_INBOX")
+    code = None
+    for _ in range(32):
+        time.sleep(2.5)
+        _s3, st, _h3 = _req(f"{TT_API}/post/publish/status/fetch/",
+                            data={"publish_id": pid},
+                            headers={"Authorization": f"Bearer {tok}"})
+        code = ((st or {}).get("data") or {}).get("status")
+        print(f"    status: {code}")
+        if code in GOOD:
+            print(f"  ✅ TikTok {code}: {pid}")
+            return pid
+        if code and "FAIL" in str(code):
+            raise RuntimeError(f"TikTok статус {code}: {str(st)[:250]}")
+    raise RuntimeError(f"TikTok: статус не став остаточним за 80 с, останній {code}")
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
