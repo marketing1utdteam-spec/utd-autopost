@@ -82,6 +82,16 @@ def _post_url(kind, plat_id):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date"); ap.add_argument("--dry-run", action="store_true")
+    # 🔴 --only існує через РЕАЛЬНУ дірку, знайдену 04.09.2026 одразу після того, як я
+    # додав Threads, LinkedIn і TikTok «лише локально». Локального прогону НЕ ІСНУВАЛО:
+    # `autopost_trigger.sh` лише ЗАПУСКАЄ хмарний воркфлоу, локальної копії репозиторію
+    # на машині немає. Тобто ці три типи пропускались би в хмарі й не виконувались ніде
+    # взагалі — класичне «зелене, яке нічого не робить».
+    # Тепер локальний прогін бере САМЕ ці типи (`--only th_post,li_post,tt_post`), а
+    # хмара — решту. Множини не перетинаються, тому подвоїти публікацію неможливо.
+    ap.add_argument("--only", default="",
+                    help="лише ці типи, через кому: th_post,li_post,tt_post")
+    ap.add_argument("--skip", default="", help="усе, крім цих типів")
     a = ap.parse_args()
     today = a.date or today_brussels()
     sched = load("schedule.json", [])
@@ -147,8 +157,15 @@ def main():
     # Очередь сливаем ПО ДАТЕ, от самых старых. Порядок в schedule.json не
     # гарантирован, а долг должен уходить хронологически, иначе июльские записи
     # будут вечно ждать за августовскими.
-    queue = sorted((e for e in sched if e["date"] <= today and e["id"] not in posted),
+    only = {x.strip() for x in a.only.split(",") if x.strip()}
+    skip = {x.strip() for x in a.skip.split(",") if x.strip()}
+    queue = sorted((e for e in sched if e["date"] <= today and e["id"] not in posted
+                    and (not only or e["kind"] in only)
+                    and e["kind"] not in skip),
                    key=lambda e: (e["date"], e["id"]))
+    if only or skip:
+        print(f"   фільтр типів: only={sorted(only) or '—'} skip={sorted(skip) or '—'} "
+              f"→ у черзі {len(queue)}")
 
     did, failed_now, quarantined = [], [], []
     done_run, done_yt, tried = 0, 0, 0
