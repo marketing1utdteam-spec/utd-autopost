@@ -281,11 +281,11 @@ def main():
                     raise RuntimeError("tt_post без поля video: TikTok приймає лише відео")
                 if not V.say(vid, "tiktok", cap):
                     raise RuntimeError("відео не пройшло перевірку для TikTok")
-                url, sha = M.gh_upload(vid, f"q/{int(datetime.datetime.now().timestamp())}_tt.mp4")
-                try:
-                    plat_id = S.tt_publish(url, cap, a.dry_run)
-                finally:
-                    M.gh_delete(url.split("/main/")[-1], sha)
+                # 🔴 БЕЗ ефемерного хостингу: TikTok приймає самі байти (FILE_UPLOAD), і
+                # саме цей шлях доведений живим прогоном 02.09.2026. Заливка на публічний
+                # хостинг тут була б зайвою залежністю, ще й вимагала б підтвердженого
+                # домену в застосунку.
+                plat_id = S.tt_publish(vid, cap, a.dry_run)
             else:
                 print("  ! неизвестный kind:", kind); continue
         except Exception as ex:
