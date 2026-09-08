@@ -23,6 +23,7 @@
     python3 post_selftest.py --quiet   # лише вердикт, код 1 при провалі
 """
 import glob
+import subprocess
 import json
 import os
 import sys
@@ -32,6 +33,57 @@ sys.path.insert(0, HERE)
 
 FAILS = []
 N = [0]
+
+
+# 🔴 РОЗРІДЖЕНИЙ КЛОН: медіа Є В РЕПОЗИТОРІЇ, але не вивантажене на диск.
+#
+# Локальна копія робиться як `git clone --filter=blob:none --sparse` і виключає `/media`
+# (47 тек по кілька мегабайт), а `autopost_local.sh` дотягує лише ту теку, яку зараз
+# публікує. Тому перевірка «чи є файл на диску» тут ЗАВЖДИ провалюється — заміряно
+# 08.09.2026: самоперевірка дала «2 провали з 12» на дев'яти теках, у яких насправді все
+# на місці (перевірено окремо через API).
+#
+# Фальшивий провал гірший за відсутню перевірку: «НЕ ПУБЛІКУВАТИ, поки не полагоджено»
+# стоїть на здоровому розкладі, і його починають ігнорувати — разом зі справжніми.
+#
+# Тому дивимось у ДЕРЕВО КОМІТА, а не на диск: `git ls-tree` бачить усі файли навіть при
+# розрідженому клоні, бо об'єкти дерева завантажуються завжди (фільтр виключає лише блоби).
+_TREE = None
+
+
+def in_repo(rel):
+    """Чи є цей шлях у репозиторії — незалежно від того, чи він вивантажений на диск."""
+    global _TREE
+    if _TREE is None:
+        try:
+            r = subprocess.run(["git", "-C", HERE, "ls-tree", "-r", "--name-only", "HEAD"],
+                               capture_output=True, text=True, timeout=120)
+            _TREE = set((r.stdout or "").splitlines())
+        except Exception:
+            _TREE = set()
+    rel = rel.replace(os.path.join(HERE, ""), "").lstrip("/")
+    return rel in _TREE
+
+
+def have(path):
+    """Файл є: або на диску, або в дереві комітa."""
+    return os.path.exists(path) or in_repo(path)
+
+
+def have_glob(d, pats):
+    """Хоч один файл за шаблоном: на диску або в дереві."""
+    import fnmatch
+    for p in pats:
+        if glob.glob(os.path.join(d, p)):
+            return True
+    rel = d.replace(os.path.join(HERE, ""), "").lstrip("/")
+    if _TREE is None:
+        in_repo("")
+    for f in (_TREE or ()):
+        if f.startswith(rel + "/") and any(fnmatch.fnmatch(os.path.basename(f), p) for p in pats):
+            return True
+    return False
+
 
 
 def ok(label, cond, detail=""):
@@ -103,11 +155,11 @@ def main():
     lost = []
     for e in due if has_media else []:
         if e.get("video"):
-            if not os.path.exists(os.path.join(HERE, e["video"])):
+            if not have(os.path.join(HERE, e["video"])):
                 lost.append(f"{e['id']}: немає {e['video']}")
         elif e.get("folder"):
             d = os.path.join(HERE, e["folder"])
-            if not (glob.glob(f"{d}/slide_*.jpg") or glob.glob(f"{d}/slide_*.png")):
+            if not have_glob(d, ("slide_*.jpg", "slide_*.png")):
                 lost.append(f"{e['id']}: у {e['folder']} немає слайдів")
         else:
             lost.append(f"{e['id']}: ні video, ні folder")
@@ -127,13 +179,29 @@ def main():
     for e in due if has_media else []:
         if e["kind"] == "yt_short":
             mf = os.path.join(HERE, e.get("meta_file", ""))
-            if not os.path.exists(mf):
+            if not have(mf):
                 nocap.append(f"{e['id']}: немає meta_file")
             continue
-        try:
-            R._caption(HERE, e, NET.get(e["kind"], "caption.txt"), "caption.txt")
-        except Exception as ex:
-            nocap.append(f"{e['id']}: {str(ex)[:70]}")
+        # 🔴 `_caption` читає файл із ДИСКА, а при розрідженому клоні медіа там немає.
+        # Тому спершу питаємо дерево комітa (див. `in_repo`), і лише якщо файл є на
+        # диску — читаємо його справді, щоб зловити ще й порожній підпис.
+        base = e.get("folder") or os.path.dirname(e.get("video") or "")
+        want = NET.get(e["kind"], "caption.txt")
+        names = [want, "caption.txt"]
+        if e.get("caption_file"):
+            names.insert(0, os.path.basename(e["caption_file"]))
+        found = None
+        for n in names:
+            rel = os.path.join(base, n)
+            if os.path.exists(os.path.join(HERE, rel)) or in_repo(rel):
+                found = rel
+                break
+        if not found:
+            nocap.append(f"{e['id']}: немає ні {want}, ні caption.txt у {base}")
+            continue
+        p_abs = os.path.join(HERE, found)
+        if os.path.exists(p_abs) and not open(p_abs, encoding="utf-8").read().strip():
+            nocap.append(f"{e['id']}: підпис {found} порожній")
     if has_media:
         ok("підпис знаходиться для кожного запису", not nocap, "; ".join(nocap[:6]))
         say(f"   {'🟢' if not nocap else '🔴'} без підпису: {len(nocap)}")

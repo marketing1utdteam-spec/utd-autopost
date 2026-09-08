@@ -376,10 +376,15 @@ def token_health():
         out["threads"] = f"{mark} {txt}"
     try:
         cfg = _cfg("linkedin", "LINKEDIN_CONFIG")
-        org = (cfg.get("organizations") or [""])[0].split(":")[-1]
+        # 🔴 ТРЕТІЙ ВИПАДОК ТОГО САМОГО БАГА за одну добу: `organizations[0]` — це
+        # «UTD development», сторінка з останнім постом 2021 року. Перший випадок брехав
+        # у метриці («0 постів за 30 днів»), другий публікував НА МЕРТВУ сторінку, третій
+        # — цей — казав «🟢 linkedin: UTD development», тобто підтверджував здоровʼя не
+        # тієї сторінки. Беремо ту саму функцію, що й публікація: один власник на факт.
+        org = _li_author(cfg).split(":")[-1]
         _s, d, _h = _req(f"{LI_API}/organizations/{org}",
                          headers=_li_headers(cfg), method="GET", timeout=30)
-        out["linkedin"] = f"🟢 {d.get('localizedName')}"
+        out["linkedin"] = f"🟢 {d.get('localizedName')}" if str(d.get("localizedName") or "").strip().lower() == str(cfg.get("page") or "").strip().lower() else f"🔴 перевіряє НЕ ТУ сторінку: {d.get('localizedName')}, а в конфігу page={cfg.get('page')}"
     except Exception as e:
         mark, txt = _classify(e)
         out["linkedin"] = f"{mark} {txt}"
