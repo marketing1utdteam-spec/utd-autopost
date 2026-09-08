@@ -60,6 +60,19 @@ def _req(url, data=None, headers=None, method=None, timeout=180):
         headers = {**(headers or {}), "Content-Type": "application/json"}
     elif isinstance(data, bytes):
         body = data
+        # 🔴 ТИП ВМІСТУ ДЛЯ ДВІЙКОВОГО ТІЛА ОБОВʼЯЗКОВИЙ.
+        #
+        # `urllib.request` САМ підставляє `Content-Type: application/x-www-form-urlencoded`,
+        # коли тіло задане, а тип не вказаний. Тобто LinkedIn отримував байти JPEG,
+        # підписані як веб-форма, і відповідав `400` HTML-сторінкою замість помилки API.
+        # Заміряно 08.09.2026 на першій живій публікації, і доведено прямим дослідом:
+        #   тільки Authorization        → 400
+        #   Authorization + octet-stream → 201
+        #   Authorization + image/jpeg   → 201
+        # Саме через це в LinkedIn не було постів «через код»: гілка існувала, підпис
+        # читався, автор виправлявся — і все впиралось у заголовок, якого ніхто не ставив.
+        if not (headers or {}).get("Content-Type"):
+            headers = {**(headers or {}), "Content-Type": "application/octet-stream"}
     r = urllib.request.Request(url, data=body, headers=headers or {},
                                method=method or ("POST" if body else "GET"))
     try:
@@ -213,8 +226,13 @@ def li_publish(text, dry=False, video_path=None, image_path=None, title=None):
             etags = []
             for i, part in enumerate(parts, 1):
                 lo = int(part.get("firstByte", 0)); hi = int(part.get("lastByte", size - 1))
+                # Тип саме за розширенням: DMS LinkedIn перевіряє його на завантаженні.
+                _ct = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png",
+                       ".mp4": "video/mp4"}.get(os.path.splitext(path)[1].lower(),
+                                                "application/octet-stream")
                 _s2, _b, h2 = _req(part["uploadUrl"], data=blob[lo:hi + 1],
-                                   headers={"Authorization": hdr["Authorization"]},
+                                   headers={"Authorization": hdr["Authorization"],
+                                            "Content-Type": _ct},
                                    method="PUT")
                 et = (h2.get("ETag") or h2.get("etag") or "").strip('"')
                 etags.append(et)
