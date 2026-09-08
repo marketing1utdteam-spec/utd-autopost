@@ -1,0 +1,9 @@
+No dashboard has a metric called "theme problem" — which is why a cheap theme is the most expensive thing you never see.
+
+Speed: every 100ms costs up to 7% of conversions.
+Bounce: 1s → 3s load = +32% bounce, logged as "weak traffic".
+App tax: $672/yr renting features the theme should ship.
+
+Vodafone fixed one loading metric: sales +8%. Nothing else changed.
+
+https://utdweb.team/shopify-themes/
