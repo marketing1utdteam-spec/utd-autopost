@@ -1,0 +1,16 @@
+No analytics dashboard has a metric called "theme problem."
+
+That is what makes a cheap theme the most expensive line item you will never see. It does not fail loudly. It bleeds quietly, through four channels that all show up in your reports disguised as something else.
+
+Speed: cheap code is heavy code, and every 100ms costs up to 7% of conversions.
+Bounce: as load creeps from 1 to 3 seconds, bounce probability jumps 32% — recorded as "weak traffic" and blamed on ads.
+Trust: 75% of shoppers judge credibility by design, so a template look silently caps the prices you can charge.
+App tax: $672+ a year renting features the theme should have shipped, each app adding scripts that feed the first bleed.
+
+The reverse experiment proves the direction. Vodafone's team improved one loading metric (31% faster LCP) in a controlled A/B test — same products, same prices, same traffic — and sales rose 8%. COOK redesigned for performance: conversions up 7%, bounce down 7 points. Nothing about the products changed. The bleed simply stopped.
+
+Audit the container before you audit the campaigns. If your store runs on a bloated template, every ad dollar works at a discount.
+
+https://utdweb.team/shopify-themes/
+
+#ecommerce #shopify #conversionoptimization
