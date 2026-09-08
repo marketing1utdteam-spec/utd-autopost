@@ -1,0 +1,7 @@
+8-point pre-launch audit, the same one we run for client stores:
+
+under 3s on a phone · works one-handed · short checkout with express pay · visible trust cues · product page answers every buying reason · all links and forms work · sharp mobile images · analytics installed before traffic
+
+Most are theme properties, not add-ons.
+
+https://utdweb.team/shopify-themes/
