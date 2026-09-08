@@ -1,0 +1,13 @@
+"Just start with a free theme" is the most common advice new store owners get — and it is half right.
+
+The half nobody explains is when free stops being free, and how quietly that moment arrives.
+
+Free themes are genuinely good at the basics. The verdict changes on the year-one bill. The standard app stack that replaces missing theme features — filtering (~$19/mo), upsells (~$15/mo), quick view (~$10/mo), mega menu (~$12/mo) — runs about $56 a month. That is $672 in the first year, recurring forever.
+
+Then it costs you twice. Every added app injects scripts into your storefront, and Akamai's retail data prices that at up to 7% of conversions per 100ms of added latency. Google's research adds the cliff: 53% of mobile visitors abandon after 3 seconds.
+
+So the honest comparison is not $0 against $180. It is $672 a year plus a speed penalty, against one payment.
+
+https://utdweb.team/shopify-themes/
+
+#ecommerce #shopify #unitconomics
