@@ -1,0 +1,18 @@
+Before you hit publish, run this 8-point pre-launch audit — the same filter we use for client stores.
+
+1. Loads under 3 seconds on a phone.
+2. Works one-handed.
+3. Checkout is short, with guest and express pay.
+4. Trust is visible: reviews, returns, secure cues.
+5. The product page answers every buying reason.
+6. Every link and form works.
+7. Mobile images are sharp.
+8. Analytics is installed before the traffic arrives.
+
+Most of these are properties of the theme, not add-ons you bolt on afterwards — a reviewed theme passes them by default.
+
+Save it and run it the day before launch, not the day after.
+
+https://utdweb.team/shopify-themes/
+
+#ecommerce #shopify #launch
