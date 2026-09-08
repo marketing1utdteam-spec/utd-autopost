@@ -141,6 +141,42 @@ def _li_headers(cfg):
             "LinkedIn-Version": str(cfg.get("api_version") or "202608")}
 
 
+def _li_author(cfg):
+    """Сторінка, НА ЯКУ публікуємо. Береться за назвою з конфігу, а не за порядком у списку.
+
+    🔴 БУЛО `organizations[0]`, І ЦЕ ПУБЛІКУВАЛО НЕ ТУДИ. У конфігу два URN:
+    `49102903` — «UTD development» (останній пост 2021 року, підписників майже немає) і
+    `18514299` — «UTD eCommerce» (`/company/the-united-team-of-developers/`), жива
+    сторінка агентства. У списку перша — мертва.
+
+    Заміряно 08.09.2026: та сама помилка вже знайшлась у `linkedin_refresh.py`, де вона
+    лише брехала в метриці («0 постів за 30 днів» замість 1). Тут вона дорожча: пости
+    поїхали б на сторінку, якої ніхто не читає, і виглядало б це як успішна публікація.
+    Помилка, що не падає, а тихо робить не те, — найдорожча.
+
+    Поле `page` у конфігу весь час містило «UTD eCommerce». Правильна відповідь лежала в
+    тому самому файлі, який код уже читав.
+    """
+    orgs = cfg.get("organizations") or []
+    if not orgs:
+        raise RuntimeError("LinkedIn: у конфігу немає organizations")
+    want = str(cfg.get("page") or "").strip().lower()
+    if want:
+        for urn in orgs:
+            oid = str(urn).split(":")[-1]
+            try:
+                _s, d, _h = _req(f"{LI_API}/organizations/{oid}", headers=_li_headers(cfg))
+                if str(d.get("localizedName") or "").strip().lower() == want:
+                    return urn
+            except Exception:
+                continue
+        # Назву не підтвердили — краще впасти, ніж опублікувати на випадкову сторінку.
+        raise RuntimeError(
+            f"LinkedIn: сторінку «{cfg.get('page')}» не знайдено серед {orgs}. "
+            f"Публікацію НЕ роблю: пост на чужу сторінку гірший за відсутній.")
+    return orgs[0]
+
+
 def li_publish(text, dry=False, video_path=None, image_path=None, title=None):
     """Пост на сторінку компанії LinkedIn: текст, відео або картинка.
 
@@ -148,9 +184,7 @@ def li_publish(text, dry=False, video_path=None, image_path=None, title=None):
     частини, finalizeUpload (склеює за ETag). Тільки потім /posts.
     """
     cfg = _cfg("linkedin", "LINKEDIN_CONFIG")
-    author = (cfg.get("organizations") or [None])[0]
-    if not author:
-        raise RuntimeError("LinkedIn: у конфігу немає organizations")
+    author = _li_author(cfg)
     hdr = _li_headers(cfg)
 
     media_urn = None
