@@ -1,0 +1,17 @@
+"Shopify, WooCommerce, or something custom?" sounds like a technology decision. It is not.
+
+It is a decision about what you want to spend the next three years thinking about: your products, or your infrastructure.
+
+Here is what the platform actually takes off your plate.
+Hosting and uptime: infrastructure that absorbs Black Friday spikes which crash self-hosted stores every November.
+Payments: Shop Pay, Apple Pay, Google Pay and 3D-Secure compliance built in — no gateway integrations, no PCI audits on your side.
+Security: SSL, patches and DDoS protection are the platform's problem, handled by a security team larger than most companies' entire staff.
+Scale: the store that takes your first order can take your millionth without re-platforming.
+
+Gymshark is the case that settles the argument. The brand originally ran on self-managed Magento. On Black Friday 2015 the site crashed and stayed down for hours — Ben Francis has publicly estimated around £100,000 in lost sales, and the trust cost was worse.
+
+Custom is the right answer for a handful of businesses. For the rest, it is a bill you pay in attention.
+
+https://utdweb.team/shopify-themes/
+
+#ecommerce #shopify #platformstrategy
