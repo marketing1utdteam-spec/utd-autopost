@@ -1124,6 +1124,12 @@
   "caption_file": "media/reels/reel57_caption.txt"
  },
  {
+  "id": "2026-09-09_th_post20",
+  "date": "2026-09-09",
+  "kind": "th_post",
+  "folder": "media/ig/post20"
+ },
+ {
   "id": "2026-09-09_yt_reel54",
   "date": "2026-09-09",
   "kind": "yt_short",
@@ -1168,6 +1174,12 @@
   "kind": "ig_reel",
   "video": "media/reels/reel59.mp4",
   "caption_file": "media/reels/reel59_caption.txt"
+ },
+ {
+  "id": "2026-09-11_th_post34",
+  "date": "2026-09-11",
+  "kind": "th_post",
+  "folder": "media/ig/post34"
  },
  {
   "id": "2026-09-11_yt_reel56",
@@ -1224,6 +1236,12 @@
   "caption_file": "media/reels/reel62_caption.txt"
  },
  {
+  "id": "2026-09-14_th_post29",
+  "date": "2026-09-14",
+  "kind": "th_post",
+  "folder": "media/ig/post29"
+ },
+ {
   "id": "2026-09-14_yt_reel59",
   "date": "2026-09-14",
   "kind": "yt_short",
@@ -1276,6 +1294,12 @@
   "folder": "media/ig/post32"
  },
  {
+  "id": "2026-09-16_th_post32",
+  "date": "2026-09-16",
+  "kind": "th_post",
+  "folder": "media/ig/post32"
+ },
+ {
   "id": "2026-09-16_yt_reel61",
   "date": "2026-09-16",
   "kind": "yt_short",
@@ -1320,6 +1344,12 @@
   "kind": "ig_reel",
   "video": "media/reels/reel66.mp4",
   "caption_file": "media/reels/reel66_caption.txt"
+ },
+ {
+  "id": "2026-09-18_th_post46",
+  "date": "2026-09-18",
+  "kind": "th_post",
+  "folder": "media/ig/post46"
  },
  {
   "id": "2026-09-18_yt_reel63",
@@ -1386,6 +1416,12 @@
   "kind": "ig_reel",
   "video": "media/reels/reel69.mp4",
   "caption_file": "media/reels/reel69_caption.txt"
+ },
+ {
+  "id": "2026-09-21_th_post44",
+  "date": "2026-09-21",
+  "kind": "th_post",
+  "folder": "media/ig/post44"
  },
  {
   "id": "2026-09-21_yt_reel66",
