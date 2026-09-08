@@ -1,0 +1,16 @@
+Black Friday is about ten weeks out. The stores that win it prepare now, not in November.
+
+The spike exposes whatever is weak: a slow theme buckles, a clunky mobile flow leaks orders, a long checkout kills carts. Gymshark crashed on Black Friday when its store could not handle the load — a six-figure lesson learned in public.
+
+Five fixes worth doing this month:
+1. Pass a real speed test, on a phone, on mobile data.
+2. Make everything work one-handed.
+3. Turn on express pay.
+4. Trim checkout fields to what you actually need.
+5. Stress-test the theme itself, not just the apps.
+
+A fast, reviewed theme handles the rush by default. The rest is preparation you can still do in September.
+
+https://utdweb.team/shopify-themes/
+
+#blackfriday #ecommerce #shopify
