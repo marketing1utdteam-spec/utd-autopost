@@ -1,0 +1,7 @@
+Every app you add is another rent payment: filtering, upsells, mega menu, quick view apps alone run roughly $650+ a year.
+
+Ultra is a $100 one-time theme with all of that built in natively, plus sticky cart, swatches, upsell blocks and a speed-first codebase.
+
+Fewer app scripts means faster pages, and Akamai says 100ms of delay costs up to 7% of conversions.
+
+One payment instead of a monthly tax.
