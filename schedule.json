@@ -754,12 +754,6 @@
   "folder": "media/ig/post20"
  },
  {
-  "id": "2026-09-10_li_post29",
-  "date": "2026-09-08",
-  "kind": "li_post",
-  "folder": "media/ig/post29"
- },
- {
   "id": "2026-08-28_yt_reel42",
   "date": "2026-09-08",
   "kind": "yt_short",
@@ -803,6 +797,12 @@
   "date": "2026-09-10",
   "kind": "ig_post",
   "folder": "media/ig/post16"
+ },
+ {
+  "id": "2026-09-10_li_post29",
+  "date": "2026-09-10",
+  "kind": "li_post",
+  "folder": "media/ig/post29"
  },
  {
   "id": "2026-09-16_li_post32",
