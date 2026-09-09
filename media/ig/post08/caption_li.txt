@@ -1,0 +1,24 @@
+Most store owners check their site the wrong way: they look at it like an owner, not like a first-time visitor with a full inbox and eight open tabs.
+
+The store has about three seconds to answer one question: can I trust this place with my card?
+
+Seven signs, each checkable in under a minute.
+Speed: load speed on a real phone.
+Message: one clear message above the fold.
+Photos: product photos that survive zoom.
+Shipping: visible shipping costs before checkout.
+Search: working search.
+Reviews: reviews where people actually look.
+Checkout: no forced registration.
+
+The research behind each sign is public. Google found 53% of mobile visitors leave a page that takes over 3 seconds to load. Baymard Institute's checkout audits show 48% of shoppers abandon carts over unexpected extra costs, and 26% quit because the site wanted an account first. PwC surveyed 15,000 consumers: 32% walk away from a brand they love after a single bad experience.
+
+ASOS is the classic case study. Replacing forced registration with guest checkout cut abandonment by half. On the other side, Baymard estimates $260 billion in US and EU orders are recoverable through better checkout design alone.
+
+The money is not in more traffic. It is in the leaks.
+
+Ten honest minutes and this list find the leak faster than an agency audit. A theme that fails three or more signs is the problem, not the traffic.
+
+https://utdweb.team/shopify-themes/
+
+#shopify #ecommerce #conversionrateoptimization

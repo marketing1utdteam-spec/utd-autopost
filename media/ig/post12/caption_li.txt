@@ -1,0 +1,22 @@
+The most expensive place in ecommerce is the two screens between "add to cart" and "thank you." The shopper already chose the product, already committed emotionally — and this is exactly where most stores lose them.
+
+Roughly 7 out of 10 carts never become orders. The killers are boring and fixable: surprise shipping costs, forced account creation, long forms, hidden totals, slow pages.
+
+A good theme defends this zone by design: a slide-out cart with a visible total and shipping threshold, an express-pay row, trust badges where the doubt happens, and one-page flow to checkout.
+
+The sources: Baymard Institute's running meta-study puts average cart abandonment at 70.2% across 50 studies. Their breakdown of reasons:
+
+Extra costs too high: 48%
+Forced account creation: 26%
+Checkout too long or complicated: 22%
+Couldn't see the total upfront: 21%
+
+Add Google's 53%-leave-after-3s on mobile and the picture is complete: friction, not price, kills the sale.
+
+ASOS halved its abandonment years ago with one change — guest checkout. Amazon built an empire on removing exactly this friction, patenting 1-Click along the way. The pattern repeats at every scale: every field removed and every cost shown early converts real percent into revenue.
+
+The short path is the one worth building toward: slide-out cart, express pay, visible totals, guest checkout.
+
+https://utdweb.team/shopify-themes/
+
+#ecommerce #shopify #checkout
