@@ -1912,5 +1912,113 @@
   "date": "2026-12-10",
   "kind": "ig_post",
   "folder": "media/ig/post47"
+ },
+ {
+  "id": "2026-09-11_li_post01",
+  "date": "2026-09-11",
+  "kind": "li_post",
+  "folder": "media/ig/post01"
+ },
+ {
+  "id": "2026-09-12_li_post02",
+  "date": "2026-09-12",
+  "kind": "li_post",
+  "folder": "media/ig/post02"
+ },
+ {
+  "id": "2026-09-13_li_post03",
+  "date": "2026-09-13",
+  "kind": "li_post",
+  "folder": "media/ig/post03"
+ },
+ {
+  "id": "2026-09-14_li_post04",
+  "date": "2026-09-14",
+  "kind": "li_post",
+  "folder": "media/ig/post04"
+ },
+ {
+  "id": "2026-09-18_li_post06",
+  "date": "2026-09-18",
+  "kind": "li_post",
+  "folder": "media/ig/post06"
+ },
+ {
+  "id": "2026-09-19_li_post07",
+  "date": "2026-09-19",
+  "kind": "li_post",
+  "folder": "media/ig/post07"
+ },
+ {
+  "id": "2026-09-20_li_post08",
+  "date": "2026-09-20",
+  "kind": "li_post",
+  "folder": "media/ig/post08"
+ },
+ {
+  "id": "2026-09-21_li_post09",
+  "date": "2026-09-21",
+  "kind": "li_post",
+  "folder": "media/ig/post09"
+ },
+ {
+  "id": "2026-09-24_li_post10",
+  "date": "2026-09-24",
+  "kind": "li_post",
+  "folder": "media/ig/post10"
+ },
+ {
+  "id": "2026-09-25_li_post11",
+  "date": "2026-09-25",
+  "kind": "li_post",
+  "folder": "media/ig/post11"
+ },
+ {
+  "id": "2026-09-26_li_post12",
+  "date": "2026-09-26",
+  "kind": "li_post",
+  "folder": "media/ig/post12"
+ },
+ {
+  "id": "2026-09-27_li_post13",
+  "date": "2026-09-27",
+  "kind": "li_post",
+  "folder": "media/ig/post13"
+ },
+ {
+  "id": "2026-09-28_li_post14",
+  "date": "2026-09-28",
+  "kind": "li_post",
+  "folder": "media/ig/post14"
+ },
+ {
+  "id": "2026-09-29_li_post17",
+  "date": "2026-09-29",
+  "kind": "li_post",
+  "folder": "media/ig/post17"
+ },
+ {
+  "id": "2026-09-30_li_post18",
+  "date": "2026-09-30",
+  "kind": "li_post",
+  "folder": "media/ig/post18"
+ },
+ {
+  "id": "2026-10-01_li_post19",
+  "date": "2026-10-01",
+  "kind": "li_post",
+  "folder": "media/ig/post19"
+ },
+ {
+  "id": "2026-10-02_li_post22",
+  "date": "2026-10-02",
+  "kind": "li_post",
+  "folder": "media/ig/post22"
+ },
+ {
+  "id": "2026-10-03_li_post23",
+  "date": "2026-10-03",
+  "kind": "li_post",
+  "folder": "media/ig/post23"
  }
 ]
