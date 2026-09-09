@@ -5,5 +5,19 @@
   "platform_id": "urn:li:share:7503084319691739136",
   "date": "2026-09-08",
   "url": "https://www.linkedin.com/feed/update/urn:li:share:7503084319691739136"
+ },
+ "2026-09-09_th_post20": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "18004473428971091",
+  "date": "2026-09-09",
+  "url": "https://www.threads.net/@utd_web_team/post/18004473428971091"
+ },
+ "2026-09-15_li_post34": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:share:7503535969535528960",
+  "date": "2026-09-09",
+  "url": "https://www.linkedin.com/feed/update/urn:li:share:7503535969535528960"
  }
 }
