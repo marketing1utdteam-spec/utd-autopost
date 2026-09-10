@@ -269,6 +269,25 @@ def li_publish(text, dry=False, video_path=None, image_path=None, title=None):
 TT_API = "https://open.tiktokapis.com/v2"
 
 
+def _tt_creator_info(tok):
+    """Що TikTok дозволяє ЦЬОМУ клієнту й цьому акаунту прямо зараз.
+
+    Повертає (список рівнів приватності, нікнейм, {comment/duet/stitch: вимкнено}).
+    При невдачі — (None, None, None): «не знаю» це не «можна все».
+    """
+    try:
+        _s, d, _h = _req(f"{TT_API}/post/publish/creator_info/query/", data={},
+                         headers={"Authorization": f"Bearer {tok}"})
+        x = (d or {}).get("data") or {}
+        return (x.get("privacy_level_options"), x.get("creator_nickname"),
+                {"comment": x.get("comment_disabled"), "duet": x.get("duet_disabled"),
+                 "stitch": x.get("stitch_disabled")})
+    except Exception as e:
+        print(f"  🟡 creator_info не відповів ({type(e).__name__}) — іду чернеткою, "
+              f"бо «не знаю» це не «можна публічно»")
+        return None, None, None
+
+
 def tt_publish(video_path, caption, dry=False):
     """Відео в TikTok. Шлях FILE_UPLOAD: init → PUT байтів → опитування статусу.
 
@@ -318,12 +337,31 @@ def tt_publish(video_path, caption, dry=False):
     # і публікує звичайним способом, тобто з нормальною видимістю. Один тап замість
     # аудиту. `post_info` у цьому маршруті не передається взагалі — приватність вибирає
     # людина в застосунку.
-    audited = bool(cfg.get("direct_post_audited"))
-    draft_mode = sandbox_only or not audited
+    # 🔴 ПИТАЄМО TIKTOK, А НЕ ДОКУМЕНТАЦІЮ. Уранці 10.09.2026 я прочитав у правилах
+    # «Unaudited API Clients can only post contents in SELF_ONLY viewership» і поставив
+    # прапорець `direct_post_audited` вручну. Потім спитав їхній же endpoint
+    # `creator_info/query` — і він відповів, що нашому клієнту доступні
+    # `['PUBLIC_TO_EVERYONE', 'MUTUAL_FOLLOW_FRIENDS', 'SELF_ONLY']`.
+    #
+    # Ті самі правила прямо кажуть: «The options listed in the UX must follow the
+    # privacy_level_options returned in the creator_info API». Тобто авторитет — API,
+    # а не абзац у документі. Я взяв документ за замір, і це той самий клас, за який я
+    # платив цього тижня зі сторінками сайта: інструмент не спитав, а висновок написав.
+    #
+    # Тепер маршрут вибирає САМ TikTok: якщо в дозволених рівнях є публічний — ідемо
+    # прямою публікацією; якщо ні — чернеткою. Прапорець у конфізі лишається лише як
+    # ручне «завжди чернеткою», якщо власник так вирішить.
+    allowed, nickname, gates = _tt_creator_info(tok)
+    force_draft = bool(cfg.get("force_draft"))
+    can_public = "PUBLIC_TO_EVERYONE" in (allowed or [])
+    draft_mode = sandbox_only or force_draft or not can_public
+    if allowed is not None:
+        print(f"  TikTok дозволяє рівні: {allowed} · акаунт: {nickname!r}")
     size = os.path.getsize(video_path)
     if draft_mode:
-        why = ("Sandbox" if sandbox_only
-               else "Direct Post ще не пройшов аудит TikTok")
+        why = ("Sandbox" if sandbox_only else
+               "власник поставив force_draft" if force_draft else
+               f"TikTok не дає публічного рівня, дозволено лише {allowed}")
         print(f"  🟡 TikTok: іду ЧЕРНЕТКОЮ ({why}). Відео зʼявиться в інбоксі акаунта "
               f"UTD — щоб воно вийшло публічно, треба відкрити TikTok і натиснути "
               f"«Post». Пряма публікація без аудиту дала б SELF_ONLY, тобто нуль "
@@ -335,11 +373,18 @@ def tt_publish(video_path, caption, dry=False):
     else:
         endpoint = f"{TT_API}/post/publish/video/init/"
         privacy = "PUBLIC_TO_EVERYONE"
+        # 🔴 Галочки взаємодій беремо з creator_info, а не ставимо False наосліп. Їхнє
+        # правило: «Disable checkboxes for interactions the creator has disabled in
+        # their settings». Якщо творець вимкнув дуети в себе, а ми пришлемо
+        # disable_duet=False, ми перевизначаємо його власне налаштування.
         body = {"post_info": {"title": caption[:2200], "privacy_level": privacy,
-                              "disable_comment": False, "disable_duet": False,
-                              "disable_stitch": False},
+                              "disable_comment": bool((gates or {}).get("comment")),
+                              "disable_duet": bool((gates or {}).get("duet")),
+                              "disable_stitch": bool((gates or {}).get("stitch"))},
                 "source_info": {"source": "FILE_UPLOAD", "video_size": size,
                                 "chunk_size": size, "total_chunk_count": 1}}
+        print("  🟢 TikTok: пряма ПУБЛІЧНА публікація — TikTok підтвердив, що рівень "
+              "PUBLIC_TO_EVERYONE нам доступний")
     if dry:
         print(f"  [dry-run] TikTok {privacy}: {os.path.basename(video_path)} "
               f"{size/1e6:.2f} МБ, {caption[:50]!r}")
