@@ -847,7 +847,7 @@
   "date": "2026-09-11",
   "kind": "tt_post",
   "video": "media/reels/reel01.mp4",
-  "caption_file": "media/reels/reel01_caption.txt"
+  "caption_file": "media/reels/reel01_caption_tt.txt"
  },
  {
   "id": "2026-08-31_yt_reel45",
@@ -874,7 +874,7 @@
   "date": "2026-09-12",
   "kind": "tt_post",
   "video": "media/reels/reel02.mp4",
-  "caption_file": "media/reels/reel02_caption.txt"
+  "caption_file": "media/reels/reel02_caption_tt.txt"
  },
  {
   "id": "2026-09-01_yt_reel46",
@@ -900,7 +900,7 @@
   "date": "2026-09-13",
   "kind": "tt_post",
   "video": "media/reels/reel03.mp4",
-  "caption_file": "media/reels/reel03_caption.txt"
+  "caption_file": "media/reels/reel03_caption_tt.txt"
  },
  {
   "id": "2026-09-02_yt_reel47",
@@ -939,7 +939,7 @@
   "date": "2026-09-14",
   "kind": "tt_post",
   "video": "media/reels/reel04.mp4",
-  "caption_file": "media/reels/reel04_caption.txt"
+  "caption_file": "media/reels/reel04_caption_tt.txt"
  },
  {
   "id": "2026-09-03_yt_reel48",
@@ -966,7 +966,7 @@
   "date": "2026-09-15",
   "kind": "tt_post",
   "video": "media/reels/reel05.mp4",
-  "caption_file": "media/reels/reel05_caption.txt"
+  "caption_file": "media/reels/reel05_caption_tt.txt"
  },
  {
   "id": "2026-09-04_yt_reel49",
@@ -1004,7 +1004,7 @@
   "date": "2026-09-16",
   "kind": "tt_post",
   "video": "media/reels/reel06.mp4",
-  "caption_file": "media/reels/reel06_caption.txt"
+  "caption_file": "media/reels/reel06_caption_tt.txt"
  },
  {
   "id": "2026-09-05_yt_reel50",
@@ -1031,7 +1031,7 @@
   "date": "2026-09-17",
   "kind": "tt_post",
   "video": "media/reels/reel07.mp4",
-  "caption_file": "media/reels/reel07_caption.txt"
+  "caption_file": "media/reels/reel07_caption_tt.txt"
  },
  {
   "id": "2026-09-06_yt_reel51",
@@ -1070,7 +1070,7 @@
   "date": "2026-09-18",
   "kind": "tt_post",
   "video": "media/reels/reel08.mp4",
-  "caption_file": "media/reels/reel08_caption.txt"
+  "caption_file": "media/reels/reel08_caption_tt.txt"
  },
  {
   "id": "2026-09-07_yt_reel52",
@@ -1096,7 +1096,7 @@
   "date": "2026-09-19",
   "kind": "tt_post",
   "video": "media/reels/reel09.mp4",
-  "caption_file": "media/reels/reel09_caption.txt"
+  "caption_file": "media/reels/reel09_caption_tt.txt"
  },
  {
   "id": "2026-09-08_yt_reel53",
@@ -1123,7 +1123,7 @@
   "date": "2026-09-20",
   "kind": "tt_post",
   "video": "media/reels/reel10.mp4",
-  "caption_file": "media/reels/reel10_caption.txt"
+  "caption_file": "media/reels/reel10_caption_tt.txt"
  },
  {
   "id": "2026-09-09_yt_reel54",
@@ -1162,7 +1162,7 @@
   "date": "2026-09-21",
   "kind": "tt_post",
   "video": "media/reels/reel11.mp4",
-  "caption_file": "media/reels/reel11_caption.txt"
+  "caption_file": "media/reels/reel11_caption_tt.txt"
  },
  {
   "id": "2026-09-10_yt_reel55",
