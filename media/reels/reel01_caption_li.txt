@@ -1,0 +1,20 @@
+Some stores look premium in 3 seconds — here's the anatomy.
+
+That first impression is not decoration. It is the difference between a visitor who stays and one who bounces before ever seeing a product.
+
+Every element on the page has one job: remove a reason not to buy.
+
+Hero: an editorial hero image opens the storefront, setting the tone in the first three seconds, before a single feature has been read.
+
+Navigation: search and cart sit in thumb reach, so the two actions a buyer reaches for most never require a stretch or a second thought.
+
+Path to purchase: shop-all is one tap away, cutting the distance between arrival and browsing down to almost nothing.
+
+None of this is accidental. A premium look that loads instantly, paired with a checkout path that removes friction, is exactly what turns a passing glance into a completed order.
+
+This is the anatomy built into the Allure theme: editorial presentation paired with a navigation structure designed around how people actually hold and use a phone.
+
+Allure is available in the official Shopify Theme Store — reviewed, updated, supported.
+
+https://themes.shopify.com/themes/allure
+#shopify #ecommerce #shopifytheme
