@@ -1,0 +1,20 @@
+Every 0.1s of speed ≈ +8.4% sales (Deloitte × Google).
+
+That correlation is not a marketing slogan. It is a measured relationship between load time and conversion, and Vodafone proved it with a controlled A/B test rather than a hunch.
+
+The mechanism matters more than the headline number.
+
+Speed: page speed is not a plugin problem. It lives inside the theme's code — how images load, how scripts are ordered, how much weight sits on the first render.
+
+Apps: stacking speed apps on top of a slow theme treats a symptom. The fix has to sit in the foundation, before any app is installed.
+
+Testing: Vodafone's result came from an A/B test, not an assumption — one version faster, one version slower, real traffic split between them, real sales compared.
+
+Ultra: Ultra is UTD's theme built around that principle. It ships fast out of the box, with the performance work done in the code rather than left for merchants to patch with extensions after launch.
+
+The lesson from Deloitte, Google and Vodafone is the same: speed is not a nice-to-have feature, it is a revenue lever, and it is decided at the level of the theme, not the app store.
+
+Ultra is in the official Shopify Theme Store, reviewed and supported, built to be fast from the first load rather than optimised after the fact.
+
+https://themes.shopify.com/themes/ultra
+#shopify #pagespeed #ecommerce

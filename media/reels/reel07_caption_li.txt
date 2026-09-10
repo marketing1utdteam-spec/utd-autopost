@@ -1,0 +1,20 @@
+Hidden shipping cost is the number one order killer: 48% abandon checkout when a surprise fee shows up, according to Baymard.
+
+The pattern is consistent across stores. A buyer builds a cart, reaches the final step, and sees a fee that was not part of the decision to buy. The reaction is not negotiation, it is exit. The cart is abandoned, and the fee itself is rarely the true cost — the lost sale is.
+
+Fixing this is not a discount strategy. It is a transparency strategy.
+
+Visibility: shipping cost should be shown early, before checkout, so the number entering someone's head is the number they actually pay.
+
+Incentive: a free-shipping bar gives shoppers a visible reason to add one more item, turning a potential objection into a reason to spend more.
+
+Consistency: the total shown at every stage of the journey should match the total charged at checkout, with no late additions.
+
+None of this requires a discount policy or a margin sacrifice. It requires the storefront to say the true number earlier, and to make progress toward free shipping visible while it happens.
+
+Ultra ships these blocks built in: shipping visibility, a free-shipping progress bar, and checkout consistency are part of the theme, not a custom build.
+
+Stores lose orders at the last screen far more often than they lose them at the first. The fix is not a bigger discount. It is not surprising people at the end.
+
+https://themes.shopify.com/themes/ultra
+#shopify #ecommerce #cro

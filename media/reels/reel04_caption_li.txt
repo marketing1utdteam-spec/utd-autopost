@@ -1,0 +1,20 @@
+Shop your store with one thumb.
+
+Stretching to reach the menu or the buy button is a small motion, but it is exactly the kind of friction that decides whether a mobile visitor completes a purchase or gives up halfway through checkout.
+
+The way people actually hold a phone explains why this matters.
+
+Reach: 75% of taps happen with one thumb, which means every button, filter and call-to-action either sits inside that natural arc or it does not get touched at all.
+
+Design: navigation, product filters and the buy button are placed within that same one-thumb zone, so a visitor never has to shift grip or stretch across the screen to move forward.
+
+Speed: fewer stretches mean fewer hesitations, and fewer hesitations mean a shorter path from landing on a product page to finishing checkout.
+
+Most Shopify themes are still designed desktop-first and adapted afterward, which is why menus collapse awkwardly and buy buttons drift toward the top of the screen, out of thumb's reach.
+
+Ultra was built the other way around: mobile-first from the first wireframe, then scaled up to desktop, so the one-thumb experience is not a patch bolted on later, it is the foundation.
+
+That is the difference between a theme that merely resizes for phones and one that was actually built for how people hold them.
+
+https://themes.shopify.com/themes/ultra
+#shopify #mobilecommerce #ux

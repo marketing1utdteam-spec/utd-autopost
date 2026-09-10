@@ -1,0 +1,22 @@
+The scariest parts of running a store are the ones you never think about — until they break.
+
+On a self-hosted store, the infrastructure work falls entirely on the merchant.
+
+Hosting: staying up during a traffic spike, without warning.
+
+Security: payment security and PCI compliance, SSL, patches.
+
+Protection: fraud and DDoS protection, monitored around the clock.
+
+Taken together, that is not a checklist. It is a full-time job, one most merchants never signed up for and cannot staff.
+
+On Shopify, that job belongs to the platform. It is handled by a security team larger than most companies, running infrastructure built for scale rather than bolted on after the fact.
+
+The platform processed hundreds of billions in sales last year and held through Black Friday peaks no single store could load-test on its own. That is not a marketing claim, it is the baseline the platform is built to survive every year.
+
+Once hosting, security and compliance stop being the merchant's problem, attention moves to where it actually pays off: the storefront. A great theme earns its keep there — in how the store looks, loads and converts, not in whether the servers stay up.
+
+Infrastructure is invisible when it works. It is the whole business when it fails.
+
+https://utdweb.team/shopify-themes/
+#shopify #ecommerce #dtc
