@@ -19,5 +19,19 @@
   "platform_id": "urn:li:share:7503535969535528960",
   "date": "2026-09-09",
   "url": "https://www.linkedin.com/feed/update/urn:li:share:7503535969535528960"
+ },
+ "2026-09-10_li_post29": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:share:7503759039571353600",
+  "date": "2026-09-10",
+  "url": "https://www.linkedin.com/feed/update/urn:li:share:7503759039571353600"
+ },
+ "2026-09-16_li_post32": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:share:7503759050665287680",
+  "date": "2026-09-10",
+  "url": "https://www.linkedin.com/feed/update/urn:li:share:7503759050665287680"
  }
 }
