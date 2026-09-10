@@ -301,23 +301,51 @@ def tt_publish(video_path, caption, dry=False):
             "TikTok: немає ні продакшн-токена, ні sandbox. Стан застосунку: "
             f"«{cfg.get('status', '?')}». Це дія власника в порталі TikTok.")
     sandbox_only = not prod
-    privacy = "SELF_ONLY" if sandbox_only else "PUBLIC_TO_EVERYONE"
-    if sandbox_only:
-        print("  🟡 TikTok: продакшн-токена ще немає, іду через Sandbox — приватність "
-              "SELF_ONLY, тобто відео побачимо лише ми. Це не публікація.")
-
+    # 🔴 СХВАЛЕННЯ ЗАСТОСУНКУ ≠ ПРАВО ПУБЛІКУВАТИ ПУБЛІЧНО.
+    #
+    # 10.09.2026 TikTok схвалив «UTD Publisher» (live з 09:01). Перша реакція — поставити
+    # PUBLIC_TO_EVERYONE, бо продакшн-токен нарешті є. Це було б помилкою, і дорогою:
+    # у правилах Direct Post дослівно «Unaudited API Clients can only post contents in
+    # SELF_ONLY viewership», плюс не більше 5 користувачів за 24 години. Тобто до
+    # окремого АУДИТУ Direct Post кожен «успішно опублікований» ролик побачили б лише ми.
+    #
+    # Найгірше тут не обмеження, а те, як воно виглядало б у логах: `PUBLISH_COMPLETE`,
+    # зелена галочка, справжній publish_id — і нуль глядачів. Той самий клас, що з
+    # «розсилка йде, але листів немає».
+    #
+    # Тому маршрут вибирається за прапорцем `direct_post_audited` у конфізі, і поки він
+    # не стоїть — ідемо ЧЕРНЕТКАМИ: відео падає в інбокс акаунта, людина відкриває TikTok
+    # і публікує звичайним способом, тобто з нормальною видимістю. Один тап замість
+    # аудиту. `post_info` у цьому маршруті не передається взагалі — приватність вибирає
+    # людина в застосунку.
+    audited = bool(cfg.get("direct_post_audited"))
+    draft_mode = sandbox_only or not audited
     size = os.path.getsize(video_path)
-    body = {"post_info": {"title": caption[:2200], "privacy_level": privacy,
-                          "disable_comment": False, "disable_duet": False,
-                          "disable_stitch": False},
-            "source_info": {"source": "FILE_UPLOAD", "video_size": size,
-                            "chunk_size": size, "total_chunk_count": 1}}
+    if draft_mode:
+        why = ("Sandbox" if sandbox_only
+               else "Direct Post ще не пройшов аудит TikTok")
+        print(f"  🟡 TikTok: іду ЧЕРНЕТКОЮ ({why}). Відео зʼявиться в інбоксі акаунта "
+              f"UTD — щоб воно вийшло публічно, треба відкрити TikTok і натиснути "
+              f"«Post». Пряма публікація без аудиту дала б SELF_ONLY, тобто нуль "
+              f"глядачів при зеленому статусі.")
+        endpoint = f"{TT_API}/post/publish/inbox/video/init/"
+        body = {"source_info": {"source": "FILE_UPLOAD", "video_size": size,
+                                "chunk_size": size, "total_chunk_count": 1}}
+        privacy = "чернетка (приватність вибирає людина)"
+    else:
+        endpoint = f"{TT_API}/post/publish/video/init/"
+        privacy = "PUBLIC_TO_EVERYONE"
+        body = {"post_info": {"title": caption[:2200], "privacy_level": privacy,
+                              "disable_comment": False, "disable_duet": False,
+                              "disable_stitch": False},
+                "source_info": {"source": "FILE_UPLOAD", "video_size": size,
+                                "chunk_size": size, "total_chunk_count": 1}}
     if dry:
         print(f"  [dry-run] TikTok {privacy}: {os.path.basename(video_path)} "
               f"{size/1e6:.2f} МБ, {caption[:50]!r}")
         return None
 
-    _s, d, _h = _req(f"{TT_API}/post/publish/video/init/", data=body,
+    _s, d, _h = _req(endpoint, data=body,
                      headers={"Authorization": f"Bearer {tok}"})
     data = (d or {}).get("data") or {}
     pid, up = data.get("publish_id"), data.get("upload_url")
@@ -342,6 +370,9 @@ def tt_publish(video_path, caption, dry=False):
         print(f"    status: {code}")
         if code in GOOD:
             print(f"  ✅ TikTok {code}: {pid}")
+            if code == "SEND_TO_USER_INBOX":
+                print("  🔴 ЦЕ ЩЕ НЕ ПУБЛІКАЦІЯ: відео лежить у чернетках акаунта. "
+                      "Публікує людина в застосунку TikTok.")
             return pid
         if code and "FAIL" in str(code):
             raise RuntimeError(f"TikTok статус {code}: {str(st)[:250]}")
