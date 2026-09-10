@@ -351,9 +351,24 @@ def tt_publish(video_path, caption, dry=False):
     # Тепер маршрут вибирає САМ TikTok: якщо в дозволених рівнях є публічний — ідемо
     # прямою публікацією; якщо ні — чернеткою. Прапорець у конфізі лишається лише як
     # ручне «завжди чернеткою», якщо власник так вирішить.
+    # 🔴 `creator_info` ВВОДИТЬ В ОМАНУ, І Я НА ЦЕ КУПИВСЯ. Він віддає
+    # `privacy_level_options: ['PUBLIC_TO_EVERYONE', ...]` — і я вирішив, що публічна
+    # публікація нам доступна. Заміряно живим прогоном 10.09.2026:
+    #
+    #     POST /v2/post/publish/video/init/ → 403
+    #     unaudited_client_can_only_post_to_private_accounts
+    #
+    # Тобто `privacy_level_options` описує, що підтримує АКАУНТ, а не що дозволено
+    # НАШОМУ клієнту. Справжні ворота: неаудитований клієнт має право на пряму
+    # публікацію лише в приватні акаунти, а `utd_ecommerce` публічний.
+    #
+    # Урок дня, третій раз за два дні: документ і API можуть обидва бути неповними, і
+    # єдиний авторитет — живий прогін. Тому маршрут тепер вирішує `direct_post_audited`
+    # (ставиться руками ПІСЛЯ проходження аудиту), а `creator_info` лишається тільки як
+    # джерело нікнейма й галочок взаємодій — того, для чого він справді придатний.
     allowed, nickname, gates = _tt_creator_info(tok)
     force_draft = bool(cfg.get("force_draft"))
-    can_public = "PUBLIC_TO_EVERYONE" in (allowed or [])
+    can_public = bool(cfg.get("direct_post_audited"))
     draft_mode = sandbox_only or force_draft or not can_public
     if allowed is not None:
         print(f"  TikTok дозволяє рівні: {allowed} · акаунт: {nickname!r}")
@@ -361,13 +376,24 @@ def tt_publish(video_path, caption, dry=False):
     if draft_mode:
         why = ("Sandbox" if sandbox_only else
                "власник поставив force_draft" if force_draft else
-               f"TikTok не дає публічного рівня, дозволено лише {allowed}")
+               "Direct Post не пройшов аудит — TikTok відповідає 403 "
+               "unaudited_client_can_only_post_to_private_accounts")
         print(f"  🟡 TikTok: іду ЧЕРНЕТКОЮ ({why}). Відео зʼявиться в інбоксі акаунта "
               f"UTD — щоб воно вийшло публічно, треба відкрити TikTok і натиснути "
               f"«Post». Пряма публікація без аудиту дала б SELF_ONLY, тобто нуль "
               f"глядачів при зеленому статусі.")
         endpoint = f"{TT_API}/post/publish/inbox/video/init/"
-        body = {"source_info": {"source": "FILE_UPLOAD", "video_size": size,
+        # 🔴 ПІДПИС У ЧЕРНЕТЦІ. Перша версія не передавала `post_info` взагалі — і це
+        # видно очима на живому профілі: два пости, які власник опублікував із чернеток
+        # 10.09.2026, вийшли з підписом рівно «#UTDPublisher» і більше нічого. Ні
+        # тексту, ні посилання на тему, ні хештегів — TikTok підставив назву
+        # застосунку, бо ми не дали нічого.
+        #
+        # Тобто «чернетка доїхала» я бачив, а «пост нікчемний» — ні, поки не подивився
+        # на профіль. Заміряно того ж дня: маршрут чернеток `post_info.title` приймає
+        # (HTTP 200, publish_id), тому підпис передаємо й тут.
+        body = {"post_info": {"title": caption[:2200]},
+                "source_info": {"source": "FILE_UPLOAD", "video_size": size,
                                 "chunk_size": size, "total_chunk_count": 1}}
         privacy = "чернетка (приватність вибирає людина)"
     else:
@@ -383,8 +409,7 @@ def tt_publish(video_path, caption, dry=False):
                               "disable_stitch": bool((gates or {}).get("stitch"))},
                 "source_info": {"source": "FILE_UPLOAD", "video_size": size,
                                 "chunk_size": size, "total_chunk_count": 1}}
-        print("  🟢 TikTok: пряма ПУБЛІЧНА публікація — TikTok підтвердив, що рівень "
-              "PUBLIC_TO_EVERYONE нам доступний")
+        print("  🟢 TikTok: пряма ПУБЛІЧНА публікація (аудит пройдено)")
     if dry:
         print(f"  [dry-run] TikTok {privacy}: {os.path.basename(video_path)} "
               f"{size/1e6:.2f} МБ, {caption[:50]!r}")
