@@ -1,0 +1,22 @@
+Fashion sells on feeling, and the storefront has to create it.
+
+Five features every apparel store needs:
+
+Imagery: editorial photography, not product-on-white thumbnails.
+
+Sizing: a clear size guide on the page, because wrong size is the top return driver.
+
+Swatches: colour and size swatches that update the photo as the shopper chooses.
+
+Styling: shop-the-look modules that build bigger orders by showing pieces together.
+
+Checkout: a fast mobile checkout with express pay, because most fashion traffic is on a phone.
+
+Generic themes treat a dress like a widget — a photo, a price, a buy button, nothing more. They do not carry the emotional weight fashion buying actually needs, and they leave sizing and styling as an afterthought.
+
+The Allure family ships all five of these features natively, out of the box, without a developer.
+
+Try a theme free.
+
+https://www.checkoututd.com/allure
+#shopify #shopifytheme #ecommerce
