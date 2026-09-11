@@ -1,0 +1,20 @@
+The fastest checkout is the one they don't have to type.
+
+Every extra field is a chance to lose the sale. A name, an address, a card number — each one is a small tax on patience, and on mobile that patience is thinner than anywhere else.
+
+Express pay removes the typing entirely.
+
+Shop Pay: one tap, address and card already filled from a previous purchase.
+
+Apple Pay: the same one-tap logic, tied to the device already in the buyer's hand.
+
+The effect shows up where it matters most. Mobile is where checkout friction is felt hardest — small screens, thumbs, autocorrect — and it is exactly there that express pay can lift conversions by a third. That is not a marginal tweak; it is the difference between a cart that converts and one that quietly empties.
+
+This is not an add-on that a store has to configure from scratch. It is built into Ultra.
+
+The theme ships with express pay wired in from the first setup, so the checkout is fast by default rather than fast after weeks of optimization. For a store selling on mobile, that default is the whole game: fewer fields, fewer decisions, fewer reasons to abandon a cart that was one tap from becoming a sale.
+
+Ultra is built for that reality — checkout designed around how people actually buy on their phones, not how a desktop form assumes they should.
+
+https://themes.shopify.com/themes/ultra
+#shopify #checkout #shopifytheme

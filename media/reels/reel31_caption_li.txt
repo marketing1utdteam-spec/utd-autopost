@@ -1,0 +1,18 @@
+Half your buyers use search. If it comes up empty, they leave.
+
+Good search handles typos, shows results as you type, and filters by size, color and price in a tap. Bad search hides the best products in the catalog.
+
+Typos: a shopper types "bleu" instead of "blue" and still gets the right results, because the engine forgives small errors instead of returning nothing.
+
+Live results: suggestions appear as the buyer types, so the search bar starts working before the query is even finished.
+
+Filters: size, color and price narrow the list in a single tap, turning a long catalog into a short, relevant one.
+
+Search is often the fastest converting page on a store, yet it is usually the least designed. A blank results page reads as "this store does not have it," even when the product is one click away — buyers rarely try a second spelling or a different phrase, they simply leave.
+
+Ultra's search is built around that failure point: typo-tolerant, instant and filterable, so the buyers who already know what they want are never the ones who bounce.
+
+Ultra is available on the official Shopify Theme Store.
+
+https://themes.shopify.com/themes/ultra
+#shopify #ecommerce #shopifytheme

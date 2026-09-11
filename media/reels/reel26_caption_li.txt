@@ -1,0 +1,16 @@
+Tap a product, details pop up right there — no reload, no losing your place.
+
+Quick view removes a step most stores never question: leaving the collection page just to check a size or a price. That single step is often where interest quietly evaporates.
+
+Friction: every reload is a chance for a shopper to lose their place, forget what they were comparing, or simply close the tab.
+
+Behavior: fewer taps between curious and buying means more browsing and more adding to cart, because the decision stays in context instead of resetting on a new page.
+
+Feature: Quick view is built into the Allure theme itself, not bolted on as a separate app, so it loads with the rest of the storefront instead of slowing it down.
+
+The lift looks small on paper — a modal instead of a full page load — but it compounds across every product a shopper touches in a single session. Remove enough small friction points and the path from browse to cart gets shorter without changing a single price or design choice.
+
+Allure is built for stores where speed and clarity quietly decide whether a browser becomes a buyer.
+
+https://themes.shopify.com/themes/allure
+#shopify #ecommerce #shopifytheme
