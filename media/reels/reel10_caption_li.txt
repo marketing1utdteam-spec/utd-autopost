@@ -1,0 +1,18 @@
+87% of shoppers decide on the product page (Salsify).
+
+That single number explains why so much conversion work is wasted upstream. Ads, landing pages, social content — all of it can be excellent, and the sale still gets decided in one place: the product page itself.
+
+The logic is simple. A shopper lands, and within seconds forms a judgment on whether this product, on this page, is worth the click to checkout. There is no second chance to make that case. Everything the page needs to do, it needs to do above the fold, in the first look.
+
+Photos: large, clear product imagery removes doubt before a single word is read. A shopper who cannot see the product properly will not trust the page enough to buy from it.
+
+Price: visible immediately, with no scrolling or guessing. Hiding price is a hesitation generator, and hesitation is exactly what a product page exists to remove.
+
+Answers: sizing, materials, shipping, returns — the questions a shopper would otherwise ask in a DM or abandon the page over — answered directly on the page, above the fold.
+
+Proof: reviews and trust signals placed next to the button, not buried further down. Proof works when it sits at the exact moment of decision, not after it.
+
+This is the page Allure is built around. Every element — imagery, pricing, information, proof — is arranged with one job: to earn the sale at the single point where 87% of shoppers actually decide.
+
+https://themes.shopify.com/themes/allure
+#shopify #ecommerce #productpage

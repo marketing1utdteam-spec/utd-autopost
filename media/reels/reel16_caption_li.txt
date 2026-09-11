@@ -1,0 +1,16 @@
+The sticky buy button follows the scroll, so the moment of "I want it" is always one tap from checkout.
+
+Small detail, measurable lift — built into Ultra.
+
+Behavior: on mobile, attention drifts down the page while intent forms early. A fixed buy button keeps the path to purchase visible no matter how far the scroll goes.
+
+Friction: without it, a shopper who decides to buy has to scroll back up, hunt for the button, and re-find the size or variant they wanted. Each extra step is a chance to lose the sale.
+
+Design: the sticky button stays anchored at the bottom of the screen, so the decision and the action live in the same glance instead of two separate ones.
+
+Result: shorter distance between wanting and buying means fewer abandoned intents — not because the product changed, but because the interface stopped getting in the way.
+
+This is the kind of detail that never shows up in a screenshot but shows up in a conversion report. Ultra ships with it by default, because a sticky buy button belongs to the category of features that only matter once: the exact moment someone reaches for their wallet.
+
+https://themes.shopify.com/themes/ultra
+#shopify #ecommerce #cro

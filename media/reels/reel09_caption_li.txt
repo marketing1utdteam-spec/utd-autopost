@@ -1,0 +1,20 @@
+Real store on the Ultra theme: was paying for 6 apps for filters and upsells — all built in.
+
+The pattern is familiar. A store grows, and every new feature becomes another app: one for filters, one for upsells, one for something else, each with its own subscription and its own script slowing the storefront down.
+
+Ultra removes that layer by building the features in.
+
+Apps: 6 separate subscriptions for filters and upsells replaced by native functionality already inside the theme.
+
+Speed: the storefront loads in 1.2s, with none of the third-party scripts that usually drag a page down.
+
+Cost: removing those 6 apps saves roughly $700/yr that was previously spent keeping the store running.
+
+Payback: the theme paid for itself in a week, once the app subscriptions stopped and the site kept converting.
+
+This is the case for built-in over bolted-on. Every app adds a script, a monthly charge and one more thing that can break during a sale. A theme that already does filtering and upsells natively removes all three at once, and the speed difference is immediate and measurable at 1.2s.
+
+For a store already running 6 apps just to filter products and prompt upsells, the maths is straightforward: less spend, less load time, same features, already built in.
+
+https://themes.shopify.com/themes/ultra
+#shopify #ecommerce #cro

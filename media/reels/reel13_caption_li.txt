@@ -1,0 +1,20 @@
+Reviews sell hardest right where people decide — next to the buy button. Stores that surface ratings at the decision point lift conversion up to 1.7× (Bazaarvoice). Allure puts them there by default.
+
+The logic is simple. A shopper who has scrolled all the way to the buy button is already interested — the only thing standing between interest and purchase is doubt. Reviews are the fastest way to remove that doubt, but only if they show up at the exact moment the doubt appears.
+
+Most themes treat reviews as an afterthought: a tab further down the page, a separate section the buyer has to go looking for. By the time someone scrolls that far, the decision is often already made — usually against the purchase.
+
+Placement: Allure puts ratings and review counts directly beside the buy button, not buried in a tab below the fold.
+
+Evidence: Bazaarvoice's research on review placement found stores that surface ratings at the decision point lift conversion up to 1.7×.
+
+Default: this is not an optional block to configure. It is built into the product page from the start, so every store running Allure gets the effect without extra setup.
+
+The mechanism is the same one that makes physical retail work: nobody buys a product with zero social proof if a better-reviewed alternative is one click away. Allure makes sure that proof is visible at the exact second a buyer is deciding, not somewhere they have to scroll to find it.
+
+For stores where conversion depends on trust — apparel, beauty, home goods, anything considered rather than impulse — that placement is not decoration. It is the difference between a browse and a sale.
+
+Allure is available now on the official Shopify Theme Store.
+
+https://themes.shopify.com/themes/allure
+#shopify #ecommerce #cro

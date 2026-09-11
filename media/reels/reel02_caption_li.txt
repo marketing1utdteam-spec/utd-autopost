@@ -1,0 +1,20 @@
+Launching a Shopify store used to mean hiring a developer, briefing a designer and waiting weeks before the first product went live. That is no longer the barrier.
+
+Pick a theme, add products, publish. The steps have not changed, but the tools behind them have.
+
+Ultra is built to remove the technical layer entirely. There is no app to install for the core selling mechanics and no developer needed to wire them together.
+
+Filters: shoppers narrow a large catalogue by size, colour, price or collection without leaving the page, which keeps browsing fast even when inventory is deep.
+
+Upsells: related products and add-ons surface at the right moment in the buying journey, built into the theme rather than bolted on through a third-party app.
+
+Mega-menu: navigation is structured for stores with wide catalogues, so categories, collections and featured items are reachable in one click instead of being buried in dropdowns.
+
+None of this requires custom code. A merchant can select the theme, populate it with products, and have a fully functional storefront — filters, upsells and navigation included — ready to publish the same day.
+
+That is the actual promise here: not a simplified store with fewer features, but a complete one that skips the build phase. Live tonight is not a marketing line, it is the literal timeline once products are loaded.
+
+For teams evaluating Shopify themes, the question is rarely whether the functionality exists somewhere. It is whether it ships by default or has to be assembled app by app, cost by cost, delay by delay. Ultra ships it by default.
+
+https://themes.shopify.com/themes/ultra
+#shopify #ecommerce #nocode
