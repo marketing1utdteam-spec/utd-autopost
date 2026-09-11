@@ -1,0 +1,5 @@
+The scary parts of running a store are the ones you never think about until they break.
+
+Hosting during a spike, PCI compliance, SSL, fraud and DDoS protection — on a self-hosted store that's your job. On Shopify it's the platform's, handled by a security team bigger than most companies, one that processed hundreds of billions in sales last year and held through Black Friday peaks no single store could load-test.
+
+That frees you to focus on the storefront.

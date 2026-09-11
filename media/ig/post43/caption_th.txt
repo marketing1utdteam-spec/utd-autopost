@@ -1,0 +1,7 @@
+Switching themes feels risky, but it isn't. Your products, orders and customer data live in Shopify, not the theme — so changing themes never touches them.
+
+You install the new theme, set it up privately on a preview, move your content, and publish only when it looks right. Old theme's one click away if anything's off. Nothing goes down, nothing gets lost.
+
+Most migrations take days, not months.
+
+#shopify
