@@ -33,5 +33,19 @@
   "platform_id": "urn:li:share:7503759050665287680",
   "date": "2026-09-10",
   "url": "https://www.linkedin.com/feed/update/urn:li:share:7503759050665287680"
+ },
+ "2026-09-11_li_post01": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:share:7504118182862028802",
+  "date": "2026-09-11",
+  "url": "https://www.linkedin.com/feed/update/urn:li:share:7504118182862028802"
+ },
+ "2026-09-11_li_post21": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:share:7504118194593427456",
+  "date": "2026-09-11",
+  "url": "https://www.linkedin.com/feed/update/urn:li:share:7504118194593427456"
  }
 }
