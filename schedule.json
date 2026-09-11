@@ -1066,6 +1066,12 @@
   "folder": "media/ig/post09"
  },
  {
+  "id": "2026-09-14_pin_post10",
+  "date": "2026-09-14",
+  "kind": "pin_post",
+  "folder": "media/ig/post10"
+ },
+ {
   "id": "2026-09-14_th_post29",
   "date": "2026-09-14",
   "kind": "th_post",
@@ -1115,6 +1121,12 @@
   "date": "2026-09-15",
   "kind": "li_post",
   "folder": "media/ig/post31"
+ },
+ {
+  "id": "2026-09-15_pin_post11",
+  "date": "2026-09-15",
+  "kind": "pin_post",
+  "folder": "media/ig/post11"
  },
  {
   "id": "2026-09-15_th_post27",
@@ -1186,6 +1198,18 @@
   "caption_file": "media/reels/reel06_caption_tt.txt"
  },
  {
+  "id": "2026-09-16_x_post09",
+  "date": "2026-09-16",
+  "kind": "x_post",
+  "folder": "media/ig/post09"
+ },
+ {
+  "id": "2026-09-16_x_post10",
+  "date": "2026-09-16",
+  "kind": "x_post",
+  "folder": "media/ig/post10"
+ },
+ {
   "id": "2026-09-05_yt_reel50",
   "date": "2026-09-16",
   "kind": "yt_short",
@@ -1223,6 +1247,12 @@
   "kind": "tt_post",
   "video": "media/reels/reel07.mp4",
   "caption_file": "media/reels/reel07_caption_tt.txt"
+ },
+ {
+  "id": "2026-09-17_x_post11",
+  "date": "2026-09-17",
+  "kind": "x_post",
+  "folder": "media/ig/post11"
  },
  {
   "id": "2026-09-06_yt_reel51",
