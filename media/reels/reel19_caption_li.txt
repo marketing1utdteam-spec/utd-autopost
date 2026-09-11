@@ -1,0 +1,20 @@
+A "free" theme is not free once it needs 5–6 paid apps to become usable.
+
+The theme costs nothing. The stack around it does not.
+
+Apps: sliders, review widgets, mega-menus — each one a separate subscription, a separate script, a separate thing that can break.
+
+Cost: those 5–6 paid apps add up to more per month than a premium theme costs once, and the meter keeps running long after the theme fee would have stopped.
+
+Speed: every added app is another script the storefront has to load, and load time is exactly where slow themes lose the sale before the buyer sees the product.
+
+Maintenance: five or six apps from five or six vendors means five or six update cycles, five or six support queues, five or six places where a conflict can quietly break checkout.
+
+Ultra was built to remove that math. Sliders, reviews, mega-menus and the rest of the toolkit most stores end up assembling piece by piece are already built into the theme.
+
+Paid once, in the official Shopify Theme Store, reviewed and supported like any other listing there — not rented app by app, month after month, for functionality a theme should have shipped with in the first place.
+
+The comparison is not close once the monthly totals are added side by side against a single one-time cost.
+
+https://themes.shopify.com/themes/ultra
+#shopify #ecommerce #shopifytheme

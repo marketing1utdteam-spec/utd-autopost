@@ -1,0 +1,18 @@
+Forcing shoppers to create an account kills carts: 26% quit right there, according to Baymard.
+
+That is not a small leak. It is a checkout built to reward loyalty from people who have not bought anything yet, and it charges that price on every single visitor.
+
+Account requirement: an extra form, a password to remember, a reason to close the tab before payment even starts.
+
+Guest checkout: removes the barrier entirely. The shopper pays first, decides on a relationship with the store later.
+
+Express pay: one tap replaces a card form, and the sale closes before hesitation has time to set in.
+
+The logic is simple. Checkout is not the place to negotiate loyalty. It is the place to get out of the way. A store that insists on an account at the exact moment someone is ready to pay is optimizing for the wrong outcome — and Baymard's number shows what that costs in real abandoned carts, not theory.
+
+Allure is built around that principle: guest checkout and express pay in front, account creation pushed to after the sale, where it belongs. The goal is not to collect signups. It is to collect payments.
+
+Allure is available on the official Shopify Theme Store — reviewed by Shopify, updated, supported.
+
+https://themes.shopify.com/themes/allure
+#shopify #ecommerce #checkout

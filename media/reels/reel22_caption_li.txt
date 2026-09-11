@@ -1,0 +1,20 @@
+Shoppers judge your store in ~50 milliseconds — faster than a blink, before they read a word.
+
+That split second decides everything. There is no time to explain a slow load, no time to apologise for a clunky menu, no time to win back attention once it starts to drift.
+
+Visuals: blurry photos read as amateur before a single product is even considered.
+
+Layout: a clunky structure signals friction, and friction reads as risk.
+
+Speed: a slow theme burns through that ~50 millisecond window before the page has finished rendering, so the verdict is already made before the store has a chance to make its case.
+
+That first glance rarely gets revisited. It hardens into a decision to stay or leave, and most visitors leave.
+
+Ultra is built for that window. It is fast out of the box — no plugins to chase, no settings to hunt for, no trade-off between design and performance. Clean typography, calm spacing and quick-loading imagery keep the first impression aligned with the product behind it.
+
+For a store owner, this is not a cosmetic detail. The ~50 millisecond judgment happens before any marketing spend, before copywriting, before a funnel gets the chance to work. A theme that wins that instant protects every dollar spent driving traffic to the page.
+
+Ultra is available now in the official Shopify Theme Store, reviewed and supported.
+
+https://themes.shopify.com/themes/ultra
+#shopify #ecommerce #pagespeed

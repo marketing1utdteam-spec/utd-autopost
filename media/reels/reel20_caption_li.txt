@@ -1,0 +1,20 @@
+Your collection page is a fork in the road.
+
+Every shopper who lands there is making a silent decision: keep browsing, or leave. There is no neutral outcome. The layout either pulls them one tap closer to checkout or gives them a reason to bounce.
+
+Images: big, clean product photography removes hesitation before it starts. Shoppers process visuals faster than text, and a cluttered image grid reads as a cluttered brand.
+
+Filters: smart filtering lets a shopper narrow a hundred products down to the five that matter to them, without scrolling through everything in between.
+
+Grid: a clear, consistent grid keeps the eye moving in one direction — down the page and toward a product, not sideways into confusion.
+
+Signals: price and rating sitting right on the card mean a shopper can shortlist and compare without opening a single product page. Every extra click is a chance to lose them; this removes that click.
+
+No clutter, no dead ends. Every element on the page exists to move the shopper one step closer to buying, not to decorate the page for its own sake.
+
+That is the job the Allure theme is built to do. It treats the collection page as the decision point it actually is, rather than a waiting room between the homepage and the product.
+
+Allure is available now on the official Shopify Theme Store, reviewed and supported the way every theme on that store is.
+
+https://themes.shopify.com/themes/allure
+#shopify #ecommerce #shopifytheme

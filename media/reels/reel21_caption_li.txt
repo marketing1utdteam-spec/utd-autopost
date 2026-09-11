@@ -1,0 +1,24 @@
+Real store on the Ultra theme: old store crashed on the one day that mattered.
+
+The previous setup could not hold under real demand. The moment traffic mattered most, the site went down, and every visitor in that window became a lost sale instead of a customer.
+
+This year, running on Ultra, the same store faced the same peak weekend and produced a different result.
+
+Speed: the fastest weekend the store has ever recorded.
+
+Sales: record sales across that same peak period.
+
+Uptime: zero downtime, even at the highest traffic the store has seen.
+
+The shift was not a rebuild of the business. It was moving onto infrastructure built for exactly this kind of pressure, where the store cannot afford to be offline even for a moment.
+
+Payment: one payment for the theme, not a recurring fee.
+
+Updates: free updates keep the store current as Shopify evolves.
+
+Support: support on standby through the entire sales weekend, not limited to business hours.
+
+For a store where the calendar decides the outcome, the theme underneath is not a design choice. It is the difference between a record weekend and a crashed one.
+
+https://themes.shopify.com/themes/ultra
+#shopify #ecommerce #blackfriday
