@@ -1,0 +1,20 @@
+Most returns come from one thing: wrong size.
+
+It sounds like a small detail until it shows up in the return numbers every single month, quietly eating into margin.
+
+A clear size guide placed directly on the product page fixes the problem before it becomes a return. The customer decides once, with confidence, instead of guessing, ordering two sizes, and sending one back.
+
+Problem: sizing guesswork is one of the most common reasons a buyer opens a return request.
+
+Fix: a size guide built into the product page itself, visible before the customer ever reaches checkout.
+
+Result: fewer returns, happier customers, more revenue kept in the business instead of refunded out of it.
+
+Allure is UTD's Shopify theme built around this exact logic. The size guide is native to the theme, not bolted on through a third-party app that slows the page down and adds another subscription to manage.
+
+No app to install. No extra cost. No extra load time. The fix ships with the theme itself, ready on day one.
+
+Allure is available in the official Shopify Theme Store, reviewed and supported by Shopify.
+
+https://themes.shopify.com/themes/allure
+#shopify #ecommerce #shopifytheme
