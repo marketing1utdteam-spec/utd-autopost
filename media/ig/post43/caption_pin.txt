@@ -1,0 +1,4 @@
+TITLE: Switching Shopify Themes Without Losing Data
+URL: https://utdweb.team
+
+Switching Shopify themes feels risky, but products, orders and customer data live in Shopify, not the theme, so a theme change never touches them. Set up the new theme privately on a preview, move your content over, and publish only when it looks right — your old theme stays one click away if anything's off. Most migrations take days, not months. Start your preview today.

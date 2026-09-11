@@ -1,0 +1,5 @@
+TITLE: Free vs Paid Shopify Theme Cost Comparison
+
+URL: https://utdweb.team
+
+Comparing a free Shopify theme against a paid one? The app stack that replaces missing features runs about $56 a month, or $672 in year one, recurring forever, plus Akamai data shows up to 7% of conversions lost per 100ms of added latency. COOK saw conversions rise 7% after cutting plugin bloat; AliExpress cut load time ~36% and gained 10.5% more orders. Every UTD theme installs free from the official Shopify Theme Store — run your own comparison before paying anything.

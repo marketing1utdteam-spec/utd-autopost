@@ -1,0 +1,4 @@
+TITLE: Allure Shopify Theme for Fashion Stores
+URL: https://utdweb.team
+
+Allure is UTD's Shopify theme family built for fashion stores that sell on feeling: editorial imagery instead of product-on-white thumbnails, a clear on-page size guide since wrong size is the top return driver, colour and size swatches that update the photo, shop-the-look for bigger orders, and a fast mobile checkout with express pay. Generic themes treat a dress like a widget — Allure ships all five natively. Try a theme free.

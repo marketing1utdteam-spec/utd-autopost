@@ -1,0 +1,4 @@
+TITLE: Shopify vs WooCommerce vs Custom for Growing Stores
+URL: https://utdweb.team
+
+Shopify vs WooCommerce vs custom build: Gymshark's Black Friday 2015 crash on self-hosted Magento cost around £100,000 in lost sales before migrating to Shopify and scaling past $500M. Shopify's infrastructure, payments and security are handled for you across 4 million stores. Browse 30 UTD themes in the official Shopify Theme Store, free to install.

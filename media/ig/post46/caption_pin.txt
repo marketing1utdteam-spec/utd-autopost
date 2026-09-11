@@ -1,0 +1,5 @@
+TITLE: Shopify Theme Structure for AI Shopping Assistants
+
+URL: https://utdweb.team
+
+AI assistants like ChatGPT, Gemini and Perplexity are starting to browse, compare and recommend products for shoppers — and they read your store's underlying structure, not your banner design. Clean product data, proper markup and fast standards-based code decide whether an AI understands your catalog or skips it entirely. A modern Shopify theme gives you that clean foundation by default. Check your theme's code before the AI shoppers arrive.

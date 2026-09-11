@@ -1,0 +1,4 @@
+TITLE: Shopify Product Page Layout for Higher Conversion Rate
+URL: https://utdweb.team
+
+Two stores, same products, same prices, one converts twice as well: big photos, buy button in reach, reviews on the page and a ~1s load beat small images, a buy button below the fold, no reviews and a ~4s load. Salsify found 87% of shoppers decide on the product page, and Google found 53% leave a slow one — layout and speed alone can double conversion. Fix the page before you chase more traffic.

@@ -1,0 +1,4 @@
+TITLE: Shopify Pre-Launch Checklist for New Stores
+URL: https://utdweb.team
+
+Before you hit publish, run this 8-point pre-launch audit — the same filter used for client stores. Check that the store loads under 3s on a phone, works one-handed, has a short checkout with guest and express pay, visible trust cues, working links and forms, sharp mobile images, and analytics installed before traffic. A reviewed theme passes these by default. Save this checklist and run it before launch.
