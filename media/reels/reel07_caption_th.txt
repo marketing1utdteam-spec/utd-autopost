@@ -1,0 +1,5 @@
+Hidden shipping costs are the #1 checkout killer. 48% of buyers abandon when a surprise fee shows up at the last step, per Baymard.
+
+Fix is boring but works: show shipping early, add a free-shipping progress bar, keep the total honest all the way through. Ultra ships these blocks built in, no extra app needed.
+
+https://themes.shopify.com/themes/ultra
