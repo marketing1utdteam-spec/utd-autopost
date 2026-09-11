@@ -4,7 +4,7 @@ Animation built in: every section moves as the page scrolls, on a monitor and on
 
 https://themes.shopify.com/themes/victory/presets/victory
 
-AI disclosure: the voice-over and the background music are AI-generated. Every store visual in this video is a real screenshot of our own demo stores.
+AI disclosure: the voice-over is synthetic (text-to-speech). Every store visual in this video is a real screenshot of our own demo stores. Music: Last laugh — Patrick Patrikios.
 
 Developed by UTD — https://utdweb.team
 
