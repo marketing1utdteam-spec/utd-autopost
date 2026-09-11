@@ -1,0 +1,4 @@
+TITLE: Ultra Shopify Theme for Fast Page Speed
+URL: https://themes.shopify.com/themes/ultra
+
+Ultra Shopify theme is built for page speed, where every 0.1s of speed gain is linked to about +8.4% more sales (Deloitte x Google), a finding Vodafone confirmed with its own A/B test. Speed comes from the theme's code, not a bolt-on app, and Ultra is fast out of the box. Check it out on the official Shopify Theme Store.
