@@ -1,0 +1,5 @@
+Run this 8-point pre-launch audit before you publish, the same filter used for client stores. It checks load under 3s on phone, one-handed use, short checkout with guest + express pay, visible trust cues, and analytics installed before traffic.
+
+https://utdweb.team/shopify-themes/
+
+#shopify

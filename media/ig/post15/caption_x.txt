@@ -1,0 +1,5 @@
+Shopify infrastructure is the argument-settler: Gymshark's self-hosted Magento store crashed on Black Friday 2015, costing an estimated £100,000. They moved to Shopify and scaled past $500M. 30 UTD themes are installable free in the Theme Store.
+
+https://utdweb.team/shopify-themes/
+
+#shopify
