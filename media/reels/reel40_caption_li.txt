@@ -1,0 +1,22 @@
+Sell a lot? A plain menu buries half your catalog.
+
+A mega-menu lays it all out instead: categories, images, featured picks, one tap away.
+
+Navigation is the first decision a store makes for a visitor, and it happens before that visitor has read a single product description. A cluttered menu turns that decision into work. A mega-menu turns it into a shortcut.
+
+Categories: every collection visible at once, instead of nested dropdowns that hide half the catalog behind extra clicks.
+
+Images: visual cues sit next to each category so shoppers recognise what they want instead of reading for it.
+
+Featured picks: bestsellers and promotions surface directly inside the menu, not buried on a homepage banner three scrolls down.
+
+Speed: one tap moves a visitor from landing page to the exact shelf they came for, with no detour through a search bar that may or may not understand the query.
+
+This is not a feature that requires a paid app, a third-party integration, or a workaround theme edit. It ships built into Ultra, so there is no extra clutter added to the storefront and no additional page-speed cost to carry.
+
+For stores with a large catalog, the menu is not decoration. It is the first filter a customer meets, and it either helps them find what they came for or quietly loses them at the very top of the funnel.
+
+Ultra is built to carry that catalog size without asking the merchant to bolt on extra tools just to keep the menu usable.
+
+https://themes.shopify.com/themes/ultra
+#shopify #ecommerce #shopifytheme

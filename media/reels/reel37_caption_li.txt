@@ -1,0 +1,18 @@
+Someone's already buying — the perfect moment to suggest more.
+
+That single insight is the entire logic behind cross-selling, and it works because the customer is not being convinced to buy, only invited to add.
+
+Trigger: the moment a product is already in the cart, resistance is lowest. The buying decision is made; the only question left is whether to make it slightly bigger.
+
+Mechanism: "You may also like", "complete the look", "frequently bought together" — each one frames the extra item as a natural continuation of the choice already made, not a new pitch.
+
+Tone: done gently, cross-sells raise average order without feeling pushy. The moment it feels like pressure, it stops working — the suggestion has to read as helpful, not commercial.
+
+Placement: this only functions if it sits exactly where attention already is — product page, cart, checkout — not bolted on as an afterthought or hidden behind an extra click.
+
+Built into Allure, this behaviour is not an add-on theme owners have to configure from scratch. The layout is designed around it from the storefront down to the cart, so the nudge to add one more item feels like part of the shopping experience rather than a separate marketing layer.
+
+The result is a store that quietly sells more per visit, without ever asking harder.
+
+https://themes.shopify.com/themes/allure
+#shopify #shopifytheme #aov

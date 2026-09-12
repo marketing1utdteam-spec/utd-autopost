@@ -1,0 +1,21 @@
+Every extra checkout field is a tiny reason to quit — name, company, address line two, phone.
+
+They add up fast. Each additional field is another moment where a buyer can pause, hesitate, or simply close the tab before finishing.
+
+Fields: name, company, address line two, phone — none of them essential to completing a purchase, all of them capable of ending one.
+
+Approach: ask for the minimum required to process the order. Nothing more, nothing that can wait until after the sale.
+
+Speed: let express pay handle the rest. One tap replaces a form, and the buyer never has to think about typing anything at all.
+
+Result: fewer fields, more finished orders. Checkout stops feeling like a test and starts feeling like a formality.
+
+Ultra keeps checkout tight. Every field on the page has to justify its place, and most fields on most stores do not.
+
+The buyer who reaches checkout has already decided to buy. The only job left for the store is to get out of the way — not add another line to fill in, another label to read, another reason to reconsider.
+
+Ultra is built around that single idea: strip checkout down to what actually matters, and let express pay absorb the friction that used to sit in a dozen scattered fields.
+
+Ultra on the official Shopify Theme Store:
+https://themes.shopify.com/themes/ultra
+#shopify #checkout #cro

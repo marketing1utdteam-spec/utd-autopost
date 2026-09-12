@@ -1,0 +1,22 @@
+"You're $40 away from free shipping" quietly nudges bigger carts — shoppers hate paying for delivery, so they add another item.
+
+It is a simple win, and it is built into Ultra.
+
+The mechanic works because it reframes the decision. Instead of asking "do I want to spend more", the shopper sees a gap to close, and closing a gap feels like a win rather than a spend.
+
+Threshold: the $40 figure sits just above typical cart value, close enough to feel reachable, far enough to require adding something.
+
+Framing: "you're $40 away" is phrased as progress, not as a fee avoided — progress is what moves people to act.
+
+Placement: the nudge lives in the cart itself, at the exact moment the shopper is deciding whether the order is finished.
+
+Outcome: bigger average order value, without a discount code, without a sale, without touching margin on the items already in the cart.
+
+This is the kind of detail that separates a theme that merely displays products from one that actively shapes buying behaviour. Ultra is built around small mechanics like this one, working quietly in the background of every cart.
+
+None of it requires the merchant to configure complicated rules. The logic is already part of the storefront, ready to run on day one.
+
+Ultra is available in the official Shopify Theme Store, reviewed by Shopify, updated and supported.
+
+https://themes.shopify.com/themes/ultra
+#shopify #ecommerce #aov

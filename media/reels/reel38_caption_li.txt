@@ -1,0 +1,23 @@
+One screen to make it clear.
+
+Above the fold — before anyone scrolls — a visitor should already know what is being sold, why it is good, and where to tap next.
+
+Clarity: one image, one line, one button. Nothing competes for attention in that first screen.
+
+Confusion: the fastest way to lose a sale. Every extra question a visitor has to answer alone is a reason to leave before scrolling further.
+
+Allure is built around that first screen. A single strong visual, a single clear line, a single obvious action — nothing else fighting for the eye.
+
+Image: one image carries the whole first impression, so the product speaks before any scrolling happens.
+
+Message: one line does the explaining. No scanning, no guessing what the store sells or why it matters.
+
+Action: one button sits where the eye already lands, turning attention into a click before hesitation has time to set in.
+
+Above the fold is the shortest window a store gets to make its case. Confusion in that window loses the sale before the rest of the page even matters. Allure spends that window on clarity instead of decoration — one image, one line, one button, nothing competing.
+
+That is the whole design decision behind the theme: make the first screen do the convincing, so everything after it is a visitor who already knows what to expect.
+
+Allure on the official Shopify Theme Store:
+https://themes.shopify.com/themes/allure
+#shopify #ecommerce #webdesign

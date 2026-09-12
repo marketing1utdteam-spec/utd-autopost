@@ -1,0 +1,21 @@
+Real store on the Allure theme: most customers are overseas, but the old store showed one currency and people bounced.
+
+The problem was not the product, it was the checkout. A shopper browsing in their own currency trusts what they see. A shopper doing mental conversion, or worse, guessing, hesitates — and hesitation on a product page ends the same way it ends everywhere else: the tab closes.
+
+Allure fixes this at the storefront level.
+
+Currency: prices display automatically in the visitor's own money, no manual switching, no guesswork at checkout.
+
+Reach: with the friction removed, international orders took off.
+
+Trust: customers see a price they understand immediately, in a format their bank statement will match.
+
+Cost: one payment, free updates — no recurring theme fee, no separate charge for the multi-currency logic doing the actual work.
+
+This is the quiet advantage of building for a global customer base instead of assuming everyone shops in one currency. The store did not change its products, its suppliers or its ad spend. It changed what the price tag said, and the audience that had been bouncing silently started converting instead.
+
+Overseas demand does not need to be won twice — once with the product, once with the checkout. Allure removes the second fight entirely, letting the storefront speak the customer's language, literally, before a single question gets asked.
+
+Try Allure free:
+https://themes.shopify.com/themes/allure
+#shopify #ecommerce #multicurrency

@@ -1,0 +1,22 @@
+Don't blast video or music the second someone lands.
+
+It is jarring, it eats data, and on mobile it is an instant close.
+
+Autoplay removes the choice. The visitor did not ask for sound or motion, and the page decides for them before the product has even shown.
+
+Impact: unexpected media on load reads as an interruption, not a welcome.
+
+Data: autoplaying video and audio consume bandwidth immediately, before any content has actually been requested.
+
+Mobile: on a phone connection, an uninvited stream is often the reason the tab closes before the scroll even starts.
+
+Let people choose to hit play.
+
+A calm, fast first impression keeps them. The homepage should load light, load fast, and hand control to the visitor instead of taking it away from them.
+
+Ultra gets it right. The theme opens quiet: imagery and layout carry the first impression, and any video or audio waits for a deliberate click. Nothing autoplays, nothing pushes data before it is invited, and nothing risks the mobile close.
+
+That restraint is not a limitation. It is the difference between a storefront that respects attention and one that spends it before the visitor has decided to stay.
+
+https://themes.shopify.com/themes/ultra
+#shopify #ecommerce #webdesign
