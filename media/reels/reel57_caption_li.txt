@@ -1,0 +1,17 @@
+A luxury catalog shouldn't feel like a warehouse. Give each piece room to breathe, large editorial images, a calm grid. It signals quality before they tap.
+
+Boutique is UTD's Shopify theme for high-end retail, designed to present collections with the restraint and space that luxury demands.
+
+The storefront philosophy centers on what isn't there as much as what is. Large editorial imagery dominates without clutter. Typography remains calm and generous. Whitespace between objects creates breathing room rather than pressure to buy.
+
+Collections: clean grids with ample padding, each piece given its own territory.
+
+Product page: high-resolution images take the lead, with variant controls and pricing presented with clarity and confidence.
+
+Browsing: the grid adapts fluidly across devices, maintaining that sense of curated calm whether viewed on desktop or mobile.
+
+The luxury market has shifted. Buyers expect an online experience that matches the quality of what they're purchasing. A cramped, overloaded interface signals discount, not premium. Boutique inverts that signal: space, restraint, and editing communicate that these are pieces worth considering, not impulses worth rushing.
+
+https://themes.shopify.com/themes/boutique
+
+#shopify #ecommerce #shopifytheme
