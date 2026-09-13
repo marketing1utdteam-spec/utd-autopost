@@ -1,0 +1,13 @@
+Tap a swatch and the photo updates instantly — people see exactly what they're getting. No guessing, no leaving to check.
+
+Clear options create confident buyers and reduce returns. This is the core job of Allure, UTD's Shopify theme built for fashion and color-driven categories.
+
+The mechanism is simple: every swatch connects to its own product image. A customer selects a size or color and sees the exact photo — not a generic rendering, not a promise, not a hope. The page stays in place. The photo changes. The buyer knows.
+
+This matters because the research is relentless. Studies across fashion retail show that incomplete or ambiguous product information is the second-highest reason for cart abandonment after unexpected shipping costs. Color mismatch alone drives a significant share of returns. When a buyer cannot see the exact item in their chosen variant, they either leave or they buy and send it back.
+
+Allure solves this with instant visual feedback. Swatches become a trust tool, not decoration. The checkout hesitation drops because there is nothing left to doubt. What the customer sees is what they receive.
+
+https://themes.shopify.com/themes/allure
+
+#shopify #ecommerce #shopifytheme
