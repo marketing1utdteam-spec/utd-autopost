@@ -935,47 +935,10 @@
   "folder": "media/ig/post28"
  },
  {
-  "id": "2026-09-13_pin_post04",
-  "date": "2026-09-13",
-  "kind": "pin_post",
-  "folder": "media/ig/post04"
- },
- {
-  "id": "2026-09-13_pin_post05",
-  "date": "2026-09-13",
-  "kind": "pin_post",
-  "folder": "media/ig/post05"
- },
- {
-  "id": "2026-09-13_pin_post06",
-  "date": "2026-09-13",
-  "kind": "pin_post",
-  "folder": "media/ig/post06"
- },
- {
   "id": "2026-09-13_th_post26",
   "date": "2026-09-13",
   "kind": "th_post",
   "folder": "media/ig/post26"
- },
- {
-  "id": "2026-09-13_tt_post_reel03",
-  "date": "2026-09-13",
-  "kind": "tt_post",
-  "video": "media/reels/reel03.mp4",
-  "caption_file": "media/reels/reel03_caption_tt.txt"
- },
- {
-  "id": "2026-09-13_x_post03",
-  "date": "2026-09-13",
-  "kind": "x_post",
-  "folder": "media/ig/post03"
- },
- {
-  "id": "2026-09-13_x_post04",
-  "date": "2026-09-13",
-  "kind": "x_post",
-  "folder": "media/ig/post04"
  },
  {
   "id": "2026-09-02_yt_reel47",
@@ -983,13 +946,6 @@
   "kind": "yt_short",
   "video": "media/reels/reel47.mp4",
   "meta_file": "media/reels/reel47_yt.json"
- },
- {
-  "id": "2026-09-13_yt_video_reel91",
-  "date": "2026-09-13",
-  "kind": "yt_short",
-  "video": "media/reels/reel91_16x9.mp4",
-  "meta_file": "media/reels/reel91_yt_long.json"
  },
  {
   "id": "2026-09-13_fb_post31",
@@ -2150,6 +2106,12 @@
   "folder": "media/ig/post18"
  },
  {
+  "id": "2026-09-13_pin_post04",
+  "date": "2026-09-30",
+  "kind": "pin_post",
+  "folder": "media/ig/post04"
+ },
+ {
   "id": "2026-09-30_pin_post_reel06",
   "date": "2026-09-30",
   "kind": "pin_post",
@@ -2208,6 +2170,24 @@
   "folder": "media/ig/post19"
  },
  {
+  "id": "2026-09-13_pin_post05",
+  "date": "2026-10-01",
+  "kind": "pin_post",
+  "folder": "media/ig/post05"
+ },
+ {
+  "id": "2026-09-13_pin_post06",
+  "date": "2026-10-01",
+  "kind": "pin_post",
+  "folder": "media/ig/post06"
+ },
+ {
+  "id": "2026-10-01_pin_post08",
+  "date": "2026-10-01",
+  "kind": "pin_post",
+  "folder": "media/ig/post08"
+ },
+ {
   "id": "2026-10-01_th_post10",
   "date": "2026-10-01",
   "kind": "th_post",
@@ -2257,6 +2237,20 @@
   "date": "2026-10-02",
   "kind": "li_post",
   "folder": "media/ig/post22"
+ },
+ {
+  "id": "2026-10-02_pin_post_reel08",
+  "date": "2026-10-02",
+  "kind": "pin_post",
+  "video": "media/reels/reel08.mp4",
+  "caption_file": "media/reels/reel08_caption_pin.txt"
+ },
+ {
+  "id": "2026-10-02_pin_post_reel09",
+  "date": "2026-10-02",
+  "kind": "pin_post",
+  "video": "media/reels/reel09.mp4",
+  "caption_file": "media/reels/reel09_caption_pin.txt"
  },
  {
   "id": "2026-10-02_th_post11",
@@ -2632,6 +2626,18 @@
   "caption_file": "media/reels/reel30_caption.txt"
  },
  {
+  "id": "2026-09-13_x_post03",
+  "date": "2026-10-10",
+  "kind": "x_post",
+  "folder": "media/ig/post03"
+ },
+ {
+  "id": "2026-09-13_x_post04",
+  "date": "2026-10-10",
+  "kind": "x_post",
+  "folder": "media/ig/post04"
+ },
+ {
   "id": "2026-09-29_yt_reel74",
   "date": "2026-10-10",
   "kind": "yt_short",
@@ -2657,6 +2663,20 @@
   "kind": "tt_post",
   "video": "media/reels/reel31.mp4",
   "caption_file": "media/reels/reel31_caption.txt"
+ },
+ {
+  "id": "2026-10-11_x_post_reel08",
+  "date": "2026-10-11",
+  "kind": "x_post",
+  "video": "media/reels/reel08.mp4",
+  "caption_file": "media/reels/reel08_caption_x.txt"
+ },
+ {
+  "id": "2026-10-11_x_post_reel09",
+  "date": "2026-10-11",
+  "kind": "x_post",
+  "video": "media/reels/reel09.mp4",
+  "caption_file": "media/reels/reel09_caption_x.txt"
  },
  {
   "id": "2026-09-30_yt_reel75",
@@ -2690,6 +2710,13 @@
   "kind": "tt_post",
   "video": "media/reels/reel32.mp4",
   "caption_file": "media/reels/reel32_caption.txt"
+ },
+ {
+  "id": "2026-10-12_x_post_reel10",
+  "date": "2026-10-12",
+  "kind": "x_post",
+  "video": "media/reels/reel10.mp4",
+  "caption_file": "media/reels/reel10_caption_x.txt"
  },
  {
   "id": "2026-10-01_yt_reel76",
@@ -3134,6 +3161,13 @@
   "kind": "tt_post",
   "video": "media/reels/reel48.mp4",
   "caption_file": "media/reels/reel48_caption.txt"
+ },
+ {
+  "id": "2026-09-13_yt_video_reel91",
+  "date": "2026-10-28",
+  "kind": "yt_short",
+  "video": "media/reels/reel91_16x9.mp4",
+  "meta_file": "media/reels/reel91_yt_long.json"
  },
  {
   "id": "2026-09-15_ig_reel63",
@@ -3728,5 +3762,12 @@
   "kind": "tt_post",
   "video": "media/reels/reel91.mp4",
   "caption_file": "media/reels/reel91_caption_tt.txt"
+ },
+ {
+  "id": "2026-09-13_tt_post_reel03",
+  "date": "2026-12-12",
+  "kind": "tt_post",
+  "video": "media/reels/reel03.mp4",
+  "caption_file": "media/reels/reel03_caption_tt.txt"
  }
 ]
