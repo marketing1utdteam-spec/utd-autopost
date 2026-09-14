@@ -96,5 +96,19 @@
   "platform_id": "18129362833741085",
   "date": "2026-09-13",
   "url": "https://www.threads.net/@utd_web_team/post/18129362833741085"
+ },
+ "2026-09-03_yt_reel48": {
+  "platform": "youtube",
+  "kind": "yt_short",
+  "platform_id": "4dU1bU5KgLc",
+  "date": "2026-09-14",
+  "url": "https://youtu.be/4dU1bU5KgLc"
+ },
+ "2026-09-13_fb_post31": {
+  "platform": "facebook",
+  "kind": "fb_post",
+  "platform_id": "1029128923510354",
+  "date": "2026-09-14",
+  "url": "https://www.facebook.com/1029128923510354"
  }
 }
