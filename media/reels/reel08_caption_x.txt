@@ -1,0 +1,5 @@
+Allure loads in a second, keeps the buy button in reach and shows reviews on the page. Two stores with identical products and prices: the faster one converts twice as much.
+
+https://utdweb.team/shopify-themes/allure/
+
+#shopify
