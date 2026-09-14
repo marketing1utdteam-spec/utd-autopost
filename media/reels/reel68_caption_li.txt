@@ -1,0 +1,17 @@
+People rarely buy the first thing they tap. A recently-viewed row lets them jump back instead of hunting. Less friction, more sales.
+
+This is a core conversion principle, and it is built into Ultra, UTD's Shopify theme for high-volume stores.
+
+The mechanism is simple but effective. A customer browses a category, taps a product, reads the description, changes their mind. In most stores, they start the hunt again from scratch — scrolling, filtering, searching. Every extra step is a chance to leave.
+
+Recently-viewed: the row sits persistent on the product page, showing the last products the customer touched. One tap brings them back. No friction, no hunting.
+
+The result compounds across a session. A customer might cycle through ten products before committing. With recently-viewed, that cycle stays fast and stays frictionless. Without it, each loop includes the cost of re-navigation — and that cost adds up.
+
+Friction is the silent killer of conversion. Baymard Institute research on e-commerce UX shows that customers cite "too many steps" and "confusing navigation" as top reasons for cart abandonment. Recently-viewed solves both by keeping the customer's own browsing history one tap away.
+
+Ultra includes this as standard, along with the other small, powerful features that separate themes built for selling from themes built for showing.
+
+https://themes.shopify.com/themes/ultra
+
+#shopify #ecommerce #conversion

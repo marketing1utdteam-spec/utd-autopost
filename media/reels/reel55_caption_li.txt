@@ -1,0 +1,19 @@
+A great menu page does half the selling — group items, a tempting photo for each, price and add button right there. Hungry people do not want to hunt.
+
+Victory is UTD's Shopify theme built for restaurants, cafes, bars and food delivery operations.
+
+The menu page groups by category and presents each item with full-screen photography, making every dish feel like an order waiting to happen.
+
+Layout: items stack vertically with photo, name, description and price in one glance.
+
+Add-to-cart: the button sits beside the price, no clicks wasted hunting for how to buy.
+
+Mobile-first: most orders land on phone screens at peak hunger times — Victory loads fast and converts without friction.
+
+The theme handles variants for size, spice level, dietary tags and modifiers, so a burger can become exactly what the customer wants without conversation. Collections organize by section — appetizers, mains, desserts, drinks — the way a menu naturally reads.
+
+Victory ships with built-in integrations for delivery partners and reservation systems, turning the storefront into the operational hub the restaurant needs.
+
+https://themes.shopify.com/themes/victory
+
+#shopify #ecommerce #restaurant

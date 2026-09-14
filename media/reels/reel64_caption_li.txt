@@ -1,0 +1,12 @@
+Not everyone buys first visit. A wishlist lets them save what they love and come back — quietly recovering sales you'd lose.
+
+Wishlist features solve a structural problem in online retail. The buyer lands on a product, likes it, but is not ready to commit. Without a save option, they leave — and the friction of finding that product again means most never return. The wishlist removes that friction. It sits on the product page as a simple heart icon, takes one click, and stores the item in a dedicated collection the buyer can revisit any time, from any device.
+
+The recovery math is straightforward. Each saved item is a second chance. Each revisit surfaces the product again when the buyer's mindset has shifted from browsing to buying. The wishlist also creates data: which products get saved most often tells the merchant what resonates, what prices hold appeal, what gaps exist in the collection.
+
+Allure, UTD's Shopify theme, builds the wishlist into the core experience. The feature integrates seamlessly with the product page, the collection view, and the customer account dashboard. Buyers see their saved items instantly. Merchants see which products drive genuine interest. The theme handles the technical work — syncing across devices, persisting through sessions, integrating with inventory — so the store can focus on conversion.
+
+Built into Allure and ready to work from day one.
+
+https://themes.shopify.com/themes/allure
+#shopify #ecommerce #cro
