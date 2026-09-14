@@ -110,5 +110,19 @@
   "platform_id": "1029128923510354",
   "date": "2026-09-14",
   "url": "https://www.facebook.com/1029128923510354"
+ },
+ "2026-09-14_li_post04": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:share:7505163223143305216",
+  "date": "2026-09-14",
+  "url": "https://www.linkedin.com/feed/update/urn:li:share:7505163223143305216"
+ },
+ "2026-09-14_li_post30": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:share:7505163235797520385",
+  "date": "2026-09-14",
+  "url": "https://www.linkedin.com/feed/update/urn:li:share:7505163235797520385"
  }
 }
