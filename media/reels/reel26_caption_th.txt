@@ -1,0 +1,5 @@
+Tap a product, details pop up right there — no page reload, no losing your place. Quick view cuts the friction between curious and buying, so people browse more and add more.
+
+Built into Allure, UTD's Shopify theme.
+
+https://themes.shopify.com/themes/allure
