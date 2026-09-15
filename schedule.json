@@ -973,47 +973,10 @@
   "folder": "media/ig/post30"
  },
  {
-  "id": "2026-09-14_pin_post07",
-  "date": "2026-09-14",
-  "kind": "pin_post",
-  "folder": "media/ig/post07"
- },
- {
-  "id": "2026-09-14_pin_post09",
-  "date": "2026-09-14",
-  "kind": "pin_post",
-  "folder": "media/ig/post09"
- },
- {
-  "id": "2026-09-14_pin_post10",
-  "date": "2026-09-14",
-  "kind": "pin_post",
-  "folder": "media/ig/post10"
- },
- {
   "id": "2026-09-14_th_post29",
   "date": "2026-09-14",
   "kind": "th_post",
   "folder": "media/ig/post29"
- },
- {
-  "id": "2026-09-14_tt_post_reel04",
-  "date": "2026-09-14",
-  "kind": "tt_post",
-  "video": "media/reels/reel04.mp4",
-  "caption_file": "media/reels/reel04_caption_tt.txt"
- },
- {
-  "id": "2026-09-14_x_post05",
-  "date": "2026-09-14",
-  "kind": "x_post",
-  "folder": "media/ig/post05"
- },
- {
-  "id": "2026-09-14_x_post06",
-  "date": "2026-09-14",
-  "kind": "x_post",
-  "folder": "media/ig/post06"
  },
  {
   "id": "2026-09-03_yt_reel48",
@@ -2239,6 +2202,12 @@
   "folder": "media/ig/post22"
  },
  {
+  "id": "2026-09-14_pin_post07",
+  "date": "2026-10-02",
+  "kind": "pin_post",
+  "folder": "media/ig/post07"
+ },
+ {
   "id": "2026-10-02_pin_post_reel08",
   "date": "2026-10-02",
   "kind": "pin_post",
@@ -2298,6 +2267,18 @@
   "folder": "media/ig/post23"
  },
  {
+  "id": "2026-09-14_pin_post09",
+  "date": "2026-10-03",
+  "kind": "pin_post",
+  "folder": "media/ig/post09"
+ },
+ {
+  "id": "2026-09-14_pin_post10",
+  "date": "2026-10-03",
+  "kind": "pin_post",
+  "folder": "media/ig/post10"
+ },
+ {
   "id": "2026-10-03_th_post12",
   "date": "2026-10-03",
   "kind": "th_post",
@@ -2346,6 +2327,27 @@
   "date": "2026-10-04",
   "kind": "li_post",
   "folder": "media/ig/post25"
+ },
+ {
+  "id": "2026-10-04_pin_post_reel10",
+  "date": "2026-10-04",
+  "kind": "pin_post",
+  "video": "media/reels/reel10.mp4",
+  "caption_file": "media/reels/reel10_caption_pin.txt"
+ },
+ {
+  "id": "2026-10-04_pin_post_reel11",
+  "date": "2026-10-04",
+  "kind": "pin_post",
+  "video": "media/reels/reel11.mp4",
+  "caption_file": "media/reels/reel11_caption_pin.txt"
+ },
+ {
+  "id": "2026-10-04_pin_post_reel12",
+  "date": "2026-10-04",
+  "kind": "pin_post",
+  "video": "media/reels/reel12.mp4",
+  "caption_file": "media/reels/reel12_caption_pin.txt"
  },
  {
   "id": "2026-10-04_th_post13",
@@ -2712,6 +2714,12 @@
   "caption_file": "media/reels/reel32_caption.txt"
  },
  {
+  "id": "2026-09-14_x_post05",
+  "date": "2026-10-12",
+  "kind": "x_post",
+  "folder": "media/ig/post05"
+ },
+ {
   "id": "2026-10-12_x_post_reel10",
   "date": "2026-10-12",
   "kind": "x_post",
@@ -2743,6 +2751,12 @@
   "kind": "tt_post",
   "video": "media/reels/reel33.mp4",
   "caption_file": "media/reels/reel33_caption.txt"
+ },
+ {
+  "id": "2026-09-14_x_post06",
+  "date": "2026-10-13",
+  "kind": "x_post",
+  "folder": "media/ig/post06"
  },
  {
   "id": "2026-10-02_yt_reel77",
@@ -2778,6 +2792,20 @@
   "caption_file": "media/reels/reel34_caption.txt"
  },
  {
+  "id": "2026-10-14_x_post_reel11",
+  "date": "2026-10-14",
+  "kind": "x_post",
+  "video": "media/reels/reel11.mp4",
+  "caption_file": "media/reels/reel11_caption_x.txt"
+ },
+ {
+  "id": "2026-10-14_x_post_reel12",
+  "date": "2026-10-14",
+  "kind": "x_post",
+  "video": "media/reels/reel12.mp4",
+  "caption_file": "media/reels/reel12_caption_x.txt"
+ },
+ {
   "id": "2026-10-03_yt_reel78",
   "date": "2026-10-14",
   "kind": "yt_short",
@@ -2803,6 +2831,13 @@
   "kind": "tt_post",
   "video": "media/reels/reel35.mp4",
   "caption_file": "media/reels/reel35_caption.txt"
+ },
+ {
+  "id": "2026-10-15_x_post_reel13",
+  "date": "2026-10-15",
+  "kind": "x_post",
+  "video": "media/reels/reel13.mp4",
+  "caption_file": "media/reels/reel13_caption_x.txt"
  },
  {
   "id": "2026-10-04_yt_reel79",
@@ -3769,5 +3804,12 @@
   "kind": "tt_post",
   "video": "media/reels/reel03.mp4",
   "caption_file": "media/reels/reel03_caption_tt.txt"
+ },
+ {
+  "id": "2026-09-14_tt_post_reel04",
+  "date": "2026-12-13",
+  "kind": "tt_post",
+  "video": "media/reels/reel04.mp4",
+  "caption_file": "media/reels/reel04_caption_tt.txt"
  }
 ]
