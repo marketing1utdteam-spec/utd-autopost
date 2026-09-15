@@ -131,5 +131,19 @@
   "platform_id": "18075639866650973",
   "date": "2026-09-14",
   "url": "https://www.threads.net/@utd_web_team/post/18075639866650973"
+ },
+ "2026-09-15_li_post31": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:share:7505533115545714689",
+  "date": "2026-09-15",
+  "url": "https://www.linkedin.com/feed/update/urn:li:share:7505533115545714689"
+ },
+ "2026-09-15_th_post27": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "17907351678488329",
+  "date": "2026-09-15",
+  "url": "https://www.threads.net/@utd_web_team/post/17907351678488329"
  }
 }
