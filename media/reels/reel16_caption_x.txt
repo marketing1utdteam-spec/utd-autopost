@@ -1,0 +1,5 @@
+The sticky buy button follows the scroll, so the moment of "I want it" is always one tap from checkout. Built into Ultra, UTD's conversion-focused Shopify theme.
+
+https://themes.shopify.com/themes/ultra
+
+#shopify
