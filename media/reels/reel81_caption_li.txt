@@ -1,0 +1,11 @@
+Sold out does not mean lost. A notify-me button captures the email instead of losing the shopper — when it is back, they are first to know and first to buy.
+
+This feature is built into Ultra, UTD's conversion-focused Shopify theme. The mechanic is simple but powerful: a product page shows "Sold out" instead of an add-to-cart button, but offers a path forward. The shopper enters their email. The moment inventory returns, they receive a notification. They arrive at the page with purchase intent already intact, ahead of everyone else browsing.
+
+The business impact compounds. Sold-out traffic normally disappears — those visits generate no revenue and no data. A notify-me system recovers both. Every email collected is a second-chance buyer, warmer than cold traffic and far cheaper to reach than acquisition. The list also becomes a pool for early access launches, new colorways, or seasonal restocks, turning temporary scarcity into a relationship-building tool.
+
+Ultra handles this seamlessly across the entire storefront: product pages, collection filters, search results. The theme is phone-first, because most sold-out checks happen on mobile when a shopper is thinking about that exact item. Quick view, one-click notify, and instant confirmation — the friction stays low, the capture rate stays high.
+
+https://themes.shopify.com/themes/ultra
+
+#shopify #backinstock #conversion

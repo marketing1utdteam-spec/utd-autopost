@@ -1,0 +1,13 @@
+Don't wait for stock to sell. A pre-order or coming-soon button lets people buy before launch — the business learns demand and gets paid early. Hype and cash flow together.
+
+Allure is UTD's Shopify theme built for this exact moment. The pre-order feature sits at the heart of the design: it captures buyer intent before inventory arrives, de-risks the launch, and turns anticipation into revenue.
+
+The mechanics matter. A coming-soon button stops browsers from leaving empty-handed. A pre-order flow collects payment and shipping details upfront, so fulfillment is already mapped when stock lands. The theme displays clear delivery dates, so buyers know what they are committing to and trust arrives on schedule.
+
+This is not theoretical. Brands launching new categories, seasonal collections, or limited editions use pre-orders to validate demand without overproduction. They learn which SKUs matter before they manufacture at scale. They fund the production run with customer deposits. The cash arrives weeks or months before the goods ship — and that timing transforms small operations into operations that can grow.
+
+Allure handles the entire flow: the landing page that builds hype, the product page that captures the pre-order, the post-purchase communication that keeps the buyer engaged through the wait, and the analytics that show which launches succeeded.
+
+https://themes.shopify.com/themes/allure
+
+#shopify #ecommerce #preorder
