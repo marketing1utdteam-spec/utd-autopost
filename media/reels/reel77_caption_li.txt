@@ -1,0 +1,18 @@
+An accessible store is more buyers — readable text, good contrast, buttons that work for everyone. The difference is stopping the loss of customers others ignore.
+
+Ultra is built with that in mind. Accessible design is not a compliance checkbox. It is a conversion tool.
+
+Readable text: clear typefaces, sufficient size, proper line height and spacing. A buyer who cannot read the offer cannot buy it.
+
+Contrast: text and background colours meet WCAG standards. Colour alone never carries information — links, buttons and form states work for colourblind shoppers.
+
+Navigation: keyboard users can reach every element. Screen reader users get semantic structure and descriptive labels. Mobile users get touch targets large enough to hit without frustration.
+
+Buttons: focus states visible, error messages clear, form validation helpful instead of hostile. The checkout does not punish the customer for being different.
+
+The business case is straightforward. The World Health Organization estimates over a billion people live with some form of disability — and many more experience temporary barriers: aging eyesight, a broken arm, a noisy train. An accessible store serves all of them. It also ranks better, loads faster, and feels more trustworthy to everyone.
+
+Ultra handles this in the theme layer, so the store works for all shoppers from day one.
+
+https://themes.shopify.com/themes/ultra
+#Shopify #Accessibility #Ecommerce

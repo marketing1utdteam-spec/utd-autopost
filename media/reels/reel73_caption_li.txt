@@ -1,0 +1,15 @@
+No popup app needed. A slim announcement bar shouts free shipping, a sale, a code — always visible, never in the way.
+
+The announcement bar is built into Ultra, UTD's conversion-focused Shopify theme. It sits at the top of every page, persistent without being intrusive. Visitors see the message on arrival and carry it through their browse — no modal interrupting the flow, no overlay demanding attention before they can shop.
+
+This matters because announcement bars drive measurable outcomes. The bar catches browsers in the moment they are deciding whether to stay, presenting a reason to commit: a discount threshold, free shipping terms, a limited-time offer, a loyalty incentive. The key is visibility without friction.
+
+Most stores layer this with a popup app — another script, another performance hit, another reason for a visitor to bounce before the page even loads. Ultra builds the announcement bar natively, which means no third-party app tax, no loading delay, no cookie consent layers stacking up.
+
+The bar accepts custom text, colors and links. It can be toggled on or off, scheduled for campaigns, and tested against conversion data because it is part of the theme infrastructure, not a separate tool fighting for space.
+
+Ultra is available in the official Shopify Theme Store — reviewed by Shopify, maintained and supported — and works on every plan from Shopify Plus down to Starter.
+
+https://themes.shopify.com/themes/ultra
+
+#shopify #ecommerce #cro
