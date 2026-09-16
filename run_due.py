@@ -220,7 +220,7 @@ def main():
 
     did, failed_now, quarantined = [], [], []
     done_run, done_yt, tried = 0, 0, 0
-    skipped_by_cap = skipped_by_day = 0
+    skipped_by_cap = skipped_by_day = skipped_unsupported = 0
     for e in queue:
         if fails.get(e["id"], 0) >= MAX_ATTEMPTS:
             quarantined.append(e["id"])
@@ -337,6 +337,22 @@ def main():
                 # хостинг тут була б зайвою залежністю, ще й вимагала б підтвердженого
                 # домену в застосунку.
                 plat_id = S.tt_publish(vid, cap, a.dry_run)
+            elif kind in ("pin_post", "x_post"):
+                # 🔴 Заміряно 16.09.2026: постера для Pinterest/X немає ЖОДНОГО —
+                # ні тут, ні в social_post.py/meta_post.py, ні токенів у
+                # ~/.config/utd/. Досі ці записи мовчки падали в «неизвестный
+                # kind»: ЗЇДАЛИ tried-бюджет прогону (вигаданий провал блокував
+                # РЕАЛЬНИЙ контент цього ж прогону — видно з логу 16.09, де 3
+                # pin_post зʼїли весь MAX_PER_RUN і відклали 4 постовних записи)
+                # і зникали з schedule.json, коли зовнішній розклад переносив
+                # прострочене на нову дату — назавжди, без жодного сліду в
+                # failed.json. Явний пропуск, що НЕ палить tried, як і для
+                # th/li/tt у хмарі вище.
+                print(f"  🚧 {kind} пропущено: постера для цієї мережі ще нема "
+                      f"(ні коду, ні токена) — рішення власника, чи будувати.")
+                skipped_unsupported += 1
+                tried -= 1
+                continue
             else:
                 print("  ! неизвестный kind:", kind); continue
         except Exception as ex:
@@ -394,8 +410,12 @@ def main():
     if skipped_by_cap:
         print(f"\n⏸ отложено нормой на этот прогон: {skipped_by_cap} "
               f"(MAX_PER_RUN={MAX_PER_RUN}, MAX_YT_PER_RUN={MAX_YT_PER_RUN})")
+    if skipped_unsupported:
+        print(f"\n🚧 пропущено (немає постера для мережі): {skipped_unsupported} "
+              f"— pin_post/x_post, дивись коментар у коді run_due.py")
     print(f"== done · опубликовано {len(did)} · упало {len(failed_now)} · "
-          f"в карантине {len(quarantined)} · отложено {skipped_by_cap}")
+          f"в карантине {len(quarantined)} · отложено {skipped_by_cap} · "
+          f"без постера {skipped_unsupported}")
 
     # Зелёный прогон при нулевых публикациях и непустой очереди — это ложь,
     # из-за которой простой YouTube-постинга не замечали четверо суток.
