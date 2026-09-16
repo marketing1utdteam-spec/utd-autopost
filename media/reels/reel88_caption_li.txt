@@ -1,0 +1,15 @@
+New customers are expensive; keeping one is gold. A simple rewards program — points to buy, perks to return — turns one order into a habit.
+
+Gain is UTD's Shopify theme built for loyalty and retention. The storefront supports points-based rewards at every touchpoint: customers earn on purchase, earn on referral, earn on review, and redeem against future orders without friction.
+
+The mechanics work quietly in the background. Points display on the product page so buyers understand the reward before checkout. The account dashboard shows balance, redemption history and tier status — making the program visible and tangible. Email automation sends points notifications and redemption reminders, keeping the habit alive between visits.
+
+Conversion: the loyalty layer transforms the checkout experience from transactional to relational. A buyer who knows they are earning points is a buyer who returns.
+
+The theme is phone-first, because most repeat customers manage their account and redeem rewards on mobile. Collections, product pages and the checkout itself are optimized for the small screen where loyalty programs live.
+
+Gain is not a cosmetic add-on. It is a retention machine that makes the customer feel valued at every interaction.
+
+https://themes.shopify.com/themes/gain
+
+#shopify #loyalty #retention
