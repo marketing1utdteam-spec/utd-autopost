@@ -1,0 +1,4 @@
+TITLE: Allure Shopify Theme with Guest Checkout to Stop Cart Abandonment
+URL: https://themes.shopify.com/themes/allure
+
+Allure is a Shopify theme built around frictionless checkout: Baymard research shows 26% of shoppers quit when forced to create an account before paying. Guest checkout plus express pay options close the sale first, questions later. Install from the official Shopify Theme Store and recover those abandoned carts this week.

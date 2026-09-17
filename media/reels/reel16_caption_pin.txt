@@ -1,0 +1,4 @@
+TITLE: Ultra Shopify Theme with Sticky Buy Button for Mobile Checkout
+URL: https://themes.shopify.com/themes/ultra
+
+Ultra is a Shopify theme built around one conversion detail: the sticky buy button follows the scroll, so the moment of "I want it" is always one tap from checkout. Small detail, measurable lift on mobile commerce. Install free, pay when it sells.
