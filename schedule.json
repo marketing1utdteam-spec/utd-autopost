@@ -3319,7 +3319,7 @@
  },
  {
   "id": "2026-09-12_yt_short_reel91",
-  "date": "2026-10-27",
+  "date": "2026-09-20",
   "kind": "yt_short",
   "video": "media/reels/reel91.mp4",
   "meta_file": "media/reels/reel91_yt.json"
@@ -3339,7 +3339,7 @@
  },
  {
   "id": "2026-09-13_yt_video_reel91",
-  "date": "2026-10-28",
+  "date": "2026-09-21",
   "kind": "yt_short",
   "video": "media/reels/reel91_16x9.mp4",
   "meta_file": "media/reels/reel91_yt_long.json"
@@ -3930,13 +3930,6 @@
   "kind": "tt_post",
   "video": "media/reels/reel02.mp4",
   "caption_file": "media/reels/reel02_caption_tt.txt"
- },
- {
-  "id": "2026-12-11_tt_post_reel91",
-  "date": "2026-12-11",
-  "kind": "tt_post",
-  "video": "media/reels/reel91.mp4",
-  "caption_file": "media/reels/reel91_caption_tt.txt"
  },
  {
   "id": "2026-09-13_tt_post_reel03",
