@@ -1,0 +1,4 @@
+TITLE: Allure Shopify Theme with Quick View for Higher Add-to-Cart
+URL: https://themes.shopify.com/themes/allure
+
+Allure is a Shopify theme built with Quick view: tap a product and details pop up without reload or losing your place. Customers browse more and add more when the friction drops between curious and buying. Built-in on the official Shopify Theme Store — try free, pay when it sells.
