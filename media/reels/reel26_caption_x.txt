@@ -1,0 +1,5 @@
+Quick view lets buyers see details without leaving the browse flow, so they add more to cart. Built into Allure, UTD's Shopify theme for fashion and lifestyle stores.
+
+https://themes.shopify.com/themes/allure
+
+#shopify
