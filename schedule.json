@@ -1234,49 +1234,10 @@
   "folder": "media/ig/post42"
  },
  {
-  "id": "2026-09-20_pin_post26",
-  "date": "2026-09-21",
-  "kind": "pin_post",
-  "folder": "media/ig/post26"
- },
- {
-  "id": "2026-09-20_pin_post27",
-  "date": "2026-09-21",
-  "kind": "pin_post",
-  "folder": "media/ig/post27"
- },
- {
-  "id": "2026-09-20_pin_post28",
-  "date": "2026-09-21",
-  "kind": "pin_post",
-  "folder": "media/ig/post28"
- },
- {
   "id": "2026-09-21_th_post44",
   "date": "2026-09-21",
   "kind": "th_post",
   "folder": "media/ig/post44"
- },
- {
-  "id": "2026-09-21_tt_post_reel11",
-  "date": "2026-09-21",
-  "kind": "tt_post",
-  "video": "media/reels/reel11.mp4",
-  "caption_file": "media/reels/reel11_caption_tt.txt"
- },
- {
-  "id": "2026-09-19_x_post_reel03",
-  "date": "2026-09-21",
-  "kind": "x_post",
-  "video": "media/reels/reel03.mp4",
-  "caption_file": "media/reels/reel03_caption_x.txt"
- },
- {
-  "id": "2026-09-19_x_post_reel04",
-  "date": "2026-09-21",
-  "kind": "x_post",
-  "video": "media/reels/reel04.mp4",
-  "caption_file": "media/reels/reel04_caption_x.txt"
  },
  {
   "id": "2026-09-10_yt_reel55",
@@ -2873,6 +2834,12 @@
   "caption_file": "media/reels/reel54_caption.txt"
  },
  {
+  "id": "2026-09-20_pin_post26",
+  "date": "2026-10-15",
+  "kind": "pin_post",
+  "folder": "media/ig/post26"
+ },
+ {
   "id": "2026-09-19_pin_post24",
   "date": "2026-10-15",
   "kind": "pin_post",
@@ -2992,6 +2959,18 @@
   "caption_file": "media/reels/reel55_caption.txt"
  },
  {
+  "id": "2026-09-20_pin_post27",
+  "date": "2026-10-17",
+  "kind": "pin_post",
+  "folder": "media/ig/post27"
+ },
+ {
+  "id": "2026-09-20_pin_post28",
+  "date": "2026-10-17",
+  "kind": "pin_post",
+  "folder": "media/ig/post28"
+ },
+ {
   "id": "2026-10-17_th_post36",
   "date": "2026-10-17",
   "kind": "th_post",
@@ -3030,6 +3009,27 @@
   "kind": "ig_reel",
   "video": "media/reels/reel56.mp4",
   "caption_file": "media/reels/reel56_caption.txt"
+ },
+ {
+  "id": "2026-10-18_pin_post_reel31",
+  "date": "2026-10-18",
+  "kind": "pin_post",
+  "video": "media/reels/reel31.mp4",
+  "caption_file": "media/reels/reel31_caption_pin.txt"
+ },
+ {
+  "id": "2026-10-18_pin_post_reel32",
+  "date": "2026-10-18",
+  "kind": "pin_post",
+  "video": "media/reels/reel32.mp4",
+  "caption_file": "media/reels/reel32_caption_pin.txt"
+ },
+ {
+  "id": "2026-10-18_pin_post_reel33",
+  "date": "2026-10-18",
+  "kind": "pin_post",
+  "video": "media/reels/reel33.mp4",
+  "caption_file": "media/reels/reel33_caption_pin.txt"
  },
  {
   "id": "2026-10-18_th_post37",
@@ -3451,6 +3451,13 @@
   "caption_file": "media/reels/reel48_caption.txt"
  },
  {
+  "id": "2026-09-19_x_post_reel03",
+  "date": "2026-10-28",
+  "kind": "x_post",
+  "video": "media/reels/reel03.mp4",
+  "caption_file": "media/reels/reel03_caption_x.txt"
+ },
+ {
   "id": "2026-09-19_x_post16",
   "date": "2026-10-28",
   "kind": "x_post",
@@ -3506,6 +3513,13 @@
   "caption_file": "media/reels/reel50_caption.txt"
  },
  {
+  "id": "2026-09-19_x_post_reel04",
+  "date": "2026-10-30",
+  "kind": "x_post",
+  "video": "media/reels/reel04.mp4",
+  "caption_file": "media/reels/reel04_caption_x.txt"
+ },
+ {
   "id": "2026-10-30_x_post_reel31",
   "date": "2026-10-30",
   "kind": "x_post",
@@ -3526,6 +3540,20 @@
   "caption_file": "media/reels/reel51_caption.txt"
  },
  {
+  "id": "2026-10-31_x_post_reel32",
+  "date": "2026-10-31",
+  "kind": "x_post",
+  "video": "media/reels/reel32.mp4",
+  "caption_file": "media/reels/reel32_caption_x.txt"
+ },
+ {
+  "id": "2026-10-31_x_post_reel33",
+  "date": "2026-10-31",
+  "kind": "x_post",
+  "video": "media/reels/reel33.mp4",
+  "caption_file": "media/reels/reel33_caption_x.txt"
+ },
+ {
   "id": "2026-09-17_ig_reel65",
   "date": "2026-11-01",
   "kind": "ig_reel",
@@ -3538,6 +3566,13 @@
   "kind": "tt_post",
   "video": "media/reels/reel52.mp4",
   "caption_file": "media/reels/reel52_caption.txt"
+ },
+ {
+  "id": "2026-11-01_x_post_reel34",
+  "date": "2026-11-01",
+  "kind": "x_post",
+  "video": "media/reels/reel34.mp4",
+  "caption_file": "media/reels/reel34_caption_x.txt"
  },
  {
   "id": "2026-09-18_ig_reel66",
@@ -4147,5 +4182,12 @@
   "kind": "tt_post",
   "video": "media/reels/reel93.mp4",
   "caption_file": "media/reels/reel93_caption_tt.txt"
+ },
+ {
+  "id": "2026-09-21_tt_post_reel11",
+  "date": "2026-12-22",
+  "kind": "tt_post",
+  "video": "media/reels/reel11.mp4",
+  "caption_file": "media/reels/reel11_caption_tt.txt"
  }
 ]
