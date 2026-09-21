@@ -1,0 +1,4 @@
+TITLE: Ultra Shopify Theme with Express Checkout
+URL: https://themes.shopify.com/themes/ultra
+
+Ultra is a Shopify theme built with Shop Pay and Apple Pay express checkout, where one tap fills address and card details. Mobile conversions lift by a third when buyers skip the typing. Try the free trial on the official Shopify Theme Store, pay when you publish.

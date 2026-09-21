@@ -1,0 +1,4 @@
+TITLE: Ultra Shopify Theme with Advanced Search for Ecommerce
+URL: https://themes.shopify.com/themes/ultra
+
+Ultra is a Shopify theme built for search that actually finds products: typo-tolerant results, live-as-you-type display, and tap filters by size, color and price. Half your buyers use search — if it comes up empty, they leave. Ultra keeps them browsing and buying. Install free, pay when you're ready to go live.
