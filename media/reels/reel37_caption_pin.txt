@@ -1,0 +1,4 @@
+TITLE: Allure Shopify Theme for Cross-Selling and Average Order Value
+URL: https://themes.shopify.com/themes/allure
+
+Allure is a Shopify theme built for cross-selling at the moment it matters most — right after someone adds to cart. "You may also like", "complete the look", and "frequently bought together" sections raise average order value without feeling pushy. The theme handles product suggestions naturally, letting you capture more revenue from buyers already committed to purchasing. Install free, pay when you go live.
