@@ -9,7 +9,8 @@ Built to be shown: colour swatches, product videos, image zoom and rollover, hot
 Built to be changed: 30+ sections, drag-and-drop customisation, custom Liquid, app extension support, editable JavaScript — over 100 million combinations of dynamic elements.
 And underneath it all: mobile-first design, speed optimisation, EU translations and RTL support.
 
-Play before you pay — customise until you love it, pay only when you publish.
+One payment, lifetime licence — no subscription, ever.
+Play before you pay: customise until you love it, pay only when you publish.
 
 https://themes.shopify.com/themes?q=utd
 
