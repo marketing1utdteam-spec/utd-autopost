@@ -334,5 +334,12 @@
   "platform_id": "urn:li:share:7508685211497316352",
   "date": "2026-09-24",
   "url": "https://www.linkedin.com/feed/update/urn:li:share:7508685211497316352"
+ },
+ "2026-09-24_th_post03": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "18094938224400667",
+  "date": "2026-09-24",
+  "url": "https://www.threads.net/@utd_web_team/post/18094938224400667"
  }
 }
