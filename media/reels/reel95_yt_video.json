@@ -1,0 +1,7 @@
+{
+ "title": "Noom — a shoppable Shopify theme preset by UTD",
+ "description": "Noom is the home, wellness and services preset of Boutique — a premium Shopify theme by UTD, published in the official Shopify Theme Store.\n\nA styled room photo becomes shoppable: tap an image hotspot, pick the size, add to cart — without ever leaving the page. Unlimited hotspots, twenty settings each.\n\nWhat else is built in: quick buy, slide-out cart, cross-selling, gift wrapping, colour swatches, swatch filters, mega menu, enhanced search, stock counters, product videos — sixty-three features in total. The Pricing table section lines up three plans without a page builder, and Our team puts founders beside video.\n\n100% positive in the official Shopify Theme Store, from 24 reviews.\n$160 — one-time payment, lifetime licence. No subscription, ever.\nTry it free in your own store — pay only when you publish.\n\nBoutique in the Shopify Theme Store: https://themes.shopify.com/themes/boutique\nAll UTD themes: https://themes.shopify.com/themes?q=utd\nDeveloped by UTD — https://utdweb.team\n\nAI disclosure: the voice-over and the background music are AI-generated. Every screen in this video is a real capture of our own live Noom demo store.\n",
+ "thumbnail": "media/reels/reel95_thumb.png",
+ "containsSyntheticMedia": true,
+ "note": "Звичайне відео на канал @UTD-eCommerce, НЕ Shorts: кадр 1920×1080 і в описі немає #Shorts. containsSyntheticMedia=True тут ПРАВИЛЬНО — озвучка й музика згенеровані. Обкладинка додана файлом, бо thumbnails.set у коді не викликається."
+}
