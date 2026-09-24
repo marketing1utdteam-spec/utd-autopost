@@ -4308,5 +4308,40 @@
   "kind": "th_post",
   "video": "media/reels/reel94.mp4",
   "caption_file": "media/reels/reel94_caption_th.txt"
+ },
+ {
+  "id": "2026-09-26_ig_reel_reel95",
+  "date": "2026-09-26",
+  "kind": "ig_reel",
+  "video": "media/reels/reel95.mp4",
+  "caption_file": "media/reels/reel95_caption.txt"
+ },
+ {
+  "id": "2026-09-26_fb_post_reel95",
+  "date": "2026-09-26",
+  "kind": "fb_post",
+  "video": "media/reels/reel95_4x5.mp4",
+  "caption_file": "media/reels/reel95_caption_fb.txt"
+ },
+ {
+  "id": "2026-09-26_yt_short_reel95",
+  "date": "2026-09-26",
+  "kind": "yt_short",
+  "video": "media/reels/reel95.mp4",
+  "meta_file": "media/reels/reel95_yt.json"
+ },
+ {
+  "id": "2026-10-01_li_post_reel95",
+  "date": "2026-10-01",
+  "kind": "li_post",
+  "video": "media/reels/reel95_4x5.mp4",
+  "caption_file": "media/reels/reel95_caption_li.txt"
+ },
+ {
+  "id": "2026-10-31_th_post_reel95",
+  "date": "2026-10-31",
+  "kind": "th_post",
+  "video": "media/reels/reel95.mp4",
+  "caption_file": "media/reels/reel95_caption_th.txt"
  }
 ]
