@@ -1,9 +1,4 @@
-Allure automatically converts prices to customer currency — no bounces, more international sales.
-
-Real store switched from a single-currency display to Allure's automatic conversion. International orders took off. One payment covers everything, plus free updates forever.
-
-Theme: Allure
-
-Full theme + free trial: link in bio
-
+Allure is built for stores that sell across borders: prices in the customer's own currency and EU translations, so nobody has to convert in their head.
+$100 — one payment, lifetime licence, free updates. 90% positive in the official Shopify Theme Store.
+👉 Try Allure free: https://themes.shopify.com/themes/allure
 #shopify #shopifytheme #ecommercetips #multicurrency

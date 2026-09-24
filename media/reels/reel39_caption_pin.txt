@@ -1,4 +1,4 @@
 TITLE: Allure Shopify Theme for International Stores with Multicurrency
 URL: https://themes.shopify.com/themes/allure
 
-Allure is a Shopify theme that automatically shows prices in each customer's currency, eliminating the bounce rate when overseas buyers see unfamiliar money. Real stores on Allure saw international orders take off after enabling multicurrency display. One payment covers the theme, free updates included — try unlimited free.
+Allure is built for stores that sell across borders: prices in the customer's own currency and EU translations, so nobody has to convert in their head. $100 — one payment, lifetime licence, free updates. 90% positive in the official Shopify Theme Store.

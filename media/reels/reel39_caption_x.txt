@@ -1,4 +1,4 @@
-Allure automatically shows prices in each customer's currency, turning browsers into buyers across borders. One store saw international orders take off after switching. Free trial, one payment.
+Allure is built for stores that sell across borders: prices in the customer's own currency and EU translations, so nobody has to convert in their head.
 
 https://themes.shopify.com/themes/allure
 

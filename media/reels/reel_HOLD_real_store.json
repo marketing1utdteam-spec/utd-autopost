@@ -1,0 +1,96 @@
+{
+ "why": "вигадані відгуки «Real store» з чужими результатами; рішення Вікторії 24.09.2026",
+ "entries": [
+  {
+   "id": "2026-09-30_pin_post_reel06",
+   "date": "2026-09-30",
+   "kind": "pin_post",
+   "video": "media/reels/reel06.mp4",
+   "caption_file": "media/reels/reel06_caption_pin.txt"
+  },
+  {
+   "id": "2026-10-01_tt_post_reel21",
+   "date": "2026-10-01",
+   "kind": "tt_post",
+   "video": "media/reels/reel21.mp4",
+   "caption_file": "media/reels/reel21_caption.txt"
+  },
+  {
+   "id": "2026-10-02_pin_post_reel09",
+   "date": "2026-10-02",
+   "kind": "pin_post",
+   "video": "media/reels/reel09.mp4",
+   "caption_file": "media/reels/reel09_caption_pin.txt"
+  },
+  {
+   "id": "2026-08-26_ig_reel43",
+   "date": "2026-10-07",
+   "kind": "ig_reel",
+   "video": "media/reels/reel43.mp4",
+   "caption_file": "media/reels/reel43_caption.txt"
+  },
+  {
+   "id": "2026-09-16_pin_post_reel03",
+   "date": "2026-10-09",
+   "kind": "pin_post",
+   "video": "media/reels/reel03.mp4",
+   "caption_file": "media/reels/reel03_caption_pin.txt"
+  },
+  {
+   "id": "2026-10-09_x_post_reel06",
+   "date": "2026-10-09",
+   "kind": "x_post",
+   "video": "media/reels/reel06.mp4",
+   "caption_file": "media/reels/reel06_caption_x.txt"
+  },
+  {
+   "id": "2026-10-10_pin_post_reel21",
+   "date": "2026-10-10",
+   "kind": "pin_post",
+   "video": "media/reels/reel21.mp4",
+   "caption_file": "media/reels/reel21_caption_pin.txt"
+  },
+  {
+   "id": "2026-10-11_x_post_reel09",
+   "date": "2026-10-11",
+   "kind": "x_post",
+   "video": "media/reels/reel09.mp4",
+   "caption_file": "media/reels/reel09_caption_x.txt"
+  },
+  {
+   "id": "2026-10-21_x_post_reel21",
+   "date": "2026-10-21",
+   "kind": "x_post",
+   "video": "media/reels/reel21.mp4",
+   "caption_file": "media/reels/reel21_caption_x.txt"
+  },
+  {
+   "id": "2026-10-23_tt_post_reel43",
+   "date": "2026-10-23",
+   "kind": "tt_post",
+   "video": "media/reels/reel43.mp4",
+   "caption_file": "media/reels/reel43_caption.txt"
+  },
+  {
+   "id": "2026-09-01_ig_reel49",
+   "date": "2026-10-28",
+   "kind": "ig_reel",
+   "video": "media/reels/reel49.mp4",
+   "caption_file": "media/reels/reel49_caption.txt"
+  },
+  {
+   "id": "2026-09-19_x_post_reel03",
+   "date": "2026-10-28",
+   "kind": "x_post",
+   "video": "media/reels/reel03.mp4",
+   "caption_file": "media/reels/reel03_caption_x.txt"
+  },
+  {
+   "id": "2026-10-29_tt_post_reel49",
+   "date": "2026-10-29",
+   "kind": "tt_post",
+   "video": "media/reels/reel49.mp4",
+   "caption_file": "media/reels/reel49_caption.txt"
+  }
+ ]
+}
