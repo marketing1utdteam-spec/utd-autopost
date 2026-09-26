@@ -376,5 +376,12 @@
   "platform_id": "urn:li:share:7509643256884822016",
   "date": "2026-09-26",
   "url": "https://www.linkedin.com/feed/update/urn:li:share:7509643256884822016"
+ },
+ "2026-09-26_th_post05": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "18395140798206756",
+  "date": "2026-09-26",
+  "url": "https://www.threads.net/@utd_web_team/post/18395140798206756"
  }
 }
