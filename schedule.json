@@ -4728,5 +4728,26 @@
   "kind": "ig_reel",
   "video": "media/reels/reel97.mp4",
   "caption_file": "media/reels/reel97_caption.txt"
+ },
+ {
+  "id": "2026-10-04_tt_post_reel97",
+  "date": "2026-10-04",
+  "kind": "tt_post",
+  "video": "media/reels/reel97.mp4",
+  "caption_file": "media/reels/reel97_caption_tt.txt"
+ },
+ {
+  "id": "2026-10-04_pin_post_reel97",
+  "date": "2026-10-04",
+  "kind": "pin_post",
+  "video": "media/reels/reel97.mp4",
+  "caption_file": "media/reels/reel97_caption_pin.txt"
+ },
+ {
+  "id": "2026-10-04_x_post_reel97",
+  "date": "2026-10-04",
+  "kind": "x_post",
+  "video": "media/reels/reel97.mp4",
+  "caption_file": "media/reels/reel97_caption_x.txt"
  }
 ]
