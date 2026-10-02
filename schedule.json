@@ -4749,5 +4749,12 @@
   "kind": "x_post",
   "video": "media/reels/reel97.mp4",
   "caption_file": "media/reels/reel97_caption_x.txt"
+ },
+ {
+  "id": "2026-10-03_th_post_reel97",
+  "date": "2026-10-03",
+  "kind": "th_post",
+  "video": "media/reels/reel97.mp4",
+  "caption_file": "media/reels/reel97_caption_th.txt"
  }
 ]
