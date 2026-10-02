@@ -1749,13 +1749,6 @@
   "meta_file": "media/reels/reel96_yt.json"
  },
  {
-  "id": "2026-10-03_fb_post_reel97",
-  "date": "2026-10-03",
-  "kind": "fb_post",
-  "video": "media/reels/reel97_4x5.mp4",
-  "caption_file": "media/reels/reel97_caption_fb.txt"
- },
- {
   "id": "2026-10-03_ig_reel_reel96",
   "date": "2026-10-03",
   "kind": "ig_reel",
@@ -1767,13 +1760,6 @@
   "date": "2026-10-03",
   "kind": "li_post",
   "folder": "media/ig/post23"
- },
- {
-  "id": "2026-10-03_li_post_reel97",
-  "date": "2026-10-03",
-  "kind": "li_post",
-  "video": "media/reels/reel97_4x5.mp4",
-  "caption_file": "media/reels/reel97_caption_li.txt"
  },
  {
   "id": "2026-09-15_pin_post11",
@@ -1827,20 +1813,6 @@
   "meta_file": "media/reels/reel67_yt.json"
  },
  {
-  "id": "2026-10-03_yt_short_reel97",
-  "date": "2026-10-03",
-  "kind": "yt_short",
-  "video": "media/reels/reel97.mp4",
-  "meta_file": "media/reels/reel97_yt.json"
- },
- {
-  "id": "2026-10-04_ig_reel_reel97",
-  "date": "2026-10-04",
-  "kind": "ig_reel",
-  "video": "media/reels/reel97.mp4",
-  "caption_file": "media/reels/reel97_caption.txt"
- },
- {
   "id": "2026-10-04_li_post24",
   "date": "2026-10-04",
   "kind": "li_post",
@@ -1872,13 +1844,6 @@
   "kind": "pin_post",
   "video": "media/reels/reel12.mp4",
   "caption_file": "media/reels/reel12_caption_pin.txt"
- },
- {
-  "id": "2026-10-03_th_post_reel97",
-  "date": "2026-10-04",
-  "kind": "th_post",
-  "video": "media/reels/reel97.mp4",
-  "caption_file": "media/reels/reel97_caption_th.txt"
  },
  {
   "id": "2026-10-04_tt_post_reel96",
@@ -1943,37 +1908,16 @@
   "folder": "media/ig/post12"
  },
  {
-  "id": "2026-10-04_pin_post_reel97",
-  "date": "2026-10-05",
-  "kind": "pin_post",
-  "video": "media/reels/reel97.mp4",
-  "caption_file": "media/reels/reel97_caption_pin.txt"
- },
- {
   "id": "2026-10-04_th_post13",
   "date": "2026-10-05",
   "kind": "th_post",
   "folder": "media/ig/post13"
  },
  {
-  "id": "2026-10-04_tt_post_reel97",
-  "date": "2026-10-05",
-  "kind": "tt_post",
-  "video": "media/reels/reel97.mp4",
-  "caption_file": "media/reels/reel97_caption_tt.txt"
- },
- {
   "id": "2026-10-03_x_post45",
   "date": "2026-10-05",
   "kind": "x_post",
   "folder": "media/ig/post45"
- },
- {
-  "id": "2026-10-04_x_post_reel97",
-  "date": "2026-10-05",
-  "kind": "x_post",
-  "video": "media/reels/reel97.mp4",
-  "caption_file": "media/reels/reel97_caption_x.txt"
  },
  {
   "id": "2026-09-24_yt_reel69",
