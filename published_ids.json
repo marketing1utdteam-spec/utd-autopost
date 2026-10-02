@@ -495,5 +495,19 @@
   "platform_id": "9mgjzP_KKu8",
   "date": "2026-10-02",
   "url": "https://youtu.be/9mgjzP_KKu8"
+ },
+ "2026-10-02_li_post22": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:share:7511812458169364480",
+  "date": "2026-10-02",
+  "url": "https://www.linkedin.com/feed/update/urn:li:share:7511812458169364480"
+ },
+ "2026-10-02_li_post_reel96": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7511812560149463040",
+  "date": "2026-10-02",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7511812560149463040"
  }
 }
