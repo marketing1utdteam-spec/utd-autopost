@@ -1,0 +1,8 @@
+A Shopify theme built for clothing brands.
+
+Collections, filters, a product page with size, colour and stock, and a cart drawer that keeps the customer on the page. 37 section types across our five demo stores.
+
+Try it free, pay when you publish.
+https://themes.shopify.com/themes/fuse
+
+AI-generated voice & music; screens are real recordings of our own live demo store.

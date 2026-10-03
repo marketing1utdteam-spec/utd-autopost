@@ -1,0 +1,17 @@
+A Shopify theme built for clothing brands.
+
+Fuse is our premium Shopify theme, in the official Shopify Theme Store. This is the Node preset — built for streetwear and apparel brands.
+
+In the video: the home page, the full collections catalogue, a single collection with filters and tabs, a product page with size, colour and stock, and a cart that opens as a drawer with a free-shipping bar and the next piece offered — so the customer never leaves the page.
+
+37 section types across our five demo stores. Sections are built around the path a buyer actually walks: find, compare, decide, add, check out.
+
+If your store gets traffic but not orders, or customers add to cart and stop there, that path is usually where it breaks.
+
+One-time payment, lifetime licence, no subscription. Manual, support and updates from UTD. Try it free in your own store — pay only when you publish.
+
+https://themes.shopify.com/themes/fuse
+
+AI disclosure: the voice-over and the background music are AI-generated. Every screen in this video is a real screen recording of our own live Fuse demo store, recorded on 02.10.2026.
+
+Developed by UTD — https://utdweb.team
