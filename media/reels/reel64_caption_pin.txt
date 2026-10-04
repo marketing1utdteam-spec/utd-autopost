@@ -1,0 +1,4 @@
+TITLE: Allure Shopify Theme with Built-in Wishlist Feature
+URL: https://themes.shopify.com/themes/allure
+
+Allure is a Shopify theme with a built-in wishlist that lets customers save products and return later, quietly recovering sales from browsers who weren't ready to buy on first visit. Enable wishlist functionality without extra apps or custom code — let your store work while visitors think it over.
