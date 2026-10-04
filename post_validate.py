@@ -24,6 +24,7 @@
 """
 import json
 import os
+import re
 import shutil
 import subprocess
 
@@ -44,39 +45,110 @@ DURATION = (15, 60)         # робочий діапазон у секунда�
 
 # ── МЕЖІ ПЛАТФОРМ (зона чату Юрія; це документація мереж, не наш вибір) ──────
 # aspect — (мінімум, максимум) відношення ширина/висота, яке приймає API.
+# mb     — стеля розміру файла, яку приймає ТОЙ ШЛЯХ, яким ми реально вантажимо.
 LIMITS = {
-    "instagram": {"sec": (3, 900), "aspect": (0.01, 10.0),
+    "instagram": {"sec": (3, 900), "aspect": (0.01, 10.0), "mb": 300,
                   "note": "рілс приймає 9:16; у стрічку йде через REELS + share_to_feed"},
-    "facebook":  {"sec": (1, 14400), "aspect": (0.01, 10.0), "note": "/videos приймає будь-що"},
-    "threads":   {"sec": (1, 300), "aspect": (0.01, 10.0), "note": "до 5 хвилин"},
-    "linkedin":  {"sec": (3, 1800), "aspect": (0.417, 2.4),
+    "facebook":  {"sec": (1, 14400), "aspect": (0.01, 10.0), "mb": 1000,
+                  "note": "/videos приймає будь-що"},
+    "threads":   {"sec": (1, 300), "aspect": (0.01, 10.0), "mb": 1000, "note": "до 5 хвилин"},
+    "linkedin":  {"sec": (3, 1800), "aspect": (0.417, 2.4), "mb": 1000,
                   "note": "від 1:2.4 до 2.4:1, тобто 9:16 (0.5625) проходить"},
-    "tiktok":    {"sec": (3, 600), "aspect": (0.01, 10.0), "note": "рекомендовано 9:16"},
-    "youtube":   {"sec": (1, 60), "aspect": (0.4, 0.6), "note": "Shorts: вертикаль до 60 с"},
+    "tiktok":    {"sec": (3, 600), "aspect": (0.01, 10.0), "mb": 1000,
+                  "note": "рекомендовано 9:16; їде через Buffer"},
+    "pinterest": {"sec": (4, 900), "aspect": (0.01, 10.0), "mb": 1000,
+                  "note": "їде через Buffer"},
+    "x":         {"sec": (1, 140), "aspect": (0.01, 10.0), "mb": 1000,
+                  "note": "через сторонні інструменти X ріже ~140 с"},
+    "youtube":   {"sec": (1, 60), "aspect": (0.4, 0.6), "mb": 10000,
+                  "note": "Shorts: вертикаль до 60 с"},
 }
+
+# 🔴 ЗВІДКИ ЦІ ЧИСЛА І ЧОМУ ВОНИ НЕ ТІ, ЩО ЗДАВАЛИСЬ (заміряно 04.10.2026).
+#
+# Чат Вікторії написав, що «TikTok через Buffer має межу 25 МБ», і що збірка на
+# 25,8 МБ впала б при зеленій валідації. Перевірив у документації Buffer: межа
+# розміру там 1 ГБ (Facebook, X, LinkedIn, Pinterest, TikTok, Threads), 300 МБ для
+# Instagram і 10 ГБ для YouTube Shorts. Число 25 у тому тексті є, але це
+# **25 Мбіт/с бітрейту** — рекомендація, а не стеля розміру. Одиниця інша.
+#
+# Тому стеля `mb` тут нашого контенту НЕ торкається: ролики важать 16–18 МБ. Вона
+# стоїть як межа, а не як робоча перевірка, і сама по собі нічого не ловить.
+#
+# 🔴 Те, що реально ламало публікацію, живе не тут. Instagram/Facebook/Threads
+# їдуть не напряму: `meta_post.gh_upload` кладе відео через Contents API GitHub
+# тілом запиту в base64 (+37%). Саме цей шлях відмовляв на 422, і саме його
+# стеля (35 МБ після перекодування) тепер тримається в `meta_post.py`, де
+# відбувається перекодування. Перевіряти її ТУТ не можна: сюди приходить
+# вихідний файл, а в мережу їде перекодований, і це різні розміри.
+# Нижче лишається те, що звідси видно чесно: попередження про тривалість, за якою
+# бітрейт доведеться знижувати.
+GH_PATH = ("instagram", "facebook", "threads")   # мережі, що йдуть через gh_upload
+GH_BODY_MB = 35          # стеля meta_post.reencode_hi після перекодування
+GH_FULL_MBPS = 8         # бітрейт, на якому йдуть короткі ролики
 
 
 def probe(mp4):
-    """(секунди, ширина, висота) або None, якщо ffprobe недоступний.
+    """(секунди, ширина, висота) або None, якщо виміряти не вдалось.
 
     🔴 `None` означає «не знаю», і це НЕ те саме, що «все добре». Викликач мусить
     розрізняти: перевірка, яка не виконалась, не має права виглядати як пройдена.
+
+    🔴 ЧОМУ ТУТ ЗАПАСНИЙ ШЛЯХ ЧЕРЕЗ FFMPEG (заміряно 04.10.2026).
+
+    На машині власника `ffprobe` НЕ встановлений, а `ffmpeg` є. Через це кожен
+    локальний виклик повертав `None`, `check_video` чесно писав попередження — і
+    віддавав `ok=True`. Тобто перевірка тривалості й співвідношення не виконувалась
+    тут жодного разу, а виглядало це як зелений результат:
+
+        post_validate.check_video('media/reels/reel96.mp4', 'instagram', 'підпис')
+        → ok: True · проблеми: [] · probe(): None
+
+    Саме на цей зелений спирався висновок «це не формат» у розборі падінь рілсів
+    03.10. Висновок був правильний, але доказу під ним не було: порожній результат
+    приладу, якого немає, нічого не доводить.
+
+    `ffmpeg -i` друкує Duration і параметри потоку в stderr у будь-якій збірці, тож
+    там, де немає ffprobe, міряємо ним. Якщо немає обох — тоді вже справді `None`.
     """
-    if not shutil.which("ffprobe"):
+    if shutil.which("ffprobe"):
+        try:
+            r = subprocess.run(
+                ["ffprobe", "-v", "error", "-select_streams", "v:0",
+                 "-show_entries", "stream=width,height:format=duration",
+                 "-of", "json", mp4],
+                capture_output=True, text=True, timeout=120)
+            if r.returncode == 0:
+                d = json.loads(r.stdout)
+                st = (d.get("streams") or [{}])[0]
+                sec = float((d.get("format") or {}).get("duration") or 0)
+                w, h = int(st.get("width") or 0), int(st.get("height") or 0)
+                if w and h:
+                    return sec, w, h
+        except Exception:
+            pass
+    return _probe_ffmpeg(mp4)
+
+
+def _probe_ffmpeg(mp4):
+    """Те саме, але з виводу `ffmpeg -i` (stderr). Запасний шлях, не основний."""
+    if not shutil.which("ffmpeg"):
         return None
     try:
-        r = subprocess.run(
-            ["ffprobe", "-v", "error", "-select_streams", "v:0",
-             "-show_entries", "stream=width,height:format=duration",
-             "-of", "json", mp4],
-            capture_output=True, text=True, timeout=120)
-        if r.returncode != 0:
+        r = subprocess.run(["ffmpeg", "-hide_banner", "-i", mp4],
+                           capture_output=True, text=True, timeout=120)
+        txt = r.stderr or ""
+        m = re.search(r"Duration:\s*(\d+):(\d+):(\d+(?:\.\d+)?)", txt)
+        if not m:
             return None
-        d = json.loads(r.stdout)
-        st = (d.get("streams") or [{}])[0]
-        sec = float((d.get("format") or {}).get("duration") or 0)
-        w, h = int(st.get("width") or 0), int(st.get("height") or 0)
-        if not (w and h):
+        sec = int(m.group(1)) * 3600 + int(m.group(2)) * 60 + float(m.group(3))
+        # Перший відеопотік: «Video: h264 ... 1080x1920 ...». Беремо саме пару
+        # чисел після слова Video, інакше ловиться роздільність обкладинки.
+        v = re.search(r"Stream #\d+:\d+.*?:\s*Video:.*?(\d{2,5})x(\d{2,5})", txt)
+        if not v:
+            return None
+        w, h = int(v.group(1)), int(v.group(2))
+        if not (w and h and sec):
             return None
         return sec, w, h
     except Exception:
@@ -111,14 +183,31 @@ def check_video(mp4, platform, caption=None):
         problems.append(f"невідома платформа «{platform}»")
         return not problems, problems, warns
 
+    if lim.get("mb") and size_mb > lim["mb"]:
+        problems.append(f"файл {size_mb:.0f} МБ більший за стелю {platform} "
+                        f"({lim['mb']} МБ)")
+
     p = probe(mp4)
     if p is None:
-        # Тиша ffprobe це «не знаю». Кажу це вголос і пускаю далі: інакше відсутність
-        # ffprobe на раннері зупинила б увесь постинг, а це гірше за неперевірене відео.
-        warns.append("ffprobe недоступний — тривалість і співвідношення НЕ перевірені")
+        # Тиша приладу це «не знаю». Кажу це вголос і пускаю далі: інакше відсутність
+        # ffmpeg на раннері зупинила б увесь постинг, а це гірше за неперевірене відео.
+        warns.append("ні ffprobe, ні ffmpeg — тривалість і співвідношення НЕ перевірені")
         return not problems, problems, warns
 
     sec, w, h = p
+
+    # 🔴 Попередження, якого бракувало 03.10: ролик, довший за ~35 с, НЕ влізає у
+    # стелю шляху через GitHub на повному бітрейті, тому meta_post знижуватиме
+    # бітрейт — тобто якість упаде мовчки. Це не поломка (перекодування підбере
+    # бітрейт сам), але це рішення про якість, і воно має бути видимим тому, хто
+    # збирає ролик, а не з'ясовуватись постфактум.
+    if platform in GH_PATH:
+        est_mb = sec * GH_FULL_MBPS / 8
+        if est_mb > GH_BODY_MB:
+            warns.append(
+                f"{sec:.0f} с на повних {GH_FULL_MBPS} Мбіт/с дали б ~{est_mb:.0f} МБ "
+                f"при стелі {GH_BODY_MB} МБ — бітрейт для {platform} буде знижено "
+                f"до ~{GH_BODY_MB * 8 / sec:.1f} Мбіт/с")
     lo, hi = lim["sec"]
     if not (lo <= sec <= hi):
         problems.append(f"тривалість {sec:.1f} с поза межами {platform} ({lo}–{hi} с)")

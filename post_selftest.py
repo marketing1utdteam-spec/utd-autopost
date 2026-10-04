@@ -117,7 +117,38 @@ def main():
     src = open(os.path.join(HERE, "run_due.py")).read()
     kinds = sorted({str(e.get("kind")) for e in sched})
     known = {"ig_post", "ig_reel", "yt_short", "fb_post", "th_post", "li_post", "tt_post"}
-    unknown = [k for k in kinds if k not in known]
+
+    # 🔴 ТИПИ, ЧИЙ ОБРОБНИК ЖИВЕ НЕ ТУТ (заміряно 04.10.2026).
+    #
+    # До цього дня перевірка шукала обробник ЛИШЕ в `run_due.py` і через це
+    # дзвонила на `pin_post`/`x_post` дослівно «без обробника: 2» та друкувала
+    # «🔴 НЕ ПУБЛІКУВАТИ». Публікатор у них є — `~/utd-runner/scripts/xpin_publish.py`
+    # через Buffer, власник підключив обидва канали 11.09.2026, і обидві мережі
+    # публікують щодня (`CONTENT-STATE.md`: pinterest 🟢 само, x 🟢 само).
+    # Тобто червоне горіло постійно й помилково — рівно той випадок, через який
+    # червоне перестають читати.
+    #
+    # 🔴 Але просто внести їх у `known` НЕ можна: це замінило б хибний червоний на
+    # сліпий зелений. Перевірка, яка не може сказати «ні», не перевірка. Тому для
+    # кожного такого типу ми переконуємось, що файл публікатора існує НА ДИСКУ і
+    # всередині згадує свою мережу. Зникне файл — цей рядок почервоніє.
+    ELSEWHERE = {
+        "pin_post": ("~/utd-runner/scripts/xpin_publish.py", "pinterest"),
+        "x_post":   ("~/utd-runner/scripts/xpin_publish.py", "buffer"),
+        "tt_post":  ("~/utd-runner/scripts/tiktok_publish.py", "tiktok"),
+    }
+    outside_bad = []
+    for k, (path, needle) in sorted(ELSEWHERE.items()):
+        p = os.path.expanduser(path)
+        if not os.path.exists(p):
+            outside_bad.append(f"{k}: немає файла {path}")
+        elif needle not in open(p, encoding="utf-8", errors="replace").read().lower():
+            outside_bad.append(f"{k}: у {path} немає згадки «{needle}»")
+    ok("зовнішні публікатори на місці", not outside_bad, str(outside_bad))
+    say(f"   {'🟢' if not outside_bad else '🔴'} поза run_due.py: "
+        f"{', '.join(sorted(ELSEWHERE))} — {'усі публікатори знайдені' if not outside_bad else '; '.join(outside_bad)}")
+
+    unknown = [k for k in kinds if k not in known and k not in ELSEWHERE]
     ok("усі типи в черзі мають обробник", not unknown, str(unknown))
     say(f"   {'🟢' if not unknown else '🔴'} типів у черзі: {len(kinds)} "
         f"({', '.join(kinds)}), без обробника: {len(unknown)}")
