@@ -36,7 +36,18 @@ def gh_upload(localfile, repopath):
     body = json.dumps({"message":f"add {repopath}","content":content}).encode()
     req = urllib.request.Request(f"https://api.github.com/repos/{MEDIA_REPO}/contents/{repopath}",
         data=body, method='PUT', headers={"Authorization":f"token {tok}","Accept":"application/vnd.github+json"})
-    r = json.load(urllib.request.urlopen(req, timeout=180))
+    # 🔴 Помилку тут НЕ можна пускати голою. Заміряно 04.10.2026: цей urlopen —
+    # єдине місце в шляху рілса, де HTTPError не загорнутий (`graph()` поруч ловить
+    # і віддає тіло), тому в журнал падало рівно «HTTP Error 422: Unprocessable
+    # Entity» — без натяку, що мова про РОЗМІР і що винен GitHub, а не Instagram.
+    # Дванадцять прогонів поспіль упали під повідомлення, яке вказувало не туди.
+    try:
+        r = json.load(urllib.request.urlopen(req, timeout=180))
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(
+            f"GitHub Contents API {e.code} на {repopath}: "
+            f"{len(body)/1e6:.1f} МБ тілом запиту "
+            f"({os.path.getsize(localfile)/1e6:.1f} МБ файлом) — {e.read()[:200]}")
     url = f"https://raw.githubusercontent.com/{MEDIA_REPO}/main/{repopath}"
     return url, r['content']['sha']
 
@@ -120,16 +131,71 @@ def ig_single(png, caption, dry):
     finally:
         gh_delete(rp, sha); print("  🧹 медиа удалено")
 
+# 🔴 Стеля на РОЗМІР файла, а не на бітрейт. Відео їде в Instagram не напряму:
+# `gh_upload` кладе його через Contents API GitHub, тобто тілом запиту в base64
+# (+37% до розміру), і завелике тіло цей API відхиляє — а Graph потім віддає
+# глухе «HTTP Error 422: Unprocessable Entity», яке на розмір НЕ вказує.
+#
+# Заміряно 04.10.2026. Фіксовані 8 Мбіт/с не враховували тривалості:
+#   reel94  23,2 с → ~23 МБ  → опубліковано 25.09
+#   reel95  28,8 с → ~29 МБ  → опубліковано 26.09
+#   reel96  59,4 с → 44,1 МБ → 60,4 МБ у base64 → 422, карантин
+#   reel97  59,5 с → 44,1 МБ → 60,4 МБ у base64 → 422, 12 прогонів поспіль
+# Останній успіх — останній короткий рілс; перше падіння — перший шістдесятисекундний.
+# Тобто зламала не мережа й не токен, а те, що ролики подовшали вдвічі.
+HI_MAX_BYTES = 35 * 1000 * 1000
+
+
 def reencode_hi(mp4):
-    """Перекодируем в высокий битрейт (IG меньше дожимает движение). Если ffmpeg нет — вернём как есть."""
+    """Перекодируем в высокий битрейт (IG меньше дожимает движение). Если ffmpeg нет — вернём как есть.
+
+    Високий бітрейт лишається метою, але підпорядкований стелі розміру: краще
+    трохи м'якша картинка, ніж рілс, якого немає.
+    """
     out = os.path.join(TMP, "hb_" + os.path.basename(mp4))
-    try:
+
+    def encode(kbps):
         r = subprocess.run(["ffmpeg","-y","-i",mp4,"-c:v","libx264","-preset","slow",
-                            "-b:v","8M","-maxrate","10M","-bufsize","16M","-pix_fmt","yuv420p",
+                            "-b:v",f"{kbps}k","-maxrate",f"{int(kbps*1.25)}k",
+                            "-bufsize",f"{kbps*2}k","-pix_fmt","yuv420p",
                             "-c:a","aac","-b:a","192k","-movflags","+faststart",out],
                            capture_output=True, text=True)
-        if r.returncode == 0 and os.path.exists(out):
-            print("  видео перекодировано в высокий битрейт (8 Mbps)"); return out
+        return r.returncode == 0 and os.path.exists(out)
+
+    try:
+        if not encode(8000):
+            print("  ! ffmpeg не впорався — гружу оригинал"); return mp4
+        size = os.path.getsize(out)
+        # Міряємо, а не вгадуємо: бітрейт беремо з фактичного співвідношення розміру
+        # до стелі. Так не потрібен ffprobe, якого на ubuntu-latest може не бути
+        # (див. коментар у extract_cover нижче).
+        #
+        # 🔴 Один перерахунок НЕ досить, і це заміряно, а не перестраховка: для
+        # reel97 оцінка 6356 кбіт/с дала 37,4 МБ при стелі 35 — бо звук (192 кбіт/с)
+        # і контейнер не масштабуються разом із відео, а x264 трохи перевищує
+        # цільовий бітрейт. Тому крутимо, поки не вліземо, із запасом 8%.
+        kbps = 8000
+        for _ in range(3):
+            if size <= HI_MAX_BYTES:
+                break
+            kbps = max(2000, int(kbps * HI_MAX_BYTES / size * 0.92))
+            print(f"  ролик {size/1e6:.1f} МБ перевищує стелю {HI_MAX_BYTES/1e6:.0f} МБ "
+                  f"— перекодовую на {kbps} кбіт/с")
+            if not encode(kbps):
+                print("  ! кодування не вдалось"); break
+            size = os.path.getsize(out)
+        if os.path.exists(out) and size <= HI_MAX_BYTES:
+            print(f"  видео перекодировано: {size/1e6:.1f} МБ"); return out
+        # 🔴 Оригінал — запасний шлях, але тільки якщо ВІН сам пролазить. Інакше
+        # ми б упевнено віддали в завантаження файл, який теж завеликий, і знову
+        # отримали глухе 422.
+        if os.path.getsize(mp4) <= HI_MAX_BYTES:
+            print(f"  ! стелю не взяли кодуванням — гружу оригинал "
+                  f"({os.path.getsize(mp4)/1e6:.1f} МБ)")
+            return mp4
+        raise RuntimeError(
+            f"ролик не вліз у стелю {HI_MAX_BYTES/1e6:.0f} МБ ні кодуванням "
+            f"({size/1e6:.1f} МБ), ні оригіналом ({os.path.getsize(mp4)/1e6:.1f} МБ)")
     except FileNotFoundError:
         pass
     print("  ! ffmpeg недоступен — гружу оригинал"); return mp4
