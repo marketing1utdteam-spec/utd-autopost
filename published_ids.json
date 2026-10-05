@@ -614,5 +614,12 @@
   "platform_id": "urn:li:share:7512759909051113472",
   "date": "2026-10-05",
   "url": "https://www.linkedin.com/feed/update/urn:li:share:7512759909051113472"
+ },
+ "2026-10-05_li_post26": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:share:7512799758433017856",
+  "date": "2026-10-05",
+  "url": "https://www.linkedin.com/feed/update/urn:li:share:7512799758433017856"
  }
 }
