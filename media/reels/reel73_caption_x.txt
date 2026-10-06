@@ -1,0 +1,5 @@
+An announcement bar beats a popup: always visible, never blocks the checkout. Ultra ships with one built in, ready to promote free shipping or a sale code.
+
+https://themes.shopify.com/themes/ultra
+
+#shopify
