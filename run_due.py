@@ -4,6 +4,7 @@
 FB идёт через нативное отложенное планирование Meta (см. fb_bulk_schedule.py), тут — только IG (нет нативного расписания).
 Запуск: python run_due.py [--date YYYY-MM-DD] [--dry-run]
 """
+import re
 import json, os, glob, argparse, datetime
 import meta_post as M
 import social_post as S
@@ -51,6 +52,25 @@ def _caption(here, entry, per_network, shared):
     """
     if entry.get("caption_file"):
         return open(os.path.join(here, entry["caption_file"])).read().strip()
+    # 🔴 Запасний шлях для РІЛСІВ, доданий 06.10.2026. Для тек (`media/ig/postNN/`)
+    # запасний підпис лежить поруч файлом `caption_fb.txt`, і це працювало. Для
+    # рілсів підписи звуться інакше — `reelNN_caption_fb.txt` — тож пошук
+    # `media/reels/caption_fb.txt` не знаходив нічого й пост падав.
+    #
+    # Через це Facebook не міг узяти ЖОДЕН із 90 готових рілсів: під нього не було
+    # окремих файлів, а до спільного `reelNN_caption.txt` код не вмів дотягнутись.
+    # Мережа стояла не через брак матеріалу, а через розрив у двох правилах іменування.
+    vid = entry.get("video") or ""
+    if vid and not entry.get("folder"):
+        stem = os.path.join(here, vid.rsplit(".", 1)[0])
+        stem = re.sub(r"_(1x1|4x5|16x9)$", "", stem)
+        for suffix in (per_network.replace("caption", "_caption"), "_caption.txt"):
+            cand = stem + suffix
+            if os.path.exists(cand):
+                txt = open(cand).read().strip()
+                if txt:
+                    print(f"  підпис: {os.path.basename(cand)}")
+                    return txt
     base = os.path.join(here, entry.get("folder") or os.path.dirname(entry.get("video") or ""))
     for name in (per_network, shared):
         p = os.path.join(base, name)
