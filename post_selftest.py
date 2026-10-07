@@ -26,6 +26,7 @@ import glob
 import subprocess
 import json
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -238,6 +239,58 @@ def main():
         say(f"   {'🟢' if not nocap else '🔴'} без підпису: {len(nocap)}")
     for x in nocap[:5]:
         say(f"      · {x}")
+
+    # ── 4б. ПІДПИС МУСИТЬ РОЗБИРАТИСЬ, А НЕ ЛИШЕ ІСНУВАТИ ────────────────────
+    # 🔴 Заведено 07.10.2026. Перевірка вище каже «без підпису: 0» — і це правда:
+    # файл є в кожного запису. Але Pinterest приймає не текст, а ТРИ поля
+    # (TITLE/URL/опис), і спільний підпис ними не є. Заміряно того дня: 24 піни
+    # мали підпис, проходили перевірку вище й усе одно впали б мовчки при
+    # публікації з «немає рядка TITLE:».
+    #
+    # Тобто «файл на місці» і «мережа цей файл візьме» — різні твердження, і
+    # перевіряти треба друге. Читаємо тим самим розбирачем, яким читає публікатор,
+    # інакше перевірка підтверджує сама себе.
+    unparsed = []
+    try:
+        sys.path.insert(0, os.path.expanduser("~/utd-runner/scripts"))
+        import importlib.util as _iu
+        _sp = _iu.spec_from_file_location(
+            "lcaps", os.path.expanduser("~/utd-runner/scripts/linkedin_captions.py"))
+        _lc = _iu.module_from_spec(_sp); _sp.loader.exec_module(_lc)
+    except Exception as _e:
+        say(f"   🟡 розбирач підписів не завантажився ({type(_e).__name__}) — "
+            f"перевірку НЕ виконано, і це не «все добре»")
+        _lc = None
+    if _lc is not None:
+        for e in due:
+            if e.get("kind") != "pin_post":
+                continue
+            vid = e.get("video") or ""
+            txt = None
+            if vid:
+                stem = re.sub(r"_(1x1|4x5|16x9)$", "", vid.rsplit(".", 1)[0])
+                for cand in (stem + "_caption_pin.txt", e.get("caption_file") or ""):
+                    if not cand:
+                        continue
+                    ap = os.path.join(HERE, cand)
+                    if os.path.exists(ap):
+                        txt = open(ap, encoding="utf-8").read().strip()
+                        break
+            elif e.get("folder"):
+                ap = os.path.join(HERE, e["folder"], "caption_pin.txt")
+                if os.path.exists(ap):
+                    txt = open(ap, encoding="utf-8").read().strip()
+            if txt is None:
+                continue
+            _parts, _err = _lc.parse_pin(txt)
+            if _err:
+                unparsed.append(f"{e['id']}: {_err}")
+        ok("підпис піна розбирається тим самим розбирачем, що в публікаторі",
+           not unparsed, "; ".join(unparsed[:4]))
+        say(f"   {'🟢' if not unparsed else '🔴'} піни, які не розберуться: "
+            f"{len(unparsed)}")
+        for x in unparsed[:4]:
+            say(f"      · {x}")
 
     # ── 5. Валідатор реально вміє відмовляти ─────────────────────────────────
     # Перевірка, яка не може впасти, не є перевіркою. Підсовую свідомо непридатне.
