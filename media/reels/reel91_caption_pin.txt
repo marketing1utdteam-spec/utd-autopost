@@ -1,0 +1,4 @@
+TITLE: Victory Shopify Theme with Built-In Animations and Product Filters
+URL: https://themes.shopify.com/themes/victory/presets/victory
+
+Victory is UTD's Shopify theme with scroll animations on desktop and mobile, product filters, swatch search, and mobile-first layouts — no apps or code needed. Five presets included: Victory, Flip, Roast, Athletica and Nitro. Speed-tested pages with clean SEO markup. Customize free until you're ready, pay only when you publish.

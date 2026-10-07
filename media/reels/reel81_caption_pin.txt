@@ -1,0 +1,4 @@
+TITLE: Ultra Shopify Theme with Back in Stock Notifications
+URL: https://themes.shopify.com/themes/ultra
+
+Ultra is a Shopify theme built with a notify-me button that captures customer emails when items sell out, so you don't lose the sale — when stock returns, they're first to know and first to buy. Turn sold-out pages into a second chance at conversion with back in stock notifications built in.
