@@ -649,5 +649,12 @@
   "platform_id": "urn:li:ugcPost:7513599217614028800",
   "date": "2026-10-07",
   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7513599217614028800"
+ },
+ "2026-10-07_li_post_reel02": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7513638431412117504",
+  "date": "2026-10-07",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7513638431412117504"
  }
 }
