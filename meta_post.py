@@ -264,7 +264,40 @@ def ig_reel(mp4, caption, dry, cover=None, cover_sec=None, share_to_feed=False):
         print("  🧹 видео и обложка удалены с хостинга")
 
 # ---------- YouTube ----------
-def _yt_upload(mp4, title, description, dry=False, label="Short"):
+# 🔴 Плейлист для довгих демо. Створений 08.10.2026 на вимогу власника, public.
+# Тримаємо тут, а не в розкладі: це властивість каналу, а не окремого запису.
+YT_PLAYLIST_DEMOS = "PLMgMpKKHAt38"
+
+
+def _yt_add_to_playlist(video_id, playlist_id, access_token):
+    """Додати опубліковане відео в плейлист. Вертає (ок, причина).
+
+    🔴 ЦЯ ФУНКЦІЯ НЕ СМІЄ КИДАТИ ВИНЯТОК, І ЦЕ НЕ ОХАЙНІСТЬ.
+
+    Її кличуть ПІСЛЯ успішного завантаження. Якщо звідси полетить виняток, `run_due`
+    зарахує весь запис як невдалий — і наступний прогін опублікує те саме відео
+    ВДРУГЕ. Тобто дрібна помилка з плейлистом коштувала б дубля на каналі.
+
+    Тому: помилку повертаємо значенням, кличучий бік гучно каже про неї й іде далі.
+    Відео вже на каналі, воно просто не в папці — це менша біда, ніж два відео.
+    """
+    body = {"snippet": {"playlistId": playlist_id,
+                        "resourceId": {"kind": "youtube#video", "videoId": video_id}}}
+    req = urllib.request.Request(
+        "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet",
+        data=json.dumps(body).encode(),
+        headers={"Authorization": f"Bearer {access_token}",
+                 "Content-Type": "application/json"})
+    try:
+        urllib.request.urlopen(req, timeout=30)
+        return True, ""
+    except urllib.error.HTTPError as e:
+        return False, f"HTTP {e.code}: {e.read().decode()[:200]}"
+    except Exception as e:
+        return False, f"{type(e).__name__}: {str(e)[:150]}"
+
+
+def _yt_upload(mp4, title, description, dry=False, label="Short", playlist=None):
     """Завантаження відео на YouTube. ОДНЕ місце для Shorts і для довгих роликів.
 
     🔴 ЧОМУ СПІЛЬНА ФУНКЦІЯ, А НЕ ДВІ. Тут ставиться `containsSyntheticMedia` —
@@ -311,7 +344,31 @@ def _yt_upload(mp4, title, description, dry=False, label="Short"):
     except urllib.error.HTTPError as e:
         raise RuntimeError(f"YT upload {e.code}: {e.read().decode()[:300]}")
     print(f"  ✅ YT {label}:", resp['id'], "https://youtu.be/"+resp['id'])
+    if playlist:
+        ok, why = _yt_add_to_playlist(resp['id'], playlist, at)
+        if ok:
+            print(f"  ✅ додано в плейлист {playlist}")
+        else:
+            # 🔴 Гучно, але НЕ винятком — див. докстрінг _yt_add_to_playlist.
+            print(f"  🔴 відео опубліковано, але В ПЛЕЙЛИСТ НЕ ДОДАНО ({playlist}): {why}")
+            print(f"     Додати руками: https://youtu.be/{resp['id']} → Studio → плейлист")
+        _yt_note_playlist(ok)
     return resp['id']
+
+
+def _yt_note_playlist(ok):
+    """Записати в Grafana, що додавання в плейлист відпрацювало або ні.
+
+    Без цього сбій видно лише в лозі одного прогону, а лог ніхто не читає щодня.
+    Пишемо ОБИДВА стани, і успіх теж: ряд, який зʼявляється лише в поганому стані,
+    ніколи не гасне — та сама пастка, що з «метрика замовкла».
+    """
+    try:
+        sys.path.insert(0, os.path.expanduser("~/utd-runner/scripts"))
+        from daily_audit import push as _p
+        _p({"utd_yt_playlist_add_failed": 0.0 if ok else 1.0})
+    except Exception as e:
+        print(f"  🟡 стан плейлиста в Grafana не записався: {type(e).__name__}")
 
 
 def yt_short(mp4, title, description, dry=False):
@@ -319,7 +376,7 @@ def yt_short(mp4, title, description, dry=False):
     return _yt_upload(mp4, title, description, dry, label="Short")
 
 
-def yt_video(mp4, title, description, dry=False):
+def yt_video(mp4, title, description, dry=False, playlist=YT_PLAYLIST_DEMOS):
     """Горизонтальний ролик без обмеження 60 с — звичайне відео на каналі.
 
     Доданий 08.10.2026 на потребу власника: чат Вікторії готує довгі 16:9 ролики, і
@@ -327,7 +384,7 @@ def yt_video(mp4, title, description, dry=False):
     `~/.config/utd/youtube.json` живий (refresh HTTP 200, дозвіл `youtube.upload`,
     канал UTD `UCrGRu5vVLUrwcXPlqFS3m8w`).
     """
-    return _yt_upload(mp4, title, description, dry, label="відео")
+    return _yt_upload(mp4, title, description, dry, label="відео", playlist=playlist)
 
 # ---------- FB ----------
 def fb_photo(png, caption, schedule_iso=None, dry=False):

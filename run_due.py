@@ -118,7 +118,31 @@ def main():
     ap.add_argument("--skip", default="", help="усе, крім цих типів")
     a = ap.parse_args()
     today = a.date or today_brussels()
+    # 🔴 ДВІ ЧЕРГИ, А НЕ ОДНА. Рішення власника 08.10.2026: довгі горизонтальні
+    # ролики — «не рілси і мають іти окремим паблішингом», чергу наповнює чат
+    # Вікторії.
+    #
+    # Чому окремий файл, а не просто інший `kind` у спільному: `schedule.json`
+    # заповнюють інструменти рілсів (`fill_queue.py`, `schedule_fill.py`), і вони
+    # перебирають усе підряд. Довгі записи в тому самому файлі рано чи пізно
+    # потрапили б під них — або навпаки, їх було б видно як «дірку» в охопленні
+    # мереж. Різні за природою черги не змішуємо.
+    #
+    # Нижче вони ЗЛИВАЮТЬСЯ в один список, і це важливо: усе подальше — облік
+    # опублікованого, стелі на добу, карантин — працює за `id`, а не за файлом.
+    # Тому другий файл не вимагає жодної іншої правки в цьому скрипті.
     sched = load("schedule.json", [])
+    sched_video = load("schedule_video.json", [])
+    if sched_video:
+        _ids = {e.get("id") for e in sched}
+        _dup = [e["id"] for e in sched_video if e.get("id") in _ids]
+        if _dup:
+            # Один id у двох чергах означав би дві публікації того самого.
+            raise RuntimeError(
+                f"id є в обох чергах ({len(_dup)}): {', '.join(_dup[:3])} — "
+                f"не публікую нічого, поки це не розведено")
+        sched = sched + sched_video
+        print(f"   черга 16:9: {len(sched_video)} записів зі schedule_video.json")
     posted = set(load("posted.json", {"posted": []})["posted"])
     print(f"== run_due · today={today} · dry={a.dry_run} · записей в плане={len(sched)} · уже опубликовано={len(posted)}")
 
