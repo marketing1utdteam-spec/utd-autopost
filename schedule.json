@@ -7279,9 +7279,10 @@
  },
  {
   "id": "2026-10-08_yt_video_fuse02",
-  "date": "2026-10-08",
+  "date": "2026-11-01",
   "kind": "yt_video",
   "video": "media/reels/fuse-node-fashion-16x9-v2.mp4",
-  "meta_file": "media/reels/fuse-node-fashion-16x9-v2.json"
+  "meta_file": "media/reels/fuse-node-fashion-16x9-v2.json",
+  "hold_reason": "притримано 08.10.2026: власник звелів не публікувати 16:9 з багом і сказав, що Вікторія виведе новий сама. Щоб відпустити — поставити дату й прибрати це поле"
  }
 ]
