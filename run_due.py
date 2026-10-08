@@ -219,7 +219,7 @@ def main():
                # показує, наскільки уважно вони дивляться на автоматизацію.
                "tiktok":    env_int("DAILY_TT", 1)}
     PLATFORM = {"ig_post": "instagram", "ig_reel": "instagram",
-                "yt_short": "youtube", "fb_post": "facebook",
+                "yt_short": "youtube", "yt_video": "youtube", "fb_post": "facebook",
                 "th_post": "threads", "li_post": "linkedin", "tt_post": "tiktok"}
 
     at_path = os.path.join(HERE, "posted_at.json")
@@ -274,7 +274,7 @@ def main():
         if tried >= MAX_PER_RUN:
             skipped_by_cap += 1
             continue
-        if e["kind"] == "yt_short" and done_yt >= MAX_YT_PER_RUN:
+        if e["kind"] in ("yt_short", "yt_video") and done_yt >= MAX_YT_PER_RUN:
             skipped_by_cap += 1
             continue
         plat = PLATFORM.get(e["kind"])
@@ -318,6 +318,21 @@ def main():
             elif kind == "yt_short":
                 m = json.load(open(os.path.join(HERE, e["meta_file"])))
                 plat_id = M.yt_short(os.path.join(HERE, e["video"]), m["title"], m["description"], a.dry_run)
+            elif kind == "yt_video":
+                # 🔴 Горизонтальний ролик без обмеження 60 с. Доданий 08.10.2026 на
+                # потребу власника: чат Вікторії готує довгі 16:9, і публікувати їх
+                # має система, а не людина.
+                #
+                # Публікатор ТОЙ САМИЙ — Shorts не вимагають окремого виклику API,
+                # YouTube визначає їх сам за вертикаллю й тривалістю. Різниця живе
+                # лише в перевірці, і перевірка тут ОБОВʼЯЗКОВА: без неї вертикальний
+                # файл поїхав би як довге відео, і навпаки, без жодної помилки.
+                m = json.load(open(os.path.join(HERE, e["meta_file"])))
+                if not V.say(os.path.join(HERE, e["video"]), "youtube_long",
+                             m.get("description", "")):
+                    raise RuntimeError("відео не пройшло перевірку youtube_long")
+                plat_id = M.yt_video(os.path.join(HERE, e["video"]),
+                                     m["title"], m["description"], a.dry_run)
             elif kind == "fb_post" and vid:
                 cap = _caption(HERE, e, "caption_fb.txt", "caption.txt")
                 if not V.say(vid, "facebook", cap):
@@ -435,7 +450,7 @@ def main():
         if not a.dry_run:
             did.append(e["id"])
             done_run += 1
-            if e["kind"] == "yt_short":
+            if e["kind"] in ("yt_short", "yt_video"):
                 done_yt += 1
             plat = PLATFORM.get(e["kind"])
             if plat:

@@ -264,8 +264,20 @@ def ig_reel(mp4, caption, dry, cover=None, cover_sec=None, share_to_feed=False):
         print("  🧹 видео и обложка удалены с хостинга")
 
 # ---------- YouTube ----------
-def yt_short(mp4, title, description, dry=False):
-    """Загрузка Shorts. До аудита Google видео выходят private (ограничение платформы)."""
+def _yt_upload(mp4, title, description, dry=False, label="Short"):
+    """Завантаження відео на YouTube. ОДНЕ місце для Shorts і для довгих роликів.
+
+    🔴 ЧОМУ СПІЛЬНА ФУНКЦІЯ, А НЕ ДВІ. Тут ставиться `containsSyntheticMedia` —
+    обовʼязкова декларація ШІ, а не ввічливість. Дві копії цього коду рано чи пізно
+    розійдуться, і довгі ролики поїдуть без позначки, тоді як короткі з нею. Саме так
+    виглядає порушення правил платформи, якого ніхто не помітить: обидва шляхи
+    «працюють».
+
+    🔴 Shorts не вимагають окремого виклику API. YouTube визначає Short сам — за
+    вертикаллю й тривалістю до 3 хвилин. Тому горизонтальний ролик на 2 хвилини
+    їде ТИМ САМИМ `videos.insert`, і публікатор для нього міняти не треба. Різниця
+    між форматами живе лише в перевірці (`post_validate.py`), не тут.
+    """
     ycfg = (json.loads(os.environ['YT_CONFIG']) if os.environ.get('YT_CONFIG')
             else json.load(open(os.path.expanduser('~/.config/utd/youtube.json'))))
     body = urllib.parse.urlencode({'client_id':ycfg['client_id'],'client_secret':ycfg['client_secret'],
@@ -298,7 +310,24 @@ def yt_short(mp4, title, description, dry=False):
         resp = json.load(urllib.request.urlopen(up))
     except urllib.error.HTTPError as e:
         raise RuntimeError(f"YT upload {e.code}: {e.read().decode()[:300]}")
-    print("  ✅ YT Short:", resp['id'], "(private до аудита) https://youtu.be/"+resp['id']); return resp['id']
+    print(f"  ✅ YT {label}:", resp['id'], "https://youtu.be/"+resp['id'])
+    return resp['id']
+
+
+def yt_short(mp4, title, description, dry=False):
+    """Вертикальний ролик до 60 с. YouTube сам зарахує його в Shorts."""
+    return _yt_upload(mp4, title, description, dry, label="Short")
+
+
+def yt_video(mp4, title, description, dry=False):
+    """Горизонтальний ролик без обмеження 60 с — звичайне відео на каналі.
+
+    Доданий 08.10.2026 на потребу власника: чат Вікторії готує довгі 16:9 ролики, і
+    публікувати їх має система, а не людина. Перевірено того ж дня, що токен у
+    `~/.config/utd/youtube.json` живий (refresh HTTP 200, дозвіл `youtube.upload`,
+    канал UTD `UCrGRu5vVLUrwcXPlqFS3m8w`).
+    """
+    return _yt_upload(mp4, title, description, dry, label="відео")
 
 # ---------- FB ----------
 def fb_photo(png, caption, schedule_iso=None, dry=False):
