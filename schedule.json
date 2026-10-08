@@ -7269,5 +7269,12 @@
   "date": "2027-03-24",
   "kind": "ig_post",
   "folder": "media/ig/post47"
+ },
+ {
+  "id": "2026-10-08_yt_video_fuse01",
+  "date": "2026-10-08",
+  "kind": "yt_video",
+  "video": "media/reels/fuse-node-fashion-16x9.mp4",
+  "meta_file": "media/reels/fuse-node-fashion-16x9.json"
  }
 ]
