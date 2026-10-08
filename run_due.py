@@ -111,7 +111,12 @@ def _post_url(kind, plat_id):
     складаючи URL руками, і щоб у реєстрі одразу було видно, куди саме пішов пост."""
     if not plat_id:
         return None
-    if kind == "yt_short":
+    # 🔴 Обидва типи YouTube, і це не дрібниця оформлення. Гілки для `yt_video` тут
+    # не було, а знизу стоїть `return` у форматі Instagram — тобто опублікований
+    # довгий ролик лягав би в реєстр з адресою `instagram.com/p/<id відео YouTube>`.
+    # Реєстр — єдине місце, де айді публікації живе довше за логи (вони 90 днів),
+    # тож хибне посилання означає втрачений доступ до власного поста.
+    if kind in ("yt_short", "yt_video"):
         return f"https://youtu.be/{plat_id}"
     if kind == "fb_post":
         return f"https://www.facebook.com/{plat_id}"

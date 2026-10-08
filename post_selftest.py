@@ -117,7 +117,30 @@ def main():
     # звіті це виглядало як «нічого не було в черзі».
     src = open(os.path.join(HERE, "run_due.py")).read()
     kinds = sorted({str(e.get("kind")) for e in sched})
-    known = {"ig_post", "ig_reel", "yt_short", "fb_post", "th_post", "li_post", "tt_post"}
+    # 🔴 СПИСОК ОБРОБНИКІВ ЧИТАЄТЬСЯ З КОДУ, А НЕ ВПИСУЄТЬСЯ РУКАМИ. Заміряно 08.10.2026.
+    #
+    # Було жорстко перелічено сім типів. Я додав восьмий (`yt_video`, довгі ролики для
+    # YouTube), обробник написав, а в цей перелік внести забув — і самоперевірка
+    # сказала «без обробника: yt_video, НЕ ПУБЛІКУВАТИ» про цілком робочий потік.
+    # Перелік, який треба пам'ятати оновити, рано чи пізно розійдеться з кодом.
+    #
+    # Тепер типи витягуються з гілок `if kind == "..."` самого run_due.py. Додали
+    # обробник — перевірка бачить його сама; прибрали — червоніє сама.
+    _rd = open(os.path.join(HERE, "run_due.py"), encoding="utf-8").read()
+    known = set(re.findall(r'kind\s*==\s*"([a-z_]+)"', _rd))
+    known |= {k for grp in re.findall(r'kind\s+in\s+\(([^)]*)\)', _rd)
+              for k in re.findall(r'"([a-z_]+)"', grp)}
+    # 🔴 Запобіжник від тихого нуля: якщо регулярка колись перестане збігатися,
+    # `known` стане порожнім — і тоді ВСІ типи виглядатимуть без обробника, тобто
+    # перевірка почервоніє, а не змовчить. Але порожній список означає поломку
+    # САМОЇ перевірки, і це треба сказати окремо, іншими словами.
+    if len(known) < 8:
+        ok("перелік обробників вичитується з run_due.py", False,
+           f"знайдено {len(known)}: {sorted(known)}")
+        say(f"   🔴 перевірка обробників зламалась: з run_due.py вичитано "
+            f"{len(known)} типів, очікується щонайменше 8")
+    else:
+        ok("перелік обробників вичитується з run_due.py", True, "")
 
     # 🔴 ТИПИ, ЧИЙ ОБРОБНИК ЖИВЕ НЕ ТУТ (заміряно 04.10.2026).
     #
@@ -138,6 +161,13 @@ def main():
         "x_post":   ("~/utd-runner/scripts/xpin_publish.py", "buffer"),
         "tt_post":  ("~/utd-runner/scripts/tiktok_publish.py", "tiktok"),
     }
+    # 🔴 Типи з ELSEWHERE прибираємо з переліку вичитаних. У `run_due.py` для них Є
+    # гілка `elif kind in ("pin_post", "x_post")`, але вона каже протилежне —
+    # «це не наше, передаю іншому публікатору». Регулярка вище бачить лише слово
+    # `kind`, тож без цього рядка перевірки нижче вимагали б від них запису в
+    # PLATFORM, якого свідомо немає, і червоніли б на справній поведінці.
+    known -= set(ELSEWHERE)
+
     outside_bad = []
     for k, (path, needle) in sorted(ELSEWHERE.items()):
         p = os.path.expanduser(path)
@@ -209,10 +239,32 @@ def main():
            "yt_short": "caption.txt"}
     nocap = []
     for e in due if has_media else []:
-        if e["kind"] == "yt_short":
+        # 🔴 ОБИДВА ТИПИ YouTube, і перевірка дивиться ВСЕРЕДИНУ файла.
+        #
+        # Було тільки `yt_short`. Через це 08.10.2026 самоперевірка написала про
+        # цілком готовий довгий ролик «немає ні caption.txt, ні caption.txt» і
+        # поставила «НЕ ПУБЛІКУВАТИ» — бо шукала підпис там, де його для цього типу
+        # не буває: `yt_video` бере заголовок і опис із meta_file, не з caption.txt.
+        #
+        # Самої наявності файла мало: `run_due.py` звертається до `m["title"]` і
+        # `m["description"]` напряму, тож порожнє або відсутнє поле — це падіння вже
+        # під час публікації, коли відео наполовину вивантажене. Заміряно: у всіх 18
+        # незакритих Shorts обидва поля на місці, тож сувора перевірка тут нікого не
+        # чіпає даремно.
+        if e["kind"] in ("yt_short", "yt_video"):
             mf = os.path.join(HERE, e.get("meta_file", ""))
             if not have(mf):
                 nocap.append(f"{e['id']}: немає meta_file")
+            elif os.path.exists(mf):
+                try:
+                    _m = json.load(open(mf, encoding="utf-8"))
+                except Exception as ex:
+                    nocap.append(f"{e['id']}: meta_file не читається ({type(ex).__name__})")
+                else:
+                    _bad = [f for f in ("title", "description")
+                            if not (_m.get(f) or "").strip()]
+                    if _bad:
+                        nocap.append(f"{e['id']}: у meta_file порожнє {', '.join(_bad)}")
             continue
         # 🔴 `_caption` читає файл із ДИСКА, а при розрідженому клоні медіа там немає.
         # Тому спершу питаємо дерево комітa (див. `in_repo`), і лише якщо файл є на

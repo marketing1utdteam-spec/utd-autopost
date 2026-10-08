@@ -1,1 +1,9 @@
-[]
+[
+ {
+  "id": "2026-10-08_yt_video_fuse02",
+  "date": "2026-10-08",
+  "kind": "yt_video",
+  "video": "media/reels/fuse-node-fashion-16x9-v2.mp4",
+  "meta_file": "media/reels/fuse-node-fashion-16x9-v2.json"
+ }
+]
