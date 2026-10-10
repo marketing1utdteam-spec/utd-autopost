@@ -1,0 +1,5 @@
+A notify-me button on sold-out items captures emails instead of losing shoppers. When stock returns, they're first to know and first to buy. Built into Ultra.
+
+https://themes.shopify.com/themes/ultra
+
+#shopify
