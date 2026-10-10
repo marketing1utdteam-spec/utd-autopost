@@ -712,5 +712,12 @@
   "platform_id": "urn:li:share:7514687522136981504",
   "date": "2026-10-10",
   "url": "https://www.linkedin.com/feed/update/urn:li:share:7514687522136981504"
+ },
+ "2026-10-10_li_post_reel07": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7514729937791008769",
+  "date": "2026-10-10",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7514729937791008769"
  }
 }
