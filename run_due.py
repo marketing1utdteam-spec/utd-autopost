@@ -75,7 +75,23 @@ def _caption(here, entry, per_network, shared):
     після пʼяти спроб дешевший за опублікований порожній пост.
     """
     if entry.get("caption_file"):
-        return open(os.path.join(here, entry["caption_file"])).read().strip()
+        # 🔴 `caption_file` ПЕРЕБИВАВ МЕРЕЖЕВИЙ ФАЙЛ, виправлено 12.10.2026.
+        # Поле вказує на СПІЛЬНИЙ підпис (`reelNN_caption.txt`), і повернути його
+        # одразу означало ніколи не побачити `reelNN_caption_ig.txt`, навіть коли
+        # той лежить поруч. Тобто для всіх записів із цим полем мережеві підписи
+        # не працювали за побудовою — а саме такі всі рілси.
+        #
+        # Межа навмисна: сусід береться, лише якщо він існує і не порожній. Якщо
+        # його немає — поведінка та сама, що й була.
+        _p = os.path.join(here, entry["caption_file"])
+        if _p.endswith("caption.txt"):
+            _sib = _p[: -len("caption.txt")] + per_network
+            if os.path.exists(_sib):
+                _t = open(_sib).read().strip()
+                if _t:
+                    print(f"  підпис: {os.path.basename(_sib)}")
+                    return _t
+        return open(_p).read().strip()
     # 🔴 Запасний шлях для РІЛСІВ, доданий 06.10.2026. Для тек (`media/ig/postNN/`)
     # запасний підпис лежить поруч файлом `caption_fb.txt`, і це працювало. Для
     # рілсів підписи звуться інакше — `reelNN_caption_fb.txt` — тож пошук
@@ -380,11 +396,19 @@ def main():
             elif kind == "ig_post":
                 folder = os.path.join(HERE, e["folder"])
                 slides = sorted(glob.glob(f"{folder}/slide_*.jpg")) or sorted(glob.glob(f"{folder}/slide_*.png"))
-                cap = open(f"{folder}/caption.txt").read().strip()
+                # 🔴 ЧИТАЛО СПІЛЬНИЙ ПІДПИС В ОБХІД `_caption`, виправлено 12.10.2026.
+                # Гілка з відео поруч уже брала `caption_ig.txt`, а ця — ні. Наслідок
+                # був би тихий і повний: 12.10 згенеровано 40 підписів під Instagram із
+                # виправленими хештегами, і каруселі (19 із 30 публікацій за місяць)
+                # не взяли б жодного. Правка хештегів лишилась би косметикою, а я б
+                # рапортував про неї як про зроблену.
+                cap = _caption(HERE, e, "caption_ig.txt", "caption.txt")
                 if len(slides) > 1: plat_id = M.ig_carousel(slides, cap, a.dry_run)
                 else: plat_id = M.ig_single(slides[0], cap, a.dry_run)
             elif kind == "ig_reel":
-                cap = open(os.path.join(HERE, e["caption_file"])).read().strip()
+                # 🔴 Те саме, що й у каруселі: читало файл із запису навпростець і
+                # мережевого варіанта не бачило взагалі.
+                cap = _caption(HERE, e, "caption_ig.txt", "caption.txt")
                 plat_id = M.ig_reel(os.path.join(HERE, e["video"]), cap, a.dry_run,
                                     share_to_feed=bool(e.get("share_to_feed")))
             elif kind == "yt_short":
