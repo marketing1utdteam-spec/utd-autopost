@@ -7283,5 +7283,12 @@
   "kind": "yt_video",
   "video": "media/reels/fuse-header-16x9.mp4",
   "meta_file": "media/reels/fuse-header-16x9.json"
+ },
+ {
+  "id": "2026-10-12_yt_fuse_overview_short",
+  "date": "2026-10-12",
+  "kind": "yt_short",
+  "video": "media/reels/fuse-overview-short.mp4",
+  "meta_file": "media/reels/fuse-overview-short_yt.json"
  }
 ]
