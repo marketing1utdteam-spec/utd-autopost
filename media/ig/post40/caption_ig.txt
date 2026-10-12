@@ -1,9 +1,9 @@
-The invisible infrastructure failures will crater your store.
+The infrastructure work you never want to do.
 
-On a self-hosted platform, hosting stability, PCI compliance, SSL, fraud protection, and DDoS mitigation fall on you. Shopify handles this through a security team larger than most companies—they processed hundreds of billions in sales last year and held through Black Friday peaks no single store could load-test.
+Hosting stability during traffic spikes, payment security, PCI compliance, SSL, patches, fraud and DDoS protection—on self-hosted platforms, these are your responsibility. On Shopify, they're handled by a security team larger than most companies. The platform processed hundreds of billions in sales last year and held through Black Friday peaks no single store could load-test.
 
-That means you focus on what matters: a storefront that converts. A great theme is where that happens.
+That frees you to build the storefront. A great theme is where that effort compounds.
 
 Theme + free trial: link in bio
 
-#shopifytheme #dtc #cro #conversionrate #ecommercedesign #onlineboutique
+#shopifytheme #dtc #conversionrate #productpage #ecommercedesign

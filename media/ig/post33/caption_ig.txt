@@ -1,9 +1,11 @@
 One store converts twice as well. Same products, same prices.
 
-Store A wins: big photos, buy button in reach, reviews visible, ~1s load. Store B loses: small images, buy button below fold, no reviews, ~4s load. Layout and speed alone can double conversion. 87% of shoppers decide on the product page, and 53% abandon a slow one.
+Store A loads in ~1s with big photos, buy button in reach, and reviews visible. Store B takes ~4s with small images, buy button below the fold, no reviews. Winner: A, by a lot.
+
+87% of shoppers decide on the product page (Salsify). 53% abandon a slow one (Google). Layout and speed alone can double conversion.
 
 You don't need more traffic. You need a store built to convert it.
 
-Theme + free trial: link in bio.
+Theme + free trial: link in bio
 
-#shopifytheme #dtc #cro #conversionrate #ecommercedevelopment #productpage
+#shopifytheme #dtc #cro #conversionrate #productpage #onlineboutique
