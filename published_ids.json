@@ -775,5 +775,12 @@
   "platform_id": "urn:li:ugcPost:7515611007000420353",
   "date": "2026-10-13",
   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7515611007000420353"
+ },
+ "2026-10-13_li_post_reel13": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7515649655901360128",
+  "date": "2026-10-13",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7515649655901360128"
  }
 }
