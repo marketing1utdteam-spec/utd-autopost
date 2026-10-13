@@ -698,5 +698,89 @@
   "platform_id": "urn:li:ugcPost:7514290854979887104",
   "date": "2026-10-09",
   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7514290854979887104"
+ },
+ "2026-10-08_th_post17": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "18113815070147617",
+  "date": "2026-10-10",
+  "url": "https://www.threads.net/@utd_web_team/post/18113815070147617"
+ },
+ "2026-10-10_li_post_post48": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:share:7514687522136981504",
+  "date": "2026-10-10",
+  "url": "https://www.linkedin.com/feed/update/urn:li:share:7514687522136981504"
+ },
+ "2026-10-10_li_post_reel07": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7514729937791008769",
+  "date": "2026-10-10",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7514729937791008769"
+ },
+ "2026-10-09_th_post18": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "17911878711490859",
+  "date": "2026-10-11",
+  "url": "https://www.threads.net/@utd_web_team/post/17911878711490859"
+ },
+ "2026-10-10_li_post_reel08": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7514977192607465472",
+  "date": "2026-10-11",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7514977192607465472"
+ },
+ "2026-10-11_li_post_reel09": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7515016202084319232",
+  "date": "2026-10-11",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7515016202084319232"
+ },
+ "2026-10-11_li_post_reel10": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7515214837111689216",
+  "date": "2026-10-12",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7515214837111689216"
+ },
+ "2026-10-11_th_post_post48": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "18080780477709448",
+  "date": "2026-10-12",
+  "url": "https://www.threads.net/@utd_web_team/post/18080780477709448"
+ },
+ "2026-10-12_li_post_reel11": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7515217414075080705",
+  "date": "2026-10-12",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7515217414075080705"
+ },
+ "2026-10-10_th_post19": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "18093904136666571",
+  "date": "2026-10-13",
+  "url": "https://www.threads.net/@utd_web_team/post/18093904136666571"
+ },
+ "2026-10-12_li_post_reel12": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7515611007000420353",
+  "date": "2026-10-13",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7515611007000420353"
+ },
+ "2026-10-13_li_post_reel13": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7515649655901360128",
+  "date": "2026-10-13",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7515649655901360128"
  }
 }
