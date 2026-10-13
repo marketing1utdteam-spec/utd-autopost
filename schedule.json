@@ -7346,5 +7346,12 @@
   "kind": "tt_post",
   "video": "media/reels/reel100_tt.mp4",
   "caption_file": "media/reels/reel100_caption_tt.txt"
+ },
+ {
+  "id": "2026-10-13_yt_video_fuse_home01",
+  "date": "2026-10-13",
+  "kind": "yt_video",
+  "video": "media/reels/fuse-home-16x9.mp4",
+  "meta_file": "media/reels/fuse-home-16x9.json"
  }
 ]
