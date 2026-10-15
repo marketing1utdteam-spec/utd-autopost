@@ -168,15 +168,29 @@ def main():
     # PLATFORM, якого свідомо немає, і червоніли б на справній поведінці.
     known -= set(ELSEWHERE)
 
+    # 🔴 На GitHub цих файлів немає ЗА ЗАДУМОМ: Pinterest, X і TikTok публікує запуск на Mac
+    # (`~/utd-runner`), а не Actions. 15.10.2026 через це перевірка в Actions горіла червоним
+    # у КОЖНОМУ прогоні — тобто знову червоне, яке перестають читати. Тут її не можна ні
+    # пройти, ні провалити чесно, тому в Actions вона не голосує (і прямо про це каже), а на
+    # Mac перевіряє файл, як і задумано.
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        say(f"   ⚪ поза run_due.py: {', '.join(sorted(ELSEWHERE))} — на GitHub не перевіряється: "
+            f"ці публікатори живуть на Mac (~/utd-runner), перевірка діє в локальному запуску")
+        ELSEWHERE_SKIP = True
+    else:
+        ELSEWHERE_SKIP = False
     outside_bad = []
     for k, (path, needle) in sorted(ELSEWHERE.items()):
+        if ELSEWHERE_SKIP:
+            break
         p = os.path.expanduser(path)
         if not os.path.exists(p):
             outside_bad.append(f"{k}: немає файла {path}")
         elif needle not in open(p, encoding="utf-8", errors="replace").read().lower():
             outside_bad.append(f"{k}: у {path} немає згадки «{needle}»")
-    ok("зовнішні публікатори на місці", not outside_bad, str(outside_bad))
-    say(f"   {'🟢' if not outside_bad else '🔴'} поза run_due.py: "
+    if not ELSEWHERE_SKIP:   # в Actions — ні зеленого, ні червоного: перевірка тут неможлива
+        ok("зовнішні публікатори на місці", not outside_bad, str(outside_bad))
+    if not ELSEWHERE_SKIP: say(f"   {'🟢' if not outside_bad else '🔴'} поза run_due.py: "
         f"{', '.join(sorted(ELSEWHERE))} — {'усі публікатори знайдені' if not outside_bad else '; '.join(outside_bad)}")
 
     unknown = [k for k in kinds if k not in known and k not in ELSEWHERE]
