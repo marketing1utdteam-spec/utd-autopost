@@ -275,7 +275,15 @@ def main():
         if e.get("caption_file"):
             names.insert(0, os.path.basename(e["caption_file"]))
         found = None
-        for n in names:
+        # 🔴 `caption_file` — це ПОВНИЙ шлях від кореня (`media/reels/reelNN_caption_pin.txt`),
+        # і публікатор (`_caption` у run_due.py) бере його саме так. Раніше тут бралось лише
+        # імʼя файла й шукалось у теці ВІДЕО (`_bez-zvuku-12.10/`), тож 15.10.2026 самоперевірка
+        # кричала «немає підпису» про пʼять пінів, у яких підпис на місці, — і через постійний
+        # червоний справжня поломка (піни Clio без TITLE:) губилась серед хибних.
+        cf = e.get("caption_file")
+        if cf and (os.path.exists(os.path.join(HERE, cf)) or in_repo(cf)):
+            found = cf
+        for n in ([] if found else names):
             rel = os.path.join(base, n)
             if os.path.exists(os.path.join(HERE, rel)) or in_repo(rel):
                 found = rel
