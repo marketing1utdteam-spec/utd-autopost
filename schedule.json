@@ -9390,5 +9390,47 @@
   "kind": "yt_short",
   "video": "media/reels/fuse-pdp-short.mp4",
   "meta_file": "media/reels/fuse-pdp-short_yt.json"
+ },
+ {
+  "id": "2026-10-16_ig_reel_fuse_pdp_social",
+  "date": "2026-10-16",
+  "kind": "ig_reel",
+  "video": "media/reels/fuse-pdp-social.mp4",
+  "caption_file": "media/reels/fuse-pdp-social_caption_ig.txt"
+ },
+ {
+  "id": "2026-10-16_fb_post_fuse_pdp_social",
+  "date": "2026-10-16",
+  "kind": "fb_post",
+  "video": "media/reels/fuse-pdp-social.mp4",
+  "caption_file": "media/reels/fuse-pdp-social_caption_fb.txt"
+ },
+ {
+  "id": "2026-10-16_th_post_fuse_pdp_social",
+  "date": "2026-10-16",
+  "kind": "th_post",
+  "video": "media/reels/fuse-pdp-social.mp4",
+  "caption_file": "media/reels/fuse-pdp-social_caption_th.txt"
+ },
+ {
+  "id": "2026-10-16_li_post_fuse_pdp_social",
+  "date": "2026-10-16",
+  "kind": "li_post",
+  "video": "media/reels/fuse-pdp-social_1x1.mp4",
+  "caption_file": "media/reels/fuse-pdp-social_caption_li.txt"
+ },
+ {
+  "id": "2026-10-16_tt_post_fuse_pdp_social",
+  "date": "2026-10-16",
+  "kind": "tt_post",
+  "video": "media/reels/fuse-pdp-social.mp4",
+  "caption_file": "media/reels/fuse-pdp-social_caption_tt.txt"
+ },
+ {
+  "id": "2026-10-16_pin_post_fuse_pdp_social",
+  "date": "2026-10-16",
+  "kind": "pin_post",
+  "video": "media/reels/fuse-pdp-social.mp4",
+  "caption_file": "media/reels/fuse-pdp-social_caption_pin.txt"
  }
 ]
