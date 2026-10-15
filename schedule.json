@@ -9383,5 +9383,12 @@
   "kind": "yt_video",
   "video": "media/reels/fuse-product-page-16x9.mp4",
   "meta_file": "media/reels/fuse-product-page-16x9.json"
+ },
+ {
+  "id": "2026-10-15_yt_short_fuse_pdp",
+  "date": "2026-10-15",
+  "kind": "yt_short",
+  "video": "media/reels/fuse-pdp-short.mp4",
+  "meta_file": "media/reels/fuse-pdp-short_yt.json"
  }
 ]
