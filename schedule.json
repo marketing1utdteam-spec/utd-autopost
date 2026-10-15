@@ -9369,5 +9369,12 @@
   "kind": "tt_post",
   "video": "media/reels/reel99.mp4",
   "caption_file": "media/reels/reel99_caption_tt.txt"
+ },
+ {
+  "id": "2026-10-15_yt_video_fuse_collections01",
+  "date": "2026-10-15",
+  "kind": "yt_video",
+  "video": "media/reels/fuse-collections-16x9.mp4",
+  "meta_file": "media/reels/fuse-collections-16x9.json"
  }
 ]
