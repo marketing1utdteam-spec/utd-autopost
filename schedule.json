@@ -3304,6 +3304,20 @@
   "meta_file": "media/reels/reel81_yt.json"
  },
  {
+  "id": "2026-10-17_yt_short_fuse_fluid",
+  "date": "2026-10-17",
+  "kind": "yt_short",
+  "video": "media/reels/fuse-fluid-short.mp4",
+  "meta_file": "media/reels/fuse-fluid-short_yt.json"
+ },
+ {
+  "id": "2026-10-17_x_post_fuse_fluid_social",
+  "date": "2026-10-17",
+  "kind": "x_post",
+  "video": "media/reels/fuse-fluid-social.mp4",
+  "caption_file": "media/reels/fuse-fluid-social_caption_x.txt"
+ },
+ {
   "id": "2026-10-16_li_post_reel19",
   "date": "2026-10-18",
   "kind": "li_post",
@@ -3350,6 +3364,48 @@
   "kind": "yt_short",
   "video": "media/reels/reel82.mp4",
   "meta_file": "media/reels/reel82_yt.json"
+ },
+ {
+  "id": "2026-10-18_fb_post_fuse_fluid_social",
+  "date": "2026-10-18",
+  "kind": "fb_post",
+  "video": "media/reels/fuse-fluid-social.mp4",
+  "caption_file": "media/reels/fuse-fluid-social_caption_fb.txt"
+ },
+ {
+  "id": "2026-10-18_ig_reel_fuse_fluid_social",
+  "date": "2026-10-18",
+  "kind": "ig_reel",
+  "video": "media/reels/fuse-fluid-social.mp4",
+  "caption_file": "media/reels/fuse-fluid-social_caption_ig.txt"
+ },
+ {
+  "id": "2026-10-18_tt_post_fuse_fluid_social",
+  "date": "2026-10-18",
+  "kind": "tt_post",
+  "video": "media/reels/fuse-fluid-social.mp4",
+  "caption_file": "media/reels/fuse-fluid-social_caption_tt.txt"
+ },
+ {
+  "id": "2026-10-18_th_post_fuse_fluid_social",
+  "date": "2026-10-18",
+  "kind": "th_post",
+  "video": "media/reels/fuse-fluid-social.mp4",
+  "caption_file": "media/reels/fuse-fluid-social_caption_th.txt"
+ },
+ {
+  "id": "2026-10-18_li_post_fuse_fluid_social",
+  "date": "2026-10-18",
+  "kind": "li_post",
+  "video": "media/reels/fuse-fluid-social_1x1.mp4",
+  "caption_file": "media/reels/fuse-fluid-social_caption_li.txt"
+ },
+ {
+  "id": "2026-10-18_pin_post_fuse_fluid_social",
+  "date": "2026-10-18",
+  "kind": "pin_post",
+  "video": "media/reels/fuse-fluid-social.mp4",
+  "caption_file": "media/reels/fuse-fluid-social_caption_pin.txt"
  },
  {
   "id": "2026-10-13_fb_post46",
