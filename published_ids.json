@@ -852,5 +852,12 @@
   "platform_id": "urn:li:ugcPost:7517060871882457089",
   "date": "2026-10-17",
   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7517060871882457089"
+ },
+ "2026-10-16_th_post_fuse_pdp_social": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "17950380141054526",
+  "date": "2026-10-17",
+  "url": "https://www.threads.net/@utd_web_team/post/17950380141054526"
  }
 }
