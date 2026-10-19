@@ -880,5 +880,19 @@
   "platform_id": "urn:li:ugcPost:7517683741369024512",
   "date": "2026-10-18",
   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7517683741369024512"
+ },
+ "2026-10-17_li_post_reel21": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7517860427410866177",
+  "date": "2026-10-19",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7517860427410866177"
+ },
+ "2026-10-18_li_post_fuse_fluid_social": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7517860472155447298",
+  "date": "2026-10-19",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7517860472155447298"
  }
 }
