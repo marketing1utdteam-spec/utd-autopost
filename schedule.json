@@ -3449,6 +3449,13 @@
   "meta_file": "media/reels/reel83_yt.json"
  },
  {
+  "id": "2026-10-19_yt_video_fuse_fluid01",
+  "date": "2026-10-19",
+  "kind": "yt_video",
+  "video": "media/reels/fuse-fluid-16x9.mp4",
+  "meta_file": "media/reels/fuse-fluid-16x9.json"
+ },
+ {
   "id": "2026-10-17_li_post_reel22",
   "date": "2026-10-20",
   "kind": "li_post",
