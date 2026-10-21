@@ -922,5 +922,19 @@
   "platform_id": "urn:li:ugcPost:7518143525662953473",
   "date": "2026-10-20",
   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7518143525662953473"
+ },
+ "2026-10-15_th_post33": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "18447850792130262",
+  "date": "2026-10-21",
+  "url": "https://www.threads.net/@utd_web_team/post/18447850792130262"
+ },
+ "2026-10-18_li_post_reel24": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7518594542867226624",
+  "date": "2026-10-21",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7518594542867226624"
  }
 }
