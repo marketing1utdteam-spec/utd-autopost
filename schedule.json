@@ -3846,13 +3846,6 @@
   "caption_file": "media/reels/reel40_caption_pin.txt"
  },
  {
-  "id": "2026-10-26_pin_post_reel41",
-  "date": "2026-10-27",
-  "kind": "pin_post",
-  "video": "media/reels/reel41.mp4",
-  "caption_file": "media/reels/reel41_caption_pin.txt"
- },
- {
   "id": "2026-10-21_th_post40",
   "date": "2026-10-27",
   "kind": "th_post",
@@ -3980,6 +3973,13 @@
   "kind": "li_post",
   "video": "media/reels/reel41.mp4",
   "caption_file": "media/reels/reel41_caption_li.txt"
+ },
+ {
+  "id": "2026-10-26_pin_post_reel41",
+  "date": "2026-10-29",
+  "kind": "pin_post",
+  "video": "media/reels/reel41.mp4",
+  "caption_file": "media/reels/reel41_caption_pin.txt"
  },
  {
   "id": "2026-10-28_pin_post_reel44",
