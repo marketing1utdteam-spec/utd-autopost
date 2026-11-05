@@ -1146,5 +1146,75 @@
   "platform_id": "urn:li:ugcPost:7522116789397311488",
   "date": "2026-10-31",
   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522116789397311488"
+ },
+ "2026-10-29_li_post_reel45": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7522235019428397056",
+  "date": "2026-10-31",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522235019428397056"
+ },
+ "2026-10-31_th_post_reel102": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "17919740472530650",
+  "date": "2026-10-31",
+  "url": "https://www.threads.net/@utd_web_team/post/17919740472530650"
+ },
+ "2026-10-26_th_post47": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "18119150386974401",
+  "date": "2026-11-01",
+  "url": "https://www.threads.net/@utd_web_team/post/18119150386974401"
+ },
+ "2026-10-29_li_post_reel46": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7522750864139231232",
+  "date": "2026-11-01",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522750864139231232"
+ },
+ "2026-10-30_li_post_reel47": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7522789638944743424",
+  "date": "2026-11-01",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522789638944743424"
+ },
+ "2026-09-12_th_post25": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "17981062788133569",
+  "date": "2026-11-04",
+  "url": "https://www.threads.net/@utd_web_team/post/17981062788133569"
+ },
+ "2026-10-30_li_post_reel48": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7523677140928598016",
+  "date": "2026-11-04",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7523677140928598016"
+ },
+ "2026-10-30_th_post_reel94": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "17974774626150142",
+  "date": "2026-11-05",
+  "url": "https://www.threads.net/@utd_web_team/post/17974774626150142"
+ },
+ "2026-11-02_li_post_reel54": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7523919646731780096",
+  "date": "2026-11-05",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7523919646731780096"
+ },
+ "2026-11-03_li_post_reel55": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7523960065331138560",
+  "date": "2026-11-05",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7523960065331138560"
  }
 }
