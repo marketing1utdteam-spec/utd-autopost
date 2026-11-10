@@ -1314,5 +1314,12 @@
   "platform_id": "urn:li:ugcPost:7525518524841205760",
   "date": "2026-11-09",
   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7525518524841205760"
+ },
+ "2026-11-10_fb_post_reel20": {
+  "platform": "facebook",
+  "kind": "fb_post",
+  "platform_id": "2144518796159126",
+  "date": "2026-11-10",
+  "url": "https://www.facebook.com/2144518796159126"
  }
 }
