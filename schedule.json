@@ -4758,13 +4758,6 @@
   "caption_file": "media/reels/reel104_caption.txt"
  },
  {
-  "id": "2026-11-08_pin_post_reel105",
-  "date": "2026-11-10",
-  "kind": "pin_post",
-  "video": "media/reels/reel105.mp4",
-  "caption_file": "media/reels/reel105_caption.txt"
- },
- {
   "id": "2026-11-09_th_post_reel105",
   "date": "2026-11-10",
   "kind": "th_post",
@@ -4881,6 +4874,13 @@
   "kind": "li_post",
   "video": "media/reels/reel69.mp4",
   "caption_file": "media/reels/reel69_caption_li.txt"
+ },
+ {
+  "id": "2026-11-08_pin_post_reel105",
+  "date": "2026-11-12",
+  "kind": "pin_post",
+  "video": "media/reels/reel105.mp4",
+  "caption_file": "media/reels/reel105_caption.txt"
  },
  {
   "id": "2026-11-07_th_post_reel04",
