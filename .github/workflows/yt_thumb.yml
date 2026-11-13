@@ -1,0 +1,26 @@
+name: YouTube thumbnail
+
+on:
+  workflow_dispatch:
+    inputs:
+      video_id:
+        description: "ID відео (youtu.be/<ID>)"
+        type: string
+        required: true
+      path:
+        description: "шлях до картинки в репо"
+        type: string
+        required: true
+
+jobs:
+  thumb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Set thumbnail
+        env:
+          YT_CONFIG: ${{ secrets.YT_CONFIG }}
+        run: python yt_thumb.py "${{ inputs.video_id }}" "${{ inputs.path }}"
