@@ -5,5 +5,12 @@
   "kind": "yt_video",
   "video": "media/reels/fuse-node-fashion-16x9-v2.mp4",
   "meta_file": "media/reels/fuse-node-fashion-16x9-v2.json"
+ },
+ {
+  "id": "2026-11-13_yt_video_black_friday_fuse",
+  "date": "2026-11-13",
+  "kind": "yt_video",
+  "video": "media/reels/black-friday-fuse-setup.mp4",
+  "meta_file": "media/reels/black-friday-fuse-setup.json"
  }
 ]
