@@ -4947,7 +4947,7 @@
  },
  {
   "id": "2026-11-13_pin_post_reel69",
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kind": "pin_post",
   "video": "media/reels/reel69.mp4",
   "caption_file": "media/reels/reel69_caption_pin.txt"
@@ -4961,7 +4961,7 @@
  },
  {
   "id": "2026-11-09_tt_post_reel60",
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "kind": "tt_post",
   "video": "media/reels/reel60.mp4",
   "caption_file": "media/reels/reel60_caption.txt"
@@ -12050,5 +12050,61 @@
   "kind": "tt_post",
   "video": "media/reels/reel111.mp4",
   "caption_file": "media/reels/reel111_caption.txt"
+ },
+ {
+  "id": "2026-11-13_yt_short_bf_step1",
+  "date": "2026-11-12",
+  "kind": "yt_short",
+  "video": "media/reels/bf-step1.mp4",
+  "meta_file": "media/reels/bf-step1_yt.json"
+ },
+ {
+  "id": "2026-11-13_fb_post_bf_step1",
+  "date": "2026-11-12",
+  "kind": "fb_post",
+  "video": "media/reels/bf-step1.mp4",
+  "caption_file": "media/reels/bf-step1_caption.txt"
+ },
+ {
+  "id": "2026-11-13_ig_reel_bf_step1",
+  "date": "2026-11-12",
+  "kind": "ig_reel",
+  "video": "media/reels/bf-step1.mp4",
+  "caption_file": "media/reels/bf-step1_caption.txt"
+ },
+ {
+  "id": "2026-11-13_th_post_bf_step1",
+  "date": "2026-11-12",
+  "kind": "th_post",
+  "video": "media/reels/bf-step1.mp4",
+  "caption_file": "media/reels/bf-step1_caption.txt"
+ },
+ {
+  "id": "2026-11-13_li_post_bf_step1",
+  "date": "2026-11-12",
+  "kind": "li_post",
+  "video": "media/reels/bf-step1.mp4",
+  "caption_file": "media/reels/bf-step1_caption.txt"
+ },
+ {
+  "id": "2026-11-13_x_post_bf_step1",
+  "date": "2026-11-12",
+  "kind": "x_post",
+  "video": "media/reels/bf-step1.mp4",
+  "caption_file": "media/reels/bf-step1_caption.txt"
+ },
+ {
+  "id": "2026-11-13_pin_post_bf_step1",
+  "date": "2026-11-12",
+  "kind": "pin_post",
+  "video": "media/reels/bf-step1.mp4",
+  "caption_file": "media/reels/bf-step1_caption.txt"
+ },
+ {
+  "id": "2026-11-13_tt_post_bf_step1",
+  "date": "2026-11-12",
+  "kind": "tt_post",
+  "video": "media/reels/bf-step1.mp4",
+  "caption_file": "media/reels/bf-step1_caption.txt"
  }
 ]
