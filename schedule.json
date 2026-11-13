@@ -11714,5 +11714,61 @@
   "kind": "tt_post",
   "video": "media/reels/_ozvuchka-nekorektna-23.10/reel06.mp4",
   "caption_file": "media/reels/reel06_caption_tt.txt"
+ },
+{
+  "id": "2026-11-13_yt_short_reel106",
+  "date": "2026-11-13",
+  "kind": "yt_short",
+  "video": "media/reels/reel106.mp4",
+  "meta_file": "media/reels/reel106_yt.json"
+ },
+{
+  "id": "2026-11-14_fb_post_reel106",
+  "date": "2026-11-14",
+  "kind": "fb_post",
+  "video": "media/reels/reel106.mp4",
+  "caption_file": "media/reels/reel106_caption.txt"
+ },
+{
+  "id": "2026-11-14_ig_reel_reel106",
+  "date": "2026-11-14",
+  "kind": "ig_reel",
+  "video": "media/reels/reel106.mp4",
+  "caption_file": "media/reels/reel106_caption.txt"
+ },
+{
+  "id": "2026-11-14_pin_post_reel106",
+  "date": "2026-11-14",
+  "kind": "pin_post",
+  "video": "media/reels/reel106.mp4",
+  "caption_file": "media/reels/reel106_caption.txt"
+ },
+{
+  "id": "2026-11-14_th_post_reel106",
+  "date": "2026-11-14",
+  "kind": "th_post",
+  "video": "media/reels/reel106.mp4",
+  "caption_file": "media/reels/reel106_caption.txt"
+ },
+{
+  "id": "2026-11-16_x_post_reel106",
+  "date": "2026-11-16",
+  "kind": "x_post",
+  "video": "media/reels/reel106.mp4",
+  "caption_file": "media/reels/reel106_caption.txt"
+ },
+{
+  "id": "2026-11-28_li_post_reel106",
+  "date": "2026-11-28",
+  "kind": "li_post",
+  "video": "media/reels/reel106.mp4",
+  "caption_file": "media/reels/reel106_caption.txt"
+ },
+{
+  "id": "2027-01-15_tt_post_reel106",
+  "date": "2027-01-15",
+  "kind": "tt_post",
+  "video": "media/reels/reel106.mp4",
+  "caption_file": "media/reels/reel106_caption.txt"
  }
 ]
