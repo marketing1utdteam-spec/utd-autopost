@@ -1384,5 +1384,19 @@
   "platform_id": "urn:li:ugcPost:7526607099716476928",
   "date": "2026-11-12",
   "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7526607099716476928"
+ },
+ "2026-11-08_th_post_reel05": {
+  "platform": "threads",
+  "kind": "th_post",
+  "platform_id": "18360250351171599",
+  "date": "2026-11-13",
+  "url": "https://www.threads.net/@utd_web_team/post/18360250351171599"
+ },
+ "2026-11-10_li_post_reel70": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7526896130786304000",
+  "date": "2026-11-13",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7526896130786304000"
  }
 }
