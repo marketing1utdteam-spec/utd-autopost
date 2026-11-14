@@ -12169,5 +12169,61 @@
   "kind": "tt_post",
   "video": "media/reels/sizeguide-bg.mp4",
   "caption_file": "media/reels/sizeguide-bg_caption.txt"
+ },
+ {
+  "id": "2026-11-14_yt_short_hardtruth1",
+  "date": "2026-11-14",
+  "kind": "yt_short",
+  "video": "media/reels/hardtruth1.mp4",
+  "meta_file": "media/reels/hardtruth1_yt.json"
+ },
+ {
+  "id": "2026-11-14_fb_post_hardtruth1",
+  "date": "2026-11-14",
+  "kind": "fb_post",
+  "video": "media/reels/hardtruth1.mp4",
+  "caption_file": "media/reels/hardtruth1_caption.txt"
+ },
+ {
+  "id": "2026-11-14_ig_reel_hardtruth1",
+  "date": "2026-11-14",
+  "kind": "ig_reel",
+  "video": "media/reels/hardtruth1.mp4",
+  "caption_file": "media/reels/hardtruth1_caption.txt"
+ },
+ {
+  "id": "2026-11-14_th_post_hardtruth1",
+  "date": "2026-11-14",
+  "kind": "th_post",
+  "video": "media/reels/hardtruth1.mp4",
+  "caption_file": "media/reels/hardtruth1_caption.txt"
+ },
+ {
+  "id": "2026-11-14_li_post_hardtruth1",
+  "date": "2026-11-14",
+  "kind": "li_post",
+  "video": "media/reels/hardtruth1.mp4",
+  "caption_file": "media/reels/hardtruth1_caption.txt"
+ },
+ {
+  "id": "2026-11-14_x_post_hardtruth1",
+  "date": "2026-11-14",
+  "kind": "x_post",
+  "video": "media/reels/hardtruth1.mp4",
+  "caption_file": "media/reels/hardtruth1_caption.txt"
+ },
+ {
+  "id": "2026-11-14_pin_post_hardtruth1",
+  "date": "2026-11-14",
+  "kind": "pin_post",
+  "video": "media/reels/hardtruth1.mp4",
+  "caption_file": "media/reels/hardtruth1_caption.txt"
+ },
+ {
+  "id": "2026-11-14_tt_post_hardtruth1",
+  "date": "2026-11-14",
+  "kind": "tt_post",
+  "video": "media/reels/hardtruth1.mp4",
+  "caption_file": "media/reels/hardtruth1_caption.txt"
  }
 ]
