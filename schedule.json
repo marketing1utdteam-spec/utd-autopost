@@ -12106,5 +12106,12 @@
   "kind": "tt_post",
   "video": "media/reels/bf-step1.mp4",
   "caption_file": "media/reels/bf-step1_caption.txt"
+ },
+ {
+  "id": "2026-11-14_yt_short_bf_step1_v2",
+  "date": "2026-11-12",
+  "kind": "yt_short",
+  "video": "media/reels/bf-step1.mp4",
+  "meta_file": "media/reels/bf-step1_yt.json"
  }
 ]
