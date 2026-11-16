@@ -12,5 +12,12 @@
   "kind": "yt_video",
   "video": "media/reels/black-friday-fuse-setup.mp4",
   "meta_file": "media/reels/black-friday-fuse-setup.json"
+ },
+ {
+  "id": "2026-11-16_yt_video_impression_size_guide",
+  "date": "2026-11-16",
+  "kind": "yt_video",
+  "video": "media/reels/impression-size-guide.mp4",
+  "meta_file": "media/reels/impression-size-guide.json"
  }
 ]
