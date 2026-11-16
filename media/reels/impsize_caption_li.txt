@@ -1,0 +1,10 @@
+Wrong size means another return.
+
+Shoppers decide on size before they buy, so the answer has to be on the product page, not buried in an FAQ. In our Impression theme the size chart opens right on the product page, each product can have its own chart, and with Shopify's bulk editor one chart goes to many products at once.
+
+We recorded the full setup, step by step, in a 6-minute tutorial:
+https://youtu.be/vYKjoNAka-I
+
+What do your customers ask you most before buying?
+
+#shopify #ecommerce #shopifytips
