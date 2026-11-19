@@ -12344,5 +12344,61 @@
   "kind": "pin_post",
   "video": "media/reels/sunday2347.mp4",
   "caption_file": "media/reels/sunday2347_caption.txt"
+ },
+ {
+  "id": "2026-07-02_yt_short_receipt",
+  "date": "2026-07-02",
+  "kind": "yt_short",
+  "video": "media/reels/receipt.mp4",
+  "meta_file": "media/reels/receipt_yt.json"
+ },
+ {
+  "id": "2026-07-02_ig_reel_receipt",
+  "date": "2026-07-02",
+  "kind": "ig_reel",
+  "video": "media/reels/receipt.mp4",
+  "caption_file": "media/reels/receipt_caption.txt"
+ },
+ {
+  "id": "2026-07-02_fb_post_receipt",
+  "date": "2026-07-02",
+  "kind": "fb_post",
+  "video": "media/reels/receipt.mp4",
+  "caption_file": "media/reels/receipt_caption.txt"
+ },
+ {
+  "id": "2026-07-02_th_post_receipt",
+  "date": "2026-07-02",
+  "kind": "th_post",
+  "video": "media/reels/receipt.mp4",
+  "caption_file": "media/reels/receipt_caption.txt"
+ },
+ {
+  "id": "2026-07-02_li_post_receipt",
+  "date": "2026-07-02",
+  "kind": "li_post",
+  "video": "media/reels/receipt.mp4",
+  "caption_file": "media/reels/receipt_caption.txt"
+ },
+ {
+  "id": "2026-07-02_x_post_receipt",
+  "date": "2026-07-02",
+  "kind": "x_post",
+  "video": "media/reels/receipt.mp4",
+  "caption_file": "media/reels/receipt_caption.txt"
+ },
+ {
+  "id": "2026-07-02_tt_post_receipt",
+  "date": "2026-07-02",
+  "kind": "tt_post",
+  "video": "media/reels/receipt.mp4",
+  "caption_file": "media/reels/receipt_caption.txt"
+ },
+ {
+  "id": "2026-07-02_pin_post_receipt",
+  "date": "2026-07-02",
+  "kind": "pin_post",
+  "video": "media/reels/receipt.mp4",
+  "caption_file": "media/reels/receipt_caption.txt"
  }
 ]
