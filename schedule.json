@@ -12288,5 +12288,61 @@
   "kind": "yt_short",
   "video": "media/reels/reel111.mp4",
   "meta_file": "media/reels/reel111_yt.json"
+ },
+ {
+  "id": "2026-07-01_yt_short_sunday2347",
+  "date": "2026-07-01",
+  "kind": "yt_short",
+  "video": "media/reels/sunday2347.mp4",
+  "meta_file": "media/reels/sunday2347_yt.json"
+ },
+ {
+  "id": "2026-07-01_ig_reel_sunday2347",
+  "date": "2026-07-01",
+  "kind": "ig_reel",
+  "video": "media/reels/sunday2347.mp4",
+  "caption_file": "media/reels/sunday2347_caption.txt"
+ },
+ {
+  "id": "2026-07-01_fb_post_sunday2347",
+  "date": "2026-07-01",
+  "kind": "fb_post",
+  "video": "media/reels/sunday2347.mp4",
+  "caption_file": "media/reels/sunday2347_caption.txt"
+ },
+ {
+  "id": "2026-07-01_th_post_sunday2347",
+  "date": "2026-07-01",
+  "kind": "th_post",
+  "video": "media/reels/sunday2347.mp4",
+  "caption_file": "media/reels/sunday2347_caption.txt"
+ },
+ {
+  "id": "2026-07-01_li_post_sunday2347",
+  "date": "2026-07-01",
+  "kind": "li_post",
+  "video": "media/reels/sunday2347.mp4",
+  "caption_file": "media/reels/sunday2347_caption.txt"
+ },
+ {
+  "id": "2026-07-01_x_post_sunday2347",
+  "date": "2026-07-01",
+  "kind": "x_post",
+  "video": "media/reels/sunday2347.mp4",
+  "caption_file": "media/reels/sunday2347_caption.txt"
+ },
+ {
+  "id": "2026-07-01_tt_post_sunday2347",
+  "date": "2026-07-01",
+  "kind": "tt_post",
+  "video": "media/reels/sunday2347.mp4",
+  "caption_file": "media/reels/sunday2347_caption.txt"
+ },
+ {
+  "id": "2026-07-01_pin_post_sunday2347",
+  "date": "2026-07-01",
+  "kind": "pin_post",
+  "video": "media/reels/sunday2347.mp4",
+  "caption_file": "media/reels/sunday2347_caption.txt"
  }
 ]
