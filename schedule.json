@@ -5498,13 +5498,6 @@
   "folder": "media/ig/post28"
  },
  {
-  "id": "2026-11-14_ig_reel_reel106",
-  "date": "2026-11-18",
-  "kind": "ig_reel",
-  "video": "media/reels/reel106.mp4",
-  "caption_file": "media/reels/reel106_caption.txt"
- },
- {
   "id": "2026-11-15_li_post_reel80",
   "date": "2026-11-18",
   "kind": "li_post",
@@ -6048,6 +6041,13 @@
   "date": "2026-11-25",
   "kind": "ig_post",
   "folder": "media/ig/post29"
+ },
+ {
+  "id": "2026-11-14_ig_reel_reel106",
+  "date": "2026-11-25",
+  "kind": "ig_reel",
+  "video": "media/reels/reel106.mp4",
+  "caption_file": "media/reels/reel106_caption.txt"
  },
  {
   "id": "2026-10-31_li_post_reel50",
