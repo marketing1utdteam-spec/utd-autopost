@@ -19,4 +19,9 @@ jobs:
       - name: Status
         env:
           YT_CONFIG: ${{ secrets.YT_CONFIG }}
+          DUMP: snippets.json
         run: python yt_status.py ${{ inputs.ids }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: snippets
+          path: snippets.json
