@@ -1,0 +1,22 @@
+name: YouTube status (read-only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: "ID відео через пробіл"
+        type: string
+        required: true
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Status
+        env:
+          YT_CONFIG: ${{ secrets.YT_CONFIG }}
+        run: python yt_status.py ${{ inputs.ids }}
