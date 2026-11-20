@@ -8,6 +8,17 @@ body = urllib.parse.urlencode({"client_id": cfg["client_id"], "client_secret": c
                                "refresh_token": cfg["refresh_token"], "grant_type": "refresh_token"}).encode()
 at = json.load(urllib.request.urlopen("https://oauth2.googleapis.com/token", data=body))["access_token"]
 ids = sys.argv[1:]
+def get(url):
+    return json.load(urllib.request.urlopen(urllib.request.Request(url, headers={"Authorization": f"Bearer {at}"})))
+if ids == ["--uploads"]:  # усі завантаження каналу
+    pl = get("https://www.googleapis.com/youtube/v3/channels?part=contentDetails&mine=true")["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
+    ids, tok = [], ""
+    while True:
+        pg = get(f"https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=50&playlistId={pl}&pageToken={tok}")
+        ids += [i["contentDetails"]["videoId"] for i in pg["items"]]
+        tok = pg.get("nextPageToken")
+        if not tok: break
+    sys.argv[1:] = ids
 r = {"items": []}
 for n in range(0, len(ids), 50):  # API бере до 50 ID за раз
     q = urllib.parse.urlencode({"part": "status,contentDetails,snippet", "id": ",".join(ids[n:n+50])})
@@ -16,7 +27,7 @@ for n in range(0, len(ids), 50):  # API бере до 50 ID за раз
 found = {i["id"] for i in r.get("items", [])}
 for i in r.get("items", []):
     st, cd = i["status"], i["contentDetails"]
-    print(i["id"], "|", i["snippet"]["title"][:50], "| upload:", st.get("uploadStatus"),
+    print(i["id"], "|", i["snippet"]["title"][:70], "| upload:", st.get("uploadStatus"),
           "| privacy:", st.get("privacyStatus"), "| reject:", st.get("rejectionReason"),
           "| failure:", st.get("failureReason"), "| licensed:", cd.get("licensedContent"),
           "| dur:", cd.get("duration"),
