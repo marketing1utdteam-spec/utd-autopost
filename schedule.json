@@ -12407,5 +12407,40 @@
   "kind": "tt_post",
   "video": "media/reels/receipt.mp4",
   "caption_file": "media/reels/receipt_caption.txt"
+ },
+ {
+  "id": "2026-11-20_yt_video_tut-victory-sizeguide",
+  "date": "2026-11-20",
+  "kind": "yt_video",
+  "video": "media/reels/tut-victory-sizeguide.mp4",
+  "meta_file": "media/reels/tut-victory-sizeguide_yt_long.json"
+ },
+ {
+  "id": "2026-11-20_yt_video_tut-fuse-drawers",
+  "date": "2026-11-20",
+  "kind": "yt_video",
+  "video": "media/reels/tut-fuse-drawers.mp4",
+  "meta_file": "media/reels/tut-fuse-drawers_yt_long.json"
+ },
+ {
+  "id": "2026-11-20_yt_video_tut-victory-drawers",
+  "date": "2026-11-20",
+  "kind": "yt_video",
+  "video": "media/reels/tut-victory-drawers.mp4",
+  "meta_file": "media/reels/tut-victory-drawers_yt_long.json"
+ },
+ {
+  "id": "2026-11-20_yt_video_tut-custom-font",
+  "date": "2026-11-20",
+  "kind": "yt_video",
+  "video": "media/reels/tut-custom-font.mp4",
+  "meta_file": "media/reels/tut-custom-font_yt_long.json"
+ },
+ {
+  "id": "2026-11-20_yt_video_tut-victory-menuicons",
+  "date": "2026-11-20",
+  "kind": "yt_video",
+  "video": "media/reels/tut-victory-menuicons.mp4",
+  "meta_file": "media/reels/tut-victory-menuicons_yt_long.json"
  }
 ]
