@@ -1,0 +1,19 @@
+A ready-made Shopify store for a clothing brand, checked the way a shopper checks it.
+
+We tapped through Fuse (Node preset) on its real demo:
+
+Filters by size, color and fabric, one tap away
+
+Every color and size right on the product page, with a size guide
+
+Stock shown before add to cart
+
+Fabric and fit in a drawer, no scrolling
+
+Recommendations and quick view, without leaving the page
+
+Fuse is a ready-made store for clothing brands in the official Shopify Theme Store. Try it free, with no time limit.
+
+https://themes.shopify.com/themes/fuse/presets/node
+
+#shopify #shopifytheme #ecommerce

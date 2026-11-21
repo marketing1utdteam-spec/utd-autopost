@@ -1,0 +1,5 @@
+A ready-made Shopify store for a clothing brand. Fuse answers what shoppers check first: filters by size, color and fabric, a size guide one tap away, stock before add to cart, fabric and fit in a drawer.
+
+Try it free, no time limit.
+
+themes.shopify.com/themes/fuse/presets/node

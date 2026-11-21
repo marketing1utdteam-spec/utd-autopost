@@ -1,0 +1,4 @@
+TITLE: Best Shopify Theme for a Clothing Brand: Fuse, a Ready-Made Store
+URL: https://themes.shopify.com/themes/fuse/presets/node
+
+Fuse (Node preset) is a ready-made Shopify store for clothing brands: filters by size, color and fabric, color and size on the product page with a size guide, stock before add to cart, fabric and fit in a drawer, recommendations and quick view. Try it free with no time limit in the official Shopify Theme Store.
