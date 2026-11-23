@@ -30,7 +30,43 @@ def gh_token():
         if line.startswith('password='): return line[9:]
     raise RuntimeError('нет GitHub токена (GH_TOKEN или git credential)')
 
+# ---------- Cloudflare R2 (основний тимчасовий хостинг з 23.11.2026) ----------
+# 🔴 Чому не GitHub. 23.11.2026 GitHub заблокував інший акаунт власника за використання
+# сервісів не для коду. Тимчасові файли через Contents API ще й назавжди лишались в історії
+# utd-media (звідси 2,8 ГБ). Тепер файл іде в закрите сховище R2 `utd-media` (акаунт UTD),
+# Meta отримує підписане посилання на 2 год, після публікації файл видаляється.
+# Ключі лише локально: ~/.config/utd/r2.json (600). У репозиторії їх немає і бути не може.
+# Якщо R2 недоступний — ГОЛОСНО падаємо на старий GitHub-шлях, щоб пост не пропав.
+def _r2():
+    import boto3
+    from botocore.config import Config
+    cfg = json.load(open(os.path.expanduser('~/.config/utd/r2.json')))
+    acc = json.load(open(os.path.expanduser('~/.config/utd/cloudflare.json')))['account_id']
+    c = boto3.client('s3', endpoint_url=f'https://{acc}.r2.cloudflarestorage.com',
+                     aws_access_key_id=cfg['access_key_id'], aws_secret_access_key=cfg['secret_access_key'],
+                     region_name='auto', config=Config(signature_version='s3v4'))
+    return c, cfg.get('bucket', 'utd-media')
+
+_CT = {'.mp4': 'video/mp4', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png'}
+
+def r2_upload(localfile, repopath):
+    c, b = _r2()
+    ct = _CT.get(os.path.splitext(localfile)[1].lower(), 'application/octet-stream')
+    with open(localfile, 'rb') as f:
+        c.put_object(Bucket=b, Key=repopath, Body=f, ContentType=ct)
+    url = c.generate_presigned_url('get_object', Params={'Bucket': b, 'Key': repopath}, ExpiresIn=7200)
+    return url, 'r2'
+
+def r2_delete(repopath):
+    c, b = _r2()
+    c.delete_object(Bucket=b, Key=repopath)
+
 def gh_upload(localfile, repopath):
+    if os.path.exists(os.path.expanduser('~/.config/utd/r2.json')):
+        try:
+            return r2_upload(localfile, repopath)
+        except Exception as e:
+            print(f"  🟡 R2 не прийняв {repopath} ({str(e)[:120]}) — цього разу через GitHub")
     tok = gh_token()
     with open(localfile,'rb') as f: content = base64.b64encode(f.read()).decode()
     body = json.dumps({"message":f"add {repopath}","content":content}).encode()
@@ -52,6 +88,10 @@ def gh_upload(localfile, repopath):
     return url, r['content']['sha']
 
 def gh_delete(repopath, sha):
+    if sha == 'r2':
+        try: r2_delete(repopath)
+        except Exception as e: print("  ! R2 delete warn:", str(e)[:120])
+        return
     tok = gh_token()
     body = json.dumps({"message":f"del {repopath}","sha":sha}).encode()
     req = urllib.request.Request(f"https://api.github.com/repos/{MEDIA_REPO}/contents/{repopath}",
