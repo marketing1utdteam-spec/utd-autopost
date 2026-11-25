@@ -63,7 +63,22 @@ def load(p, default):
     return json.load(open(fp)) if os.path.exists(fp) else default
 
 
+_UTM_SOURCE = {"caption_ig.txt": "instagram", "caption_fb.txt": "facebook",
+               "caption_th.txt": "threads", "caption_li.txt": "linkedin"}
+
+
 def _caption(here, entry, per_network, shared):
+    """Підпис + UTM на всі наші посилання (власник 25.11.2026: «не діяти наосліп»).
+
+    Мітка ставиться ТУТ, у єдиній точці, через яку проходить підпис кожної мережі,
+    а не у файлах підписів: так її неможливо забути. Деталі схеми — `utm.py`.
+    """
+    import utm
+    txt = _caption_raw(here, entry, per_network, shared)
+    return utm.tag(txt, _UTM_SOURCE.get(per_network, "social"), entry.get("id", ""))
+
+
+def _caption_raw(here, entry, per_network, shared):
     """Підпис саме під цю мережу, інакше спільний.
 
     🔴 Порядок джерел: поле `caption_file` у записі → файл мережі в теці → спільний
@@ -413,6 +428,8 @@ def main():
                                     share_to_feed=bool(e.get("share_to_feed")))
             elif kind == "yt_short":
                 m = json.load(open(os.path.join(HERE, e["meta_file"])))
+                import utm
+                m["description"] = utm.tag(m["description"], "youtube", e.get("id", ""))
                 plat_id = M.yt_short(os.path.join(HERE, e["video"]), m["title"], m["description"], a.dry_run)
             elif kind == "yt_video":
                 # 🔴 Горизонтальний ролик без обмеження 60 с. Доданий 08.10.2026 на
@@ -424,6 +441,8 @@ def main():
                 # лише в перевірці, і перевірка тут ОБОВʼЯЗКОВА: без неї вертикальний
                 # файл поїхав би як довге відео, і навпаки, без жодної помилки.
                 m = json.load(open(os.path.join(HERE, e["meta_file"])))
+                import utm
+                m["description"] = utm.tag(m["description"], "youtube", e.get("id", ""))
                 if not V.say(os.path.join(HERE, e["video"]), "youtube_long",
                              m.get("description", "")):
                     raise RuntimeError("відео не пройшло перевірку youtube_long")
@@ -437,7 +456,8 @@ def main():
             elif kind == "fb_post":
                 folder = os.path.join(HERE, e["folder"])
                 cover = (sorted(glob.glob(f"{folder}/slide_*.jpg")) or sorted(glob.glob(f"{folder}/slide_*.png")))[0]
-                cap = open(f"{folder}/caption_fb.txt").read().strip()
+                import utm
+                cap = utm.tag(open(f"{folder}/caption_fb.txt").read().strip(), "facebook", e.get("id", ""))
                 plat_id = M.fb_photo(cover, cap, None, a.dry_run)
             # ── Три нові мережі (дозвіл власника 04.09.2026) ──────────────────
             # 🔴 ЛИШЕ ЛОКАЛЬНО, і це не технічне обмеження, а правило власника:
