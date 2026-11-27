@@ -1839,5 +1839,26 @@
   "platform_id": "5ChXcmCqvPI",
   "date": "2026-11-27",
   "url": "https://youtu.be/5ChXcmCqvPI"
+ },
+ "2026-11-26_li_post_reel117": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7532225367844069376",
+  "date": "2026-11-28",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7532225367844069376"
+ },
+ "2026-11-27_ig_reel_reel118": {
+  "platform": "instagram",
+  "kind": "ig_reel",
+  "platform_id": "17991340088908228",
+  "date": "2026-11-28",
+  "url": "https://www.instagram.com/p/17991340088908228"
+ },
+ "2026-11-02_li_post_reel53": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7532225793096073216",
+  "date": "2026-11-28",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7532225793096073216"
  }
 }
