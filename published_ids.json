@@ -1790,5 +1790,26 @@
   "platform_id": "15e-9E_Tltc",
   "date": "2026-11-26",
   "url": "https://youtu.be/15e-9E_Tltc"
+ },
+ "2026-11-25_li_post_reel116": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7531953550676131841",
+  "date": "2026-11-27",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7531953550676131841"
+ },
+ "2026-11-26_ig_reel_reel117": {
+  "platform": "instagram",
+  "kind": "ig_reel",
+  "platform_id": "18148320115568575",
+  "date": "2026-11-27",
+  "url": "https://www.instagram.com/p/18148320115568575"
+ },
+ "2026-11-01_li_post_reel52": {
+  "platform": "linkedin",
+  "kind": "li_post",
+  "platform_id": "urn:li:ugcPost:7531954219696861184",
+  "date": "2026-11-27",
+  "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7531954219696861184"
  }
 }
